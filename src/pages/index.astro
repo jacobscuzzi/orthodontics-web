@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getEntry, render } from 'astro:content';
+import site from '../data/site.json';
+
+const home = await getEntry('pages', 'home');
+if (!home) throw new Error('pages/home.md missing');
+const { Content } = await render(home);
+---
+<BaseLayout title={`${site.practice.name} – Kieferorthopädie Berlin Stralau`}>
+  <section class="mx-auto max-w-4xl px-4 md:px-6 py-12 md:py-20">
+    <p class="text-accent font-medium mb-3 text-sm tracking-wide uppercase">Kieferorthopädie Berlin · Halbinsel Stralau</p>
+    <h1 class="font-display text-4xl md:text-6xl text-primary mb-6 leading-tight">Herzlich willkommen</h1>
+    <div class="prose prose-lg max-w-none">
+      <Content />
+    </div>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a
+        href={site.practice.doctolibUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-primary-cta
+        class="inline-block bg-primary text-background px-6 py-3 rounded-md font-medium hover:opacity-90 transition-opacity"
+      >
+        Jetzt Termin buchen
+      </a>
+      <a href="/praxis" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">
+        Die Praxis kennenlernen
+      </a>
+    </div>
+  </section>
+
+  <section class="bg-primary/5 py-12 md:py-16">
+    <div class="mx-auto max-w-4xl px-4 md:px-6 grid gap-8 md:grid-cols-3">
+      <div>
+        <h2 class="font-display text-xl text-primary mb-2">Für Kinder & Erwachsene</h2>
+        <p class="text-sm opacity-80">Von der Frühbehandlung über feste und lose Spangen bis zur Erwachsenenbehandlung.</p>
+      </div>
+      <div>
+        <h2 class="font-display text-xl text-primary mb-2">Mitten in Stralau</h2>
+        <p class="text-sm opacity-80">Direkt am Ufer der Rummelsburger Bucht — schöner Ausblick inklusive.</p>
+      </div>
+      <div>
+        <h2 class="font-display text-xl text-primary mb-2">Zeit für Dich</h2>
+        <p class="text-sm opacity-80">Kleine Praxis, bewusst wenige Termine — Du wirst immer von Dr. Baumfalk persönlich behandelt.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-4 md:px-6 py-12 md:py-16">
+    <h2 class="font-display text-3xl text-primary mb-6">Noch Fragen?</h2>
+    <p class="mb-6 opacity-80">Wie funktioniert eine Zahnspange, wann geht es Deinen Zähnen gut und was ist überhaupt Kieferorthopädie? Die häufigsten Fragen haben wir für Dich zusammengestellt.</p>
+    <a href="/faq" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">
+      Zur Frage & Antwort-Seite
+    </a>
+  </section>
+</BaseLayout>

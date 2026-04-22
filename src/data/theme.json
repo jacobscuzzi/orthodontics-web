@@ -1,0 +1,26 @@
+{
+  "activePreset": "sage",
+  "presets": {
+    "sage": {
+      "label": "Salbei",
+      "primary": "#7A8F73",
+      "accent": "#D4A88C",
+      "background": "#F8F4ED",
+      "text": "#2D3430"
+    },
+    "classicGreen": {
+      "label": "Grün klassisch",
+      "primary": "#8FBF27",
+      "accent": "#E8DCC4",
+      "background": "#FAF7F2",
+      "text": "#2D3430"
+    },
+    "blue": {
+      "label": "Blau",
+      "primary": "#4A6FA5",
+      "accent": "#0000FF",
+      "background": "#F5F7FA",
+      "text": "#1E2A3A"
+    }
+  }
+}

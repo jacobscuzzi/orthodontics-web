@@ -1,0 +1,97 @@
+---
+import site from '../data/site.json';
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/praxis', label: 'Praxis' },
+  { href: '/team', label: 'Team' },
+  { href: '/behandlung', label: 'Behandlung' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/kontakt', label: 'Kontakt' },
+];
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header class="sticky top-0 z-30 border-b border-primary/10 bg-background/95 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-4">
+    <a href="/" class="flex items-center gap-3 shrink-0" aria-label="Zur Startseite">
+      <img src={site.logo} alt={`Logo ${site.practice.name}`} class="h-10 w-auto md:h-12" />
+      <span class="sr-only">{site.practice.name}</span>
+    </a>
+
+    <nav class="hidden md:block" aria-label="Hauptnavigation">
+      <ul class="flex gap-6 text-[15px]">
+        {navItems.map(item => {
+          const active = (item.href === '/' && pathname === '/') || (item.href !== '/' && pathname.startsWith(item.href));
+          return (
+            <li>
+              <a
+                href={item.href}
+                class:list={['transition-colors hover:text-primary', active && 'text-primary font-medium']}
+                aria-current={active ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2 md:gap-3">
+      <a
+        href={site.practice.doctolibUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-primary-cta
+        class="bg-primary text-background font-medium rounded-md hover:opacity-90 transition-opacity px-3 py-1.5 text-sm md:px-4 md:py-2 md:text-base"
+      >
+        Termin <span class="hidden sm:inline">buchen</span>
+      </a>
+      <button
+        id="nav-toggle"
+        class="md:hidden p-2 text-2xl leading-none"
+        aria-label="Menü öffnen"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >☰</button>
+    </div>
+  </div>
+
+  <div id="mobile-nav" class="hidden fixed inset-0 z-50 bg-background p-6 md:hidden" role="dialog" aria-modal="true" aria-label="Mobiles Menü">
+    <button id="nav-close" aria-label="Menü schließen" class="absolute top-4 right-6 text-3xl leading-none">✕</button>
+    <ul class="mt-20 flex flex-col gap-5 text-xl font-display">
+      {navItems.map(item => (
+        <li><a href={item.href} class="hover:text-primary">{item.label}</a></li>
+      ))}
+      <li class="pt-4">
+        <a href={site.practice.doctolibUrl} target="_blank" rel="noopener noreferrer"
+           class="inline-block bg-primary text-background px-5 py-3 rounded-md">
+          Termin buchen
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const close = document.getElementById('nav-close');
+  const nav = document.getElementById('mobile-nav');
+
+  const openNav = () => {
+    nav?.classList.remove('hidden');
+    toggle?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeNav = () => {
+    nav?.classList.add('hidden');
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
+  toggle?.addEventListener('click', openNav);
+  close?.addEventListener('click', closeNav);
+  nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav && !nav.classList.contains('hidden')) closeNav();
+  });
+</script>

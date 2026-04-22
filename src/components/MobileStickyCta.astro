@@ -1,0 +1,38 @@
+---
+import site from '../data/site.json';
+---
+<a
+  href={site.practice.doctolibUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  id="sticky-cta"
+  class="md:hidden fixed bottom-4 left-4 right-4 z-40 bg-primary text-background text-center py-3 rounded-md font-medium shadow-lg transition-opacity"
+>
+  Termin buchen
+</a>
+
+<script>
+  const sticky = document.getElementById('sticky-cta');
+  if (sticky) {
+    const targets = document.querySelectorAll('[data-primary-cta]');
+    if (targets.length === 0) {
+      sticky.style.opacity = '1';
+    } else {
+      const visibility = new Map<Element, boolean>();
+      const update = () => {
+        const anyVisible = Array.from(visibility.values()).some(Boolean);
+        sticky.style.opacity = anyVisible ? '0' : '1';
+        sticky.style.pointerEvents = anyVisible ? 'none' : 'auto';
+      };
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => visibility.set(e.target, e.isIntersecting));
+        update();
+      }, { threshold: 0.1 });
+      targets.forEach(el => {
+        visibility.set(el, false);
+        io.observe(el);
+      });
+      update();
+    }
+  }
+</script>

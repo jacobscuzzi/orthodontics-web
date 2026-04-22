@@ -1,0 +1,122 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+locale: 'de'
+
+collections:
+  - name: "pages"
+    label: "Seiten"
+    folder: "src/content/pages"
+    extension: "md"
+    format: "frontmatter"
+    create: false
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: "Titel", widget: string }
+      - { name: heroImage, label: "Titelbild (optional)", widget: image, required: false }
+      - { name: heroAlt, label: "Bildbeschreibung (optional)", widget: string, required: false }
+      - { name: body, label: "Inhalt", widget: markdown }
+
+  - name: "team"
+    label: "Team"
+    folder: "src/content/team"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{order}}-{{slug}}"
+    fields:
+      - { name: name, label: "Name", widget: string }
+      - { name: role, label: "Rolle / Funktion", widget: string }
+      - { name: photo, label: "Foto (optional)", widget: image, required: false }
+      - { name: order, label: "Reihenfolge (kleinere Zahl = weiter vorne)", widget: number, default: 100, value_type: int }
+      - { name: body, label: "Beschreibung", widget: markdown }
+
+  - name: "faq"
+    label: "Frage & Antwort"
+    folder: "src/content/faq"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{order}}-{{slug}}"
+    fields:
+      - { name: question, label: "Frage", widget: string }
+      - { name: order, label: "Reihenfolge", widget: number, default: 100, value_type: int }
+      - { name: body, label: "Antwort", widget: markdown }
+
+  - name: "site"
+    label: "Website-Daten"
+    editor:
+      preview: false
+    files:
+      - name: "contact"
+        label: "Stammdaten & Kontakt"
+        file: "src/data/site.json"
+        fields:
+          - name: practice
+            label: "Praxis"
+            widget: object
+            fields:
+              - { name: name, label: "Name", widget: string }
+              - { name: subtitle, label: "Untertitel", widget: string }
+              - { name: street, label: "Straße", widget: string }
+              - { name: zip, label: "PLZ", widget: string }
+              - { name: city, label: "Ort", widget: string }
+              - { name: phone, label: "Telefon", widget: string }
+              - { name: email, label: "E-Mail", widget: string }
+              - { name: doctolibUrl, label: "Doctolib-Link", widget: string }
+          - name: hours
+            label: "Öffnungszeiten"
+            widget: list
+            fields:
+              - { name: day, label: "Tag", widget: string }
+              - { name: time, label: "Uhrzeit", widget: string }
+          - { name: hoursNote, label: "Zusatz zu Öffnungszeiten (z.B. Mittagspause)", widget: string, required: false }
+          - { name: logo, label: "Logo", widget: image }
+
+      - name: "theme"
+        label: "Design / Farbe"
+        file: "src/data/theme.json"
+        fields:
+          - name: activePreset
+            label: "Aktives Farbpreset"
+            widget: select
+            options:
+              - { label: "Salbei", value: "sage" }
+              - { label: "Grün klassisch", value: "classicGreen" }
+              - { label: "Blau", value: "blue" }
+          - name: presets
+            label: "Farb-Presets (nur mit Unterstützung ändern!)"
+            widget: object
+            collapsed: true
+            fields:
+              - name: sage
+                label: "Salbei"
+                widget: object
+                fields:
+                  - { name: label, label: "Bezeichnung", widget: string }
+                  - { name: primary, label: "Primärfarbe", widget: color }
+                  - { name: accent, label: "Akzentfarbe", widget: color }
+                  - { name: background, label: "Hintergrund", widget: color }
+                  - { name: text, label: "Textfarbe", widget: color }
+              - name: classicGreen
+                label: "Grün klassisch"
+                widget: object
+                fields:
+                  - { name: label, label: "Bezeichnung", widget: string }
+                  - { name: primary, label: "Primärfarbe", widget: color }
+                  - { name: accent, label: "Akzentfarbe", widget: color }
+                  - { name: background, label: "Hintergrund", widget: color }
+                  - { name: text, label: "Textfarbe", widget: color }
+              - name: blue
+                label: "Blau"
+                widget: object
+                fields:
+                  - { name: label, label: "Bezeichnung", widget: string }
+                  - { name: primary, label: "Primärfarbe", widget: color }
+                  - { name: accent, label: "Akzentfarbe", widget: color }
+                  - { name: background, label: "Hintergrund", widget: color }
+                  - { name: text, label: "Textfarbe", widget: color }

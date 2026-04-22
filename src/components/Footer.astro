@@ -1,0 +1,27 @@
+---
+import site from '../data/site.json';
+const phoneHref = `tel:${site.practice.phone.replace(/\s/g, '').replace(/-/g, '')}`;
+---
+<footer class="mt-16 border-t border-primary/10 bg-background py-10 text-sm">
+  <div class="mx-auto max-w-6xl px-4 md:px-6 grid gap-8 md:grid-cols-3">
+    <div>
+      <p class="font-display text-lg">{site.practice.name}</p>
+      <p class="opacity-80">{site.practice.subtitle}</p>
+    </div>
+    <div>
+      <p>{site.practice.street}</p>
+      <p>{site.practice.zip} {site.practice.city}</p>
+      <p class="mt-2">
+        Tel: <a href={phoneHref} class="hover:text-primary">{site.practice.phone}</a>
+      </p>
+      <p>
+        <a href={`mailto:${site.practice.email}`} class="hover:text-primary break-all">{site.practice.email}</a>
+      </p>
+    </div>
+    <div class="flex flex-col gap-1">
+      <a href="/impressum" class="hover:text-primary">Impressum</a>
+      <a href="/datenschutz" class="hover:text-primary">Datenschutz</a>
+      <a href={site.practice.doctolibUrl} target="_blank" rel="noopener noreferrer" class="hover:text-primary">Online-Terminbuchung</a>
+    </div>
+  </div>
+</footer>

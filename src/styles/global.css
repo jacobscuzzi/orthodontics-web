@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@import "@fontsource/fraunces/400.css";
+@import "@fontsource/fraunces/600.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+
+  --color-primary: var(--c-primary);
+  --color-accent: var(--c-accent);
+  --color-background: var(--c-background);
+  --color-text: var(--c-text);
+}
+
+:root {
+  --c-primary: #7A8F73;
+  --c-accent: #D4A88C;
+  --c-background: #F8F4ED;
+  --c-text: #2D3430;
+}
+
+body {
+  background-color: var(--c-background);
+  color: var(--c-text);
+}

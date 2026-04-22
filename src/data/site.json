@@ -1,0 +1,21 @@
+{
+  "practice": {
+    "name": "Dr. Insa Baumfalk",
+    "subtitle": "Kieferorthopädin",
+    "street": "Fischzug 7b",
+    "zip": "10245",
+    "city": "Berlin",
+    "phone": "030 - 5337113",
+    "email": "info@kieferorthopaediepraxis-berlin.de",
+    "doctolibUrl": "https://www.doctolib.de/kieferorthopadie/berlin/insa-baumfalk"
+  },
+  "hours": [
+    { "day": "Montag", "time": "08:00 – 18:00 Uhr" },
+    { "day": "Dienstag", "time": "14:00 – 19:00 Uhr" },
+    { "day": "Mittwoch", "time": "08:00 – 12:30 Uhr und 14:00 – 16:00 Uhr" },
+    { "day": "Donnerstag", "time": "09:00 – 12:30 Uhr und 14:00 – 18:00 Uhr" },
+    { "day": "Freitag", "time": "nach Vereinbarung" }
+  ],
+  "hoursNote": "Mittagspause 12:30 – 13:30 Uhr",
+  "logo": "/uploads/logo.png"
+}
