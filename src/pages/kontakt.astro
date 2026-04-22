@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry, render } from 'astro:content';
 import site from '../data/site.json';
+import Hero from '../components/Hero.astro';
+import SectionBand from '../components/SectionBand.astro';
+import MapEmbed from '../components/MapEmbed.astro';
 
 const page = await getEntry('pages', 'kontakt');
 if (!page) throw new Error('pages/kontakt.md missing');
@@ -9,60 +12,68 @@ const { Content } = await render(page);
 const phoneHref = `tel:${site.practice.phone.replace(/\s/g, '').replace(/-/g, '')}`;
 ---
 <BaseLayout title="Kontakt – Dr. Insa Baumfalk">
-  {page.data.heroImage && (
-    <div class="mx-auto max-w-5xl px-4 md:px-6 pt-8 md:pt-10">
-      <img
-        src={page.data.heroImage}
-        alt={page.data.heroAlt ?? ''}
-        class="w-full h-64 md:h-80 object-cover rounded-lg"
-        loading="eager"
-      />
-    </div>
-  )}
-  <div class="mx-auto max-w-4xl px-4 md:px-6 py-12 md:py-16">
-    <h1 class="font-display text-4xl md:text-5xl text-primary mb-8">{page.data.title}</h1>
+  <Hero
+    variant="overlay"
+    eyebrow="Kontakt"
+    title={`So <em>findest</em> Du uns.`}
+    image={page.data.heroImage}
+    imageAlt={page.data.heroAlt}
+  />
 
-    <div class="grid gap-8 md:grid-cols-2 mb-12">
-      <div class="bg-primary/5 rounded-lg p-6">
-        <h2 class="font-display text-xl text-primary mb-3">Adresse</h2>
-        <p>{site.practice.name}</p>
-        <p>{site.practice.street}</p>
-        <p>{site.practice.zip} {site.practice.city}</p>
-        <p class="mt-4">
-          <a href={phoneHref} class="hover:text-primary">Tel: {site.practice.phone}</a>
-        </p>
-        <p>
-          <a href={`mailto:${site.practice.email}`} class="hover:text-primary break-all">
-            {site.practice.email}
-          </a>
-        </p>
+  <section class="mx-auto max-w-6xl px-4 md:px-6 py-16 md:py-24">
+    <div class="grid gap-10 md:gap-14 md:grid-cols-12">
+      <div class="md:col-span-5 space-y-10">
+        <div>
+          <p class="eyebrow mb-4">Adresse</p>
+          <p class="text-xl font-display mb-1">{site.practice.name}</p>
+          <p class="opacity-80">{site.practice.street}</p>
+          <p class="opacity-80">{site.practice.zip} {site.practice.city}</p>
+        </div>
+        <div>
+          <p class="eyebrow mb-4">Direkt Kontakt</p>
+          <p class="mb-1">
+            <a href={phoneHref} class="text-lg hover:text-primary">{site.practice.phone}</a>
+          </p>
+          <p>
+            <a href={`mailto:${site.practice.email}`} class="hover:text-primary break-all text-base opacity-80">
+              {site.practice.email}
+            </a>
+          </p>
+        </div>
+        <div>
+          <p class="eyebrow mb-4">Öffnungszeiten</p>
+          <ul class="space-y-1.5">
+            {site.hours.map(h => (
+              <li class="flex justify-between gap-3 text-base">
+                <span class="font-medium">{h.day}</span>
+                <span class="opacity-80 text-right">{h.time || '—'}</span>
+              </li>
+            ))}
+          </ul>
+          {site.hoursNote && <p class="mt-4 text-sm opacity-65">{site.hoursNote}</p>}
+        </div>
         <a
           href={site.practice.doctolibUrl}
           target="_blank"
           rel="noopener noreferrer"
           data-primary-cta
-          class="mt-6 inline-block bg-primary text-background px-5 py-2.5 rounded-md font-medium hover:opacity-90 transition-opacity"
+          class="inline-block bg-primary text-background px-6 py-3 rounded-md font-medium hover:opacity-90 transition-opacity"
         >
           Online-Termin buchen
         </a>
       </div>
 
-      <div class="bg-primary/5 rounded-lg p-6">
-        <h2 class="font-display text-xl text-primary mb-3">Öffnungszeiten</h2>
-        <ul class="space-y-1">
-          {site.hours.map(h => (
-            <li class="flex justify-between gap-3">
-              <span class="font-medium">{h.day}</span>
-              <span class="opacity-80 text-right">{h.time || '—'}</span>
-            </li>
-          ))}
-        </ul>
-        {site.hoursNote && <p class="mt-4 text-sm opacity-70">{site.hoursNote}</p>}
+      <div class="md:col-span-7">
+        <MapEmbed size="large" />
       </div>
     </div>
+  </section>
 
-    <article class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-primary">
-      <Content />
-    </article>
-  </div>
+  <SectionBand tone="band">
+    <section class="mx-auto max-w-3xl px-4 md:px-6 py-20 md:py-28">
+      <article class="prose prose-lg md:prose-xl max-w-none prose-headings:font-display prose-headings:text-primary">
+        <Content />
+      </article>
+    </section>
+  </SectionBand>
 </BaseLayout>

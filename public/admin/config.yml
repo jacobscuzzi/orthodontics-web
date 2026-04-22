@@ -65,6 +65,25 @@ collections:
       - { name: order, label: "Reihenfolge", widget: number, default: 100, value_type: int }
       - { name: body, label: "Antwort", widget: markdown }
 
+  - name: "reviews"
+    label: "Bewertungen"
+    folder: "src/content/reviews"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{order}}-{{slug}}"
+    fields:
+      - { name: author, label: "Autor (Vorname + Initial)", widget: string }
+      - name: rating
+        label: "Sterne"
+        widget: select
+        default: 5
+        options: [1, 2, 3, 4, 5]
+      - { name: date, label: "Datum", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, required: false }
+      - { name: order, label: "Reihenfolge (kleinere Zahl = weiter vorne)", widget: number, default: 100, value_type: int }
+      - { name: featured, label: "Auf der Startseite zeigen?", widget: boolean, default: true }
+      - { name: body, label: "Bewertungstext", widget: text }
+
   - name: "site"
     label: "Website-Daten"
     editor:
@@ -94,6 +113,14 @@ collections:
               - { name: time, label: "Uhrzeit", widget: string }
           - { name: hoursNote, label: "Zusatz zu Öffnungszeiten (z.B. Mittagspause)", widget: string, required: false }
           - { name: logo, label: "Logo", widget: image }
+          - name: googleReviews
+            label: "Google-Bewertungen (Gesamtzahlen)"
+            widget: object
+            fields:
+              - { name: averageRating, label: "Durchschnitt (z.B. 4.9)", widget: number, value_type: float, step: 0.1 }
+              - { name: totalCount, label: "Anzahl Bewertungen", widget: number, value_type: int }
+              - { name: googleMapsUrl, label: "Google-Maps-Profil-Link", widget: string }
+          - { name: mapsEmbedUrl, label: "Google-Maps Embed-URL (iframe src)", widget: string }
 
       - name: "theme"
         label: "Design / Farbe"

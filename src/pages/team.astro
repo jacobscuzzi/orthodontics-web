@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry, getCollection, render } from 'astro:content';
+import Hero from '../components/Hero.astro';
+import SectionBand from '../components/SectionBand.astro';
 
 const intro = await getEntry('pages', 'team');
 if (!intro) throw new Error('pages/team.md missing');
@@ -15,40 +17,45 @@ const rendered = await Promise.all(
 );
 ---
 <BaseLayout title="Team – Dr. Insa Baumfalk">
-  {intro.data.heroImage && (
-    <div class="mx-auto max-w-5xl px-4 md:px-6 pt-8 md:pt-10">
-      <img
-        src={intro.data.heroImage}
-        alt={intro.data.heroAlt ?? ''}
-        class="w-full h-64 md:h-80 object-cover rounded-lg"
-        loading="eager"
-      />
-    </div>
-  )}
-  <div class="mx-auto max-w-4xl px-4 md:px-6 py-12 md:py-16">
-    <h1 class="font-display text-4xl md:text-5xl text-primary mb-8">{intro.data.title}</h1>
-    <div class="prose prose-lg max-w-none mb-12">
+  <Hero
+    variant="overlay"
+    eyebrow="Unser Team"
+    title={`Kleines <em>Team</em>, ganze Aufmerksamkeit.`}
+    image={intro.data.heroImage}
+    imageAlt={intro.data.heroAlt}
+  />
+
+  <section class="mx-auto max-w-3xl px-4 md:px-6 py-20 md:py-24 text-center">
+    <div class="prose prose-lg max-w-none mx-auto">
       <IntroContent />
     </div>
+  </section>
 
-    <ul class="grid gap-6 md:grid-cols-2 list-none p-0">
-      {rendered.map(({ data, Content }) => (
-        <li class="bg-primary/5 rounded-lg p-6 flex gap-5">
-          {data.photo && (
-            <img
-              src={data.photo}
-              alt={`Foto von ${data.name}`}
-              class="w-28 h-32 md:w-32 md:h-36 object-cover rounded-md shrink-0"
-              loading="lazy"
-            />
-          )}
-          <div class="min-w-0">
-            <h2 class="font-display text-2xl text-primary">{data.name}</h2>
-            <p class="text-sm opacity-70 mb-3">{data.role}</p>
-            <div class="prose prose-sm max-w-none"><Content /></div>
+  {rendered.map(({ data, Content }, i) => {
+    const imageLeft = i % 2 === 0;
+    const band = i % 2 === 1;
+    return (
+      <SectionBand tone={band ? 'band' : 'background'}>
+        <div class="mx-auto max-w-6xl px-4 md:px-6 py-14 md:py-20">
+          <div class="grid gap-8 md:gap-14 md:grid-cols-12 items-center">
+            {data.photo && (
+              <div class:list={['md:col-span-5', imageLeft ? 'md:order-1' : 'md:order-2']}>
+                <img
+                  src={data.photo}
+                  alt={`Foto von ${data.name}`}
+                  class="w-full aspect-[4/5] object-cover rounded-xl"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class:list={['md:col-span-7', imageLeft ? 'md:order-2' : 'md:order-1']}>
+              <p class="eyebrow mb-4">{`0${i + 1}`} — {data.role}</p>
+              <h2 class="headline-lg mb-5">{data.name}</h2>
+              <div class="prose prose-lg max-w-none text-base md:text-lg leading-relaxed opacity-90"><Content /></div>
+            </div>
           </div>
-        </li>
-      ))}
-    </ul>
-  </div>
+        </div>
+      </SectionBand>
+    );
+  })}
 </BaseLayout>

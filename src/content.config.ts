@@ -35,4 +35,15 @@ const faq = defineCollection({
   }),
 });
 
-export const collections = { pages, team, faq };
+const reviews = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/reviews' }),
+  schema: z.object({
+    author: z.string(),
+    rating: z.number().min(1).max(5).default(5),
+    date: z.string().optional(),
+    order: z.number().default(100),
+    featured: z.boolean().default(true),
+  }),
+});
+
+export const collections = { pages, team, faq, reviews };
