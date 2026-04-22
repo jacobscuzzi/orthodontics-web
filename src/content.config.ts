@@ -8,6 +8,12 @@ const pages = defineCollection({
     heroImage: z.string().optional(),
     heroAlt: z.string().optional(),
     gallery: z.array(z.object({ src: z.string(), alt: z.string().optional() })).optional(),
+    sections: z.array(z.object({
+      title: z.string(),
+      image: z.string().optional(),
+      imageAlt: z.string().optional(),
+      body: z.string(),
+    })).optional(),
   }),
 });
 

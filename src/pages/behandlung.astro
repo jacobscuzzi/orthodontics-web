@@ -5,6 +5,7 @@ import { getEntry, render } from 'astro:content';
 const page = await getEntry('pages', 'behandlung');
 if (!page) throw new Error('pages/behandlung.md missing');
 const { Content } = await render(page);
+const sections = page.data.sections ?? [];
 ---
 <BaseLayout title={`${page.data.title} – Dr. Insa Baumfalk`}>
   {page.data.heroImage && (
@@ -17,24 +18,40 @@ const { Content } = await render(page);
       />
     </div>
   )}
-  <article class="mx-auto max-w-3xl px-4 md:px-6 py-12 md:py-16">
-    <h1 class="font-display text-4xl md:text-5xl text-primary mb-8">{page.data.title}</h1>
-    <div class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-primary">
-      <Content />
+
+  <div class="mx-auto max-w-5xl px-4 md:px-6 py-12 md:py-16">
+    <h1 class="font-display text-4xl md:text-5xl text-primary mb-12">{page.data.title}</h1>
+
+    <div class="space-y-16 md:space-y-24">
+      {sections.map((section, i) => {
+        const imageRight = i % 2 === 0;
+        return (
+          <section class="grid gap-8 md:gap-12 md:grid-cols-2 items-center">
+            {section.image && (
+              <div class:list={[imageRight ? 'md:order-2' : 'md:order-1']}>
+                <img
+                  src={section.image}
+                  alt={section.imageAlt ?? ''}
+                  class="w-full h-64 md:h-80 object-cover rounded-lg"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class:list={[imageRight ? 'md:order-1' : 'md:order-2']}>
+              <h2 class="font-display text-2xl md:text-3xl text-primary mb-4">{section.title}</h2>
+              <div class="space-y-4 text-base md:text-lg leading-relaxed">
+                {section.body.trim().split(/\n\n+/).map((para) => (
+                  <p>{para.trim()}</p>
+                ))}
+              </div>
+            </div>
+          </section>
+        );
+      })}
     </div>
-  </article>
-  {page.data.gallery && page.data.gallery.length > 0 && (
-    <section class="mx-auto max-w-5xl px-4 md:px-6 pb-16">
-      <div class="grid gap-4 grid-cols-2 md:grid-cols-3">
-        {page.data.gallery.map((img) => (
-          <img
-            src={img.src}
-            alt={img.alt ?? ''}
-            class="w-full h-48 md:h-56 object-cover rounded-lg"
-            loading="lazy"
-          />
-        ))}
-      </div>
-    </section>
-  )}
+
+    <article class="prose prose-lg max-w-none prose-headings:font-display prose-headings:text-primary mt-16 md:mt-24">
+      <Content />
+    </article>
+  </div>
 </BaseLayout>

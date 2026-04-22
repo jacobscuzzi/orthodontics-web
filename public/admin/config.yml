@@ -27,6 +27,16 @@ collections:
         fields:
           - { name: src, label: "Bild", widget: image }
           - { name: alt, label: "Bildbeschreibung", widget: string, required: false }
+      - name: sections
+        label: "Abschnitte mit Bild (optional, z.B. Behandlung)"
+        widget: list
+        required: false
+        summary: "{{fields.title}}"
+        fields:
+          - { name: title, label: "Überschrift", widget: string }
+          - { name: image, label: "Bild", widget: image, required: false }
+          - { name: imageAlt, label: "Bildbeschreibung", widget: string, required: false }
+          - { name: body, label: "Text", widget: text }
       - { name: body, label: "Inhalt", widget: markdown }
 
   - name: "team"
