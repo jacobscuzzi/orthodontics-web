@@ -1,0 +1,78 @@
+---
+import site from '../data/site.json';
+interface Props {
+  size?: 'small' | 'large';
+  rounded?: boolean;
+}
+const { size = 'large', rounded = true } = Astro.props;
+const heightClass = size === 'small' ? 'h-72 md:h-80' : 'h-96 md:h-[32rem]';
+const embedUrl = (site as any).mapsEmbedUrl ?? '';
+const mapsLink = (site as any).googleReviews?.googleMapsUrl ?? 'https://www.google.com/maps';
+const id = `map-${Math.random().toString(36).slice(2, 9)}`;
+---
+<div
+  class:list={['map-embed relative w-full overflow-hidden border border-primary/15', heightClass, rounded && 'rounded-xl']}
+  data-map-id={id}
+  data-embed-url={embedUrl}
+>
+  <div class="map-placeholder absolute inset-0 flex flex-col items-center justify-center gap-5 p-6 text-center bg-primary/8">
+    <div class="text-5xl" aria-hidden="true">📍</div>
+    <div>
+      <p class="font-display text-xl md:text-2xl mb-1">Hier liegt unsere Praxis</p>
+      <p class="text-sm opacity-75">Fischzug 7b · Halbinsel Stralau · 10245 Berlin</p>
+    </div>
+    <button
+      type="button"
+      class="map-load inline-block bg-primary text-background px-5 py-2.5 rounded-md font-medium hover:opacity-90 transition-opacity"
+    >
+      🗺️ Karte laden
+    </button>
+    <p class="text-xs opacity-60 max-w-sm leading-relaxed">
+      Beim Laden der Karte werden Daten an Google übertragen. Mehr dazu in unserer <a href="/datenschutz" class="underline">Datenschutzerklärung</a>.
+    </p>
+    <a href={mapsLink} target="_blank" rel="noopener noreferrer" class="text-sm text-primary underline hover:no-underline">
+      Alternativ in Google Maps öffnen →
+    </a>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'mapsConsent';
+
+  function loadMap(el: HTMLElement) {
+    const embedUrl = el.dataset.embedUrl;
+    if (!embedUrl) return;
+    const placeholder = el.querySelector<HTMLElement>('.map-placeholder');
+    if (placeholder) placeholder.remove();
+    const iframe = document.createElement('iframe');
+    iframe.src = embedUrl;
+    iframe.loading = 'lazy';
+    iframe.style.border = '0';
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+    iframe.className = 'absolute inset-0 w-full h-full';
+    iframe.title = 'Google Maps — Praxisstandort';
+    el.appendChild(iframe);
+  }
+
+  function initMaps() {
+    const consented = localStorage.getItem(STORAGE_KEY) === 'true';
+    document.querySelectorAll<HTMLElement>('.map-embed').forEach((el) => {
+      if (consented) {
+        loadMap(el);
+      } else {
+        const btn = el.querySelector<HTMLButtonElement>('.map-load');
+        btn?.addEventListener('click', () => {
+          localStorage.setItem(STORAGE_KEY, 'true');
+          document.querySelectorAll<HTMLElement>('.map-embed').forEach(loadMap);
+        });
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMaps);
+  } else {
+    initMaps();
+  }
+</script>

@@ -1,0 +1,11 @@
+---
+interface Props {
+  tone?: 'background' | 'band';
+  class?: string;
+}
+const { tone = 'background', class: className = '' } = Astro.props;
+const bg = tone === 'band' ? 'bg-band' : 'bg-background';
+---
+<section class:list={[bg, className]}>
+  <slot />
+</section>
