@@ -19,6 +19,14 @@ collections:
       - { name: title, label: "Titel", widget: string }
       - { name: heroImage, label: "Titelbild (optional)", widget: image, required: false }
       - { name: heroAlt, label: "Bildbeschreibung (optional)", widget: string, required: false }
+      - name: gallery
+        label: "Bildergalerie (optional)"
+        widget: list
+        required: false
+        summary: "{{fields.alt}}"
+        fields:
+          - { name: src, label: "Bild", widget: image }
+          - { name: alt, label: "Bildbeschreibung", widget: string, required: false }
       - { name: body, label: "Inhalt", widget: markdown }
 
   - name: "team"

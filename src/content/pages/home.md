@@ -1,5 +1,7 @@
 ---
 title: "Willkommen"
+heroImage: "/uploads/bild-start.jpg"
+heroAlt: "Blick auf die Halbinsel Stralau — Standort der Praxis"
 ---
 
 Wir freuen uns, Dich auf unserer Seite begrüßen zu dürfen! Hier gibt es Informationen rund um die Behandlung in unserer kieferorthopädischen Praxis auf der schönen Halbinsel Stralau nahe am Zentrum von Berlin.

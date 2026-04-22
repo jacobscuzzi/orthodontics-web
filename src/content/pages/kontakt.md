@@ -1,5 +1,7 @@
 ---
 title: "Kontakt"
+heroImage: "/uploads/bild-kontakt.jpg"
+heroAlt: "Die Praxis auf der Halbinsel Stralau"
 ---
 
 ## So findest Du zu uns

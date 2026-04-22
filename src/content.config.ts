@@ -3,19 +3,20 @@ import { glob } from 'astro/loaders';
 
 const pages = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/pages' }),
-  schema: ({ image }) => z.object({
+  schema: z.object({
     title: z.string(),
-    heroImage: image().optional(),
+    heroImage: z.string().optional(),
     heroAlt: z.string().optional(),
+    gallery: z.array(z.object({ src: z.string(), alt: z.string().optional() })).optional(),
   }),
 });
 
 const team = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/team' }),
-  schema: ({ image }) => z.object({
+  schema: z.object({
     name: z.string(),
     role: z.string(),
-    photo: image().optional(),
+    photo: z.string().optional(),
     order: z.number().default(100),
   }),
 });

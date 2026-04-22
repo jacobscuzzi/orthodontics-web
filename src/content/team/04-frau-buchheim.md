@@ -1,6 +1,7 @@
 ---
 name: "Frau Buchheim"
 role: "Zahntechnikerin"
+photo: "/uploads/team-04.jpg"
 order: 4
 ---
 

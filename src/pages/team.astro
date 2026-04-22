@@ -15,6 +15,16 @@ const rendered = await Promise.all(
 );
 ---
 <BaseLayout title="Team – Dr. Insa Baumfalk">
+  {intro.data.heroImage && (
+    <div class="mx-auto max-w-5xl px-4 md:px-6 pt-8 md:pt-10">
+      <img
+        src={intro.data.heroImage}
+        alt={intro.data.heroAlt ?? ''}
+        class="w-full h-64 md:h-80 object-cover rounded-lg"
+        loading="eager"
+      />
+    </div>
+  )}
   <div class="mx-auto max-w-4xl px-4 md:px-6 py-12 md:py-16">
     <h1 class="font-display text-4xl md:text-5xl text-primary mb-8">{intro.data.title}</h1>
     <div class="prose prose-lg max-w-none mb-12">
@@ -23,10 +33,20 @@ const rendered = await Promise.all(
 
     <ul class="grid gap-6 md:grid-cols-2 list-none p-0">
       {rendered.map(({ data, Content }) => (
-        <li class="bg-primary/5 rounded-lg p-6">
-          <h2 class="font-display text-2xl text-primary">{data.name}</h2>
-          <p class="text-sm opacity-70 mb-3">{data.role}</p>
-          <div class="prose prose-sm max-w-none"><Content /></div>
+        <li class="bg-primary/5 rounded-lg p-6 flex gap-5">
+          {data.photo && (
+            <img
+              src={data.photo}
+              alt={`Foto von ${data.name}`}
+              class="w-24 h-24 md:w-28 md:h-28 object-cover rounded-full shrink-0"
+              loading="lazy"
+            />
+          )}
+          <div class="min-w-0">
+            <h2 class="font-display text-2xl text-primary">{data.name}</h2>
+            <p class="text-sm opacity-70 mb-3">{data.role}</p>
+            <div class="prose prose-sm max-w-none"><Content /></div>
+          </div>
         </li>
       ))}
     </ul>

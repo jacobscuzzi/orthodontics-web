@@ -55,22 +55,29 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
       >☰</button>
     </div>
   </div>
-
-  <div id="mobile-nav" class="hidden fixed inset-0 z-50 bg-background p-6 md:hidden" role="dialog" aria-modal="true" aria-label="Mobiles Menü">
-    <button id="nav-close" aria-label="Menü schließen" class="absolute top-4 right-6 text-3xl leading-none">✕</button>
-    <ul class="mt-20 flex flex-col gap-5 text-xl font-display">
-      {navItems.map(item => (
-        <li><a href={item.href} class="hover:text-primary">{item.label}</a></li>
-      ))}
-      <li class="pt-4">
-        <a href={site.practice.doctolibUrl} target="_blank" rel="noopener noreferrer"
-           class="inline-block bg-primary text-background px-5 py-3 rounded-md">
-          Termin buchen
-        </a>
-      </li>
-    </ul>
-  </div>
 </header>
+
+<div
+  id="mobile-nav"
+  class="hidden fixed inset-0 z-[100] p-6 md:hidden"
+  style="background-color: var(--c-background);"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Mobiles Menü"
+>
+  <button id="nav-close" aria-label="Menü schließen" class="absolute top-4 right-6 text-3xl leading-none">✕</button>
+  <ul class="mt-20 flex flex-col gap-5 text-xl font-display">
+    {navItems.map(item => (
+      <li><a href={item.href} class="hover:text-primary">{item.label}</a></li>
+    ))}
+    <li class="pt-4">
+      <a href={site.practice.doctolibUrl} target="_blank" rel="noopener noreferrer"
+         class="inline-block bg-primary text-background px-5 py-3 rounded-md">
+        Termin buchen
+      </a>
+    </li>
+  </ul>
+</div>
 
 <script>
   const toggle = document.getElementById('nav-toggle');

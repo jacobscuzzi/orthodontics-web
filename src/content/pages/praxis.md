@@ -1,5 +1,12 @@
 ---
 title: "Die Praxis"
+heroImage: "/uploads/praxis-01.jpg"
+heroAlt: "Blick in die Praxisräume"
+gallery:
+  - { src: "/uploads/praxis-03.jpg", alt: "Praxis" }
+  - { src: "/uploads/praxis-05.jpg", alt: "Praxis" }
+  - { src: "/uploads/praxis-06.jpg", alt: "Praxis" }
+  - { src: "/uploads/praxis-08.jpg", alt: "Praxis" }
 ---
 
 Von unserer Praxis lässt sich behaupten, dass es die mit dem wohl schönsten Ausblick vom Behandlungsstuhl ist — und wir bemühen uns, Dein schönstes Lächeln hervorzuzaubern.

@@ -1,5 +1,13 @@
 ---
 title: "Behandlung"
+heroImage: "/uploads/behandlung-01.jpg"
+heroAlt: "Behandlungsraum"
+gallery:
+  - { src: "/uploads/behandlung-02.jpg", alt: "Behandlung" }
+  - { src: "/uploads/behandlung-03.jpg", alt: "Behandlung" }
+  - { src: "/uploads/behandlung-04.jpg", alt: "Behandlung" }
+  - { src: "/uploads/behandlung-05.jpg", alt: "Behandlung" }
+  - { src: "/uploads/behandlung-06.jpg", alt: "Behandlung" }
 ---
 
 ## Frühbehandlung

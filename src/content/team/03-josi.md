@@ -1,6 +1,7 @@
 ---
 name: "Josi"
 role: "Zahnmedizinische Fachangestellte"
+photo: "/uploads/team-03.jpg"
 order: 3
 ---
 
