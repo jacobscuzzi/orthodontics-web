@@ -17,7 +17,7 @@
     { "day": "Freitag", "time": "nach Vereinbarung" }
   ],
   "hoursNote": "Mittagspause 12:30 – 13:30 Uhr",
-  "logo": "/uploads/logo.png",
+  "logo": "/uploads/logo.svg",
   "googleReviews": {
     "averageRating": 4.9,
     "totalCount": 35,

@@ -1,79 +1,25 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getEntry, render } from 'astro:content';
+import { getEntry } from 'astro:content';
 import site from '../data/site.json';
 import Hero from '../components/Hero.astro';
 import SectionBand from '../components/SectionBand.astro';
 import ReviewsSection from '../components/ReviewsSection.astro';
-import MapEmbed from '../components/MapEmbed.astro';
 
 const home = await getEntry('pages', 'home');
 if (!home) throw new Error('pages/home.md missing');
-const { Content } = await render(home);
 ---
 <BaseLayout title={`${site.practice.name} – Kieferorthopädie Berlin Stralau`}>
   <Hero
     variant="magazine"
-    eyebrow="Kieferorthopädie Berlin · Halbinsel Stralau"
-    title={`Dein schönstes <em>Lächeln</em> auf Stralau.`}
-    subtitle="Kleine, bewusst geführte Praxis direkt am Wasser. Bei uns wirst Du immer von Dr. Baumfalk persönlich behandelt — ob Kind, Jugendliche oder Erwachsener."
+    title="Inselpraxis."
+    subtitle="Die Kieferorthopädische Praxis auf Alt-Stralau."
     image={home.data.heroImage}
     imageAlt={home.data.heroAlt}
     primaryCta={{ href: site.practice.doctolibUrl, label: 'Termin buchen', external: true }}
-    secondaryCta={{ href: '/praxis', label: 'Die Praxis kennenlernen' }}
   />
 
   <SectionBand tone="band">
     <ReviewsSection />
   </SectionBand>
-
-  <section class="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-28">
-    <div class="max-w-3xl mb-14 md:mb-20">
-      <p class="eyebrow mb-5">Was uns ausmacht</p>
-      <h2 class="headline-lg" set:html={`Zeit, <em>Ruhe</em> und ein schöner Ausblick.`} />
-    </div>
-    <div class="grid gap-10 md:grid-cols-3">
-      <div>
-        <p class="font-display italic text-accent text-xl mb-3">01</p>
-        <h3 class="headline-md mb-3">Für Kinder & Erwachsene</h3>
-        <p class="text-base md:text-lg opacity-80 leading-relaxed">Von der Frühbehandlung über feste und lose Spangen bis zur unauffälligen Erwachsenenbehandlung.</p>
-      </div>
-      <div>
-        <p class="font-display italic text-accent text-xl mb-3">02</p>
-        <h3 class="headline-md mb-3">Mitten in Stralau</h3>
-        <p class="text-base md:text-lg opacity-80 leading-relaxed">Direkt am Ufer der Rummelsburger Bucht — schöner Ausblick vom Behandlungsstuhl inklusive.</p>
-      </div>
-      <div>
-        <p class="font-display italic text-accent text-xl mb-3">03</p>
-        <h3 class="headline-md mb-3">Zeit für Dich</h3>
-        <p class="text-base md:text-lg opacity-80 leading-relaxed">Kleine Praxis, bewusst wenige Termine — Du wirst immer persönlich von Dr. Baumfalk behandelt.</p>
-      </div>
-    </div>
-  </section>
-
-  <SectionBand tone="band">
-    <div class="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-28">
-      <div class="grid gap-10 md:gap-14 md:grid-cols-2 items-center">
-        <div>
-          <p class="eyebrow mb-5">So findest Du zu uns</p>
-          <h2 class="headline-lg mb-6" set:html={`Praxis am <em>Wasser</em>.`} />
-          <p class="text-lg opacity-80 leading-relaxed mb-4">Fischzug 7b · 10245 Berlin</p>
-          <p class="text-base opacity-70 leading-relaxed mb-8">Halbinsel Stralau — direkt am Ufer der Rummelsburger Bucht. Mit S-Bahn (Treptower Park / Ostkreuz), Bus 104/347 oder dem Fahrrad gut erreichbar.</p>
-          <a href="/kontakt" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">Anfahrt & Kontakt</a>
-        </div>
-        <MapEmbed size="small" />
-      </div>
-    </div>
-  </SectionBand>
-
-  <section class="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-28">
-    <div class="max-w-3xl">
-      <p class="eyebrow mb-5">Häufige Fragen</p>
-      <h2 class="headline-lg mb-6" set:html={`Noch <em>Fragen</em>?`} />
-      <p class="text-lg md:text-xl opacity-80 leading-relaxed mb-8">Wie funktioniert eine Zahnspange, wann geht es Deinen Zähnen gut und was ist überhaupt Kieferorthopädie? Die häufigsten Fragen haben wir für Dich zusammengestellt.</p>
-      <a href="/faq" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">
-        Zur Frage & Antwort-Seite
-      </a>
-    </div>
-  </section>
 </BaseLayout>

@@ -1,7 +1,7 @@
 ---
 name: "Dr. Insa Baumfalk"
 role: "Kieferorthopädin & Praxisinhaberin"
-photo: "/uploads/team-01.jpg"
+photo: "/uploads/team-03.jpg"
 order: 1
 ---
 
