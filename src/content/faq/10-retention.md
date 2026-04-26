@@ -7,4 +7,4 @@ Sind Deine Zähne erst einmal in die richtige Position gebracht, beginnt die wic
 
 Dieses Festhalten kann durch eine einfache Haltespange erfolgen oder durch einen geklebten Draht hinter den Unterkieferfrontzähnen.
 
-Auch im frühen Erwachsenenalter kann es zu Engständen kommen, die unabhängig von einer vorausgegangenen Behandlung auftreten. Will man das sicher vermeiden, sollte man langfristig — auch nach der 1- bis 2-jährigen Retentionsphase — einmal wöchentlich seine Haltespangen tragen.
+Auch im frühen Erwachsenenalter kann es zu Engständen kommen, die unabhängig von einer vorausgegangenen Behandlung auftreten. Will man das sicher vermeiden, sollte man langfristig, auch nach der 1- bis 2-jährigen Retentionsphase, einmal wöchentlich seine Haltespangen tragen.

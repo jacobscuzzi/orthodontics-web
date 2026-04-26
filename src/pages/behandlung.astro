@@ -1,12 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getEntry, render } from 'astro:content';
+import { getEntry } from 'astro:content';
 import Hero from '../components/Hero.astro';
 import SectionBand from '../components/SectionBand.astro';
 
 const page = await getEntry('pages', 'behandlung');
 if (!page) throw new Error('pages/behandlung.md missing');
-const { Content } = await render(page);
 const sections = page.data.sections ?? [];
 ---
 <BaseLayout title={`${page.data.title} – Dr. Insa Baumfalk`}>
@@ -24,36 +23,37 @@ const sections = page.data.sections ?? [];
     const num = String(i + 1).padStart(2, '0');
     return (
       <SectionBand tone={band ? 'band' : 'background'}>
-        <div class="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-28">
-          <div class="grid gap-10 md:gap-16 md:grid-cols-12 items-center">
+        <div class="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-32">
+          <div class="grid gap-10 md:gap-16 md:grid-cols-12 items-start">
             {section.image && (
               <div class:list={['md:col-span-6', imageRight ? 'md:order-2' : 'md:order-1']}>
-                <img
-                  src={section.image}
-                  alt={section.imageAlt ?? ''}
-                  class="w-full aspect-[4/5] object-cover rounded-xl"
-                  loading="lazy"
-                />
+                <div class="md:sticky md:top-24">
+                  <img
+                    src={section.image}
+                    alt={section.imageAlt ?? ''}
+                    class="w-full aspect-[4/5] object-cover rounded-xl"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             )}
-            <div class:list={['md:col-span-6', imageRight ? 'md:order-1' : 'md:order-2']}>
-              <p class="eyebrow mb-5">{num} — Behandlung</p>
+            <div class:list={['md:col-span-6 min-h-[60vh] md:min-h-[80vh]', imageRight ? 'md:order-1' : 'md:order-2']}>
+              <p class="eyebrow mb-5">{num} · Behandlung</p>
               <h2 class="headline-lg mb-6" set:html={section.title.replace(/(\w+)$/, '<em>$1</em>')} />
               <div class="space-y-5 text-base md:text-lg leading-relaxed opacity-90">
                 {section.body.trim().split(/\n\n+/).map((para) => (
                   <p>{para.trim()}</p>
                 ))}
               </div>
+              {section.bullets && section.bullets.length > 0 && (
+                <ul class="mt-6 space-y-3 text-base md:text-lg leading-relaxed opacity-90 list-disc list-inside marker:text-primary">
+                  {section.bullets.map((b) => <li>{b}</li>)}
+                </ul>
+              )}
             </div>
           </div>
         </div>
       </SectionBand>
     );
   })}
-
-  <section class="mx-auto max-w-3xl px-4 md:px-6 py-20 md:py-28">
-    <article class="prose prose-lg md:prose-xl max-w-none prose-headings:font-display prose-headings:text-primary">
-      <Content />
-    </article>
-  </section>
 </BaseLayout>

@@ -13,14 +13,17 @@ const { Content } = await render(home);
 ---
 <BaseLayout title={`${site.practice.name} – Kieferorthopädie Berlin Stralau`}>
   <Hero
-    variant="magazine"
-    title={`Kieferorthopädie auf der wunderschönen Halbinsel <em>Alt-Stralau</em>.`}
+    variant="overlay"
+    sticky
+    title={`Kieferorthopädie auf <em>Alt-Stralau</em>.`}
     image={home.data.heroImage}
     imageAlt={home.data.heroAlt}
+    imageCredit="Robert Grahn"
     primaryCta={{ href: site.practice.doctolibUrl, label: 'Termin buchen', external: true }}
     secondaryCta={{ href: '/praxis', label: 'Die Praxis kennenlernen' }}
   />
 
+  <div class="relative z-10 bg-background">
   <SectionBand tone="band">
     <ReviewsSection />
   </SectionBand>
@@ -39,12 +42,12 @@ const { Content } = await render(home);
       <div>
         <p class="font-display italic text-accent text-xl mb-3">02</p>
         <h3 class="headline-md mb-3">Mitten in Stralau</h3>
-        <p class="text-base md:text-lg opacity-80 leading-relaxed">Direkt am Ufer der Rummelsburger Bucht — schöner Ausblick vom Behandlungsstuhl inklusive.</p>
+        <p class="text-base md:text-lg opacity-80 leading-relaxed">Direkt am Ufer der Rummelsburger Bucht, schöner Ausblick vom Behandlungsstuhl inklusive.</p>
       </div>
       <div>
         <p class="font-display italic text-accent text-xl mb-3">03</p>
         <h3 class="headline-md mb-3">Zeit für Dich</h3>
-        <p class="text-base md:text-lg opacity-80 leading-relaxed">Kleine Praxis, bewusst wenige Termine — Du wirst immer persönlich von Dr. Baumfalk behandelt.</p>
+        <p class="text-base md:text-lg opacity-80 leading-relaxed">Kleine Praxis, bewusst wenige Termine. Du wirst immer persönlich von Dr. Insa Baumfalk & Insa Yip behandelt.</p>
       </div>
     </div>
   </section>
@@ -56,7 +59,7 @@ const { Content } = await render(home);
           <p class="eyebrow mb-5">So findest Du zu uns</p>
           <h2 class="headline-lg mb-6" set:html={`Praxis am <em>Wasser</em>.`} />
           <p class="text-lg opacity-80 leading-relaxed mb-4">Fischzug 7b · 10245 Berlin</p>
-          <p class="text-base opacity-70 leading-relaxed mb-8">Halbinsel Stralau — direkt am Ufer der Rummelsburger Bucht. Mit S-Bahn (Treptower Park / Ostkreuz), Bus 104/347 oder dem Fahrrad gut erreichbar.</p>
+          <p class="text-base opacity-70 leading-relaxed mb-8">Halbinsel Stralau, direkt am Ufer der Rummelsburger Bucht. Mit S-Bahn (Treptower Park / Ostkreuz), Bus 104/347 oder dem Fahrrad gut erreichbar.</p>
           <a href="/kontakt" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">Anfahrt & Kontakt</a>
         </div>
         <MapEmbed size="small" />
@@ -74,4 +77,5 @@ const { Content } = await render(home);
       </a>
     </div>
   </section>
+  </div>
 </BaseLayout>

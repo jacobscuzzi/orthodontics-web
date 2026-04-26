@@ -1,5 +1,5 @@
 ---
-author: "Dennis"
+author: "Dennis F."
 rating: 5
 order: 3
 featured: true

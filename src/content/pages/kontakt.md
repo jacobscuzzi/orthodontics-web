@@ -1,6 +1,6 @@
 ---
 title: "Kontakt"
-heroImage: "/uploads/bild-kontakt.jpg"
+heroImage: "/uploads/bild-kontakt-header.jpg"
 heroAlt: "Die Praxis auf der Halbinsel Stralau"
 ---
 
@@ -8,11 +8,11 @@ heroAlt: "Die Praxis auf der Halbinsel Stralau"
 
 ### Mit öffentlichen Verkehrsmitteln
 
-Von den S-Bahn-Haltestellen Treptower Park (Ausgang Elsenstraße) fährt die Buslinie 104, vom Ostkreuz fahren die Buslinien 104 und 347 auf die Halbinsel Stralau. Beim Bus 104 steigst Du an der Haltestelle Glasbläserallee aus, der Bus 347 hält noch etwas näher an der Krachtstraße.
+Von den S-Bahn-Haltestellen Treptower Park (Ausgang Elsenstraße) fährt die Buslinie M43, vom Ostkreuz fahren die Buslinien M43 und 347 auf die Halbinsel Stralau. Beim Bus M43 steigst Du an der Haltestelle Glasbläserallee aus, der Bus 347 hält noch etwas näher an der Krachtstraße.
 
 ### Zu Fuß oder mit dem Fahrrad
 
-Von den S-Bahn-Haltestellen Treptower Park oder Ostkreuz erreichst Du die Praxis in ca. 10 Minuten — der Weg vom Park ist schöner, der vom Ostkreuz etwas kürzer.
+Von den S-Bahn-Haltestellen Treptower Park oder Ostkreuz erreichst Du die Praxis in ca. 10 Minuten. Der Weg vom Park ist schöner, der vom Ostkreuz etwas kürzer.
 
 Vom Ostkreuz kommend gehst Du die Kynaststraße parallel zur S-Bahn-Linie, nimmst dann links einen der Fußwege Richtung Wasser und gelangst rechts entlang der Rummelsburger Bucht zur Praxis.
 
@@ -26,4 +26,4 @@ Von der Elsenbrücke oder Stralauer Allee kommend nimmst Du die S-Bahn-Unterfüh
 
 Von Friedrichshain oder Lichtenberg gelangst Du über die Kynaststraße auf die Halbinsel.
 
-Bitte beachte: Die Stichstraße des Fischzugs, in der sich die Praxis befindet, ist eine Spielstraße — dort sollte nicht geparkt werden.
+Bitte beachte: Die Stichstraße des Fischzugs, in der sich die Praxis befindet, ist eine Spielstraße, dort sollte nicht geparkt werden.

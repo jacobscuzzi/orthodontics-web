@@ -13,6 +13,7 @@ const pages = defineCollection({
       image: z.string().optional(),
       imageAlt: z.string().optional(),
       body: z.string(),
+      bullets: z.array(z.string()).optional(),
     })).optional(),
   }),
 });
@@ -24,6 +25,7 @@ const team = defineCollection({
     role: z.string(),
     photo: z.string().optional(),
     order: z.number().default(100),
+    cv: z.string().optional(),
   }),
 });
 

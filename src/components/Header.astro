@@ -13,12 +13,12 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 <header class="sticky top-0 z-30 border-b border-primary/10 bg-background/95 backdrop-blur">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-4">
     <a href="/" class="flex items-center shrink-0" aria-label="Zur Startseite">
-      <img src="/uploads/logo_header.svg" alt={`Logo ${site.practice.name}`} class="h-10 w-auto md:h-14" />
+      <img src={site.logo} alt={`Logo ${site.practice.name}`} class="h-24 w-auto md:h-40" />
       <span class="sr-only">{site.practice.name}</span>
     </a>
 
     <nav class="hidden md:block" aria-label="Hauptnavigation">
-      <ul class="flex gap-6 text-[15px]">
+      <ul class="flex gap-8 text-lg">
         {navItems.map(item => {
           const active = (item.href === '/' && pathname === '/') || (item.href !== '/' && pathname.startsWith(item.href));
           return (
@@ -42,7 +42,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
         target="_blank"
         rel="noopener noreferrer"
         data-primary-cta
-        class="bg-primary text-background font-medium rounded-md hover:opacity-90 transition-opacity px-3 py-1.5 text-sm md:px-4 md:py-2 md:text-base"
+        class="bg-primary text-background font-medium rounded-md hover:opacity-90 transition-opacity px-4 py-2 text-base md:px-5 md:py-2.5 md:text-lg"
       >
         Termin <span class="hidden sm:inline">buchen</span>
       </a>

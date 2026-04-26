@@ -38,6 +38,11 @@ collections:
           - { name: image, label: "Bild", widget: image, required: false }
           - { name: imageAlt, label: "Bildbeschreibung", widget: string, required: false }
           - { name: body, label: "Text", widget: text }
+          - name: bullets
+            label: "Stichpunkt-Liste (optional)"
+            widget: list
+            required: false
+            field: { name: item, label: "Stichpunkt", widget: string }
       - { name: body, label: "Inhalt", widget: markdown }
 
   - name: "team"
@@ -52,6 +57,7 @@ collections:
       - { name: role, label: "Rolle / Funktion", widget: string }
       - { name: photo, label: "Foto (optional)", widget: image, required: false }
       - { name: order, label: "Reihenfolge (kleinere Zahl = weiter vorne)", widget: number, default: 100, value_type: int }
+      - { name: cv, label: "Lebenslauf (optional, erscheint als Aufklapp-Toggle)", widget: text, required: false }
       - { name: body, label: "Beschreibung", widget: markdown }
 
   - name: "faq"
