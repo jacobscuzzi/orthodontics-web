@@ -12,16 +12,30 @@ if (!home) throw new Error('pages/home.md missing');
 const { Content } = await render(home);
 ---
 <BaseLayout title={`${site.practice.name} – Kieferorthopädie Berlin Stralau`}>
-  <Hero
-    variant="overlay"
-    sticky
-    title={`Kieferorthopädie auf <em>Alt-Stralau</em>.`}
-    image={home.data.heroImage}
-    imageAlt={home.data.heroAlt}
-    imageCredit="Robert Grahn"
-    primaryCta={{ href: site.practice.doctolibUrl, label: 'Termin buchen', external: true }}
-    secondaryCta={{ href: '/praxis', label: 'Die Praxis kennenlernen' }}
-  />
+  <section class="sticky top-0 w-full h-screen overflow-hidden z-0">
+    <img src={home.data.heroImage} alt={home.data.heroAlt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+    <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/25 to-black/55"></div>
+    <p class="absolute bottom-3 right-4 text-sm md:text-base text-white/80 z-10 select-none drop-shadow">Foto: Robert Grahn</p>
+  </section>
+
+  <div class="absolute top-0 inset-x-0 h-screen flex items-end pointer-events-none z-20">
+    <div class="mx-auto w-full max-w-6xl px-4 md:px-6 pb-10 md:pb-16 pointer-events-auto">
+      <h1 class="headline-xl headline-on-dark text-white max-w-4xl" set:html={`Kieferorthopädie auf <em>Alt-Stralau</em>.`} />
+      <div class="flex flex-wrap gap-3 mt-6 md:mt-8">
+        <a
+          href={site.practice.doctolibUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-primary-cta
+          class="inline-block bg-primary text-background px-6 py-3.5 rounded-md font-medium hover:opacity-90 transition-opacity"
+        >Termin buchen</a>
+        <a
+          href="/praxis"
+          class="inline-block border border-white/80 text-white px-6 py-3.5 rounded-md font-medium hover:bg-white hover:text-text transition-colors"
+        >Die Praxis kennenlernen</a>
+      </div>
+    </div>
+  </div>
 
   <div class="relative z-10 bg-background">
   <SectionBand tone="band">
@@ -51,13 +65,19 @@ const { Content } = await render(home);
       </div>
     </div>
   </section>
+  </div>
 
+  <div class="relative h-[60vh] md:h-[70vh] flex items-center justify-center">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/40 pointer-events-none"></div>
+    <p class="relative z-10 text-white headline-lg text-center px-6 max-w-3xl drop-shadow" set:html={`Mitten in <em>Berlin</em>, direkt am <em>Wasser</em>.`} />
+  </div>
+
+  <div class="relative z-10 bg-background">
   <SectionBand tone="band">
     <div class="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-28">
       <div class="grid gap-10 md:gap-14 md:grid-cols-2 items-center">
         <div>
-          <p class="eyebrow mb-5">So findest Du zu uns</p>
-          <h2 class="headline-lg mb-6" set:html={`Praxis am <em>Wasser</em>.`} />
+          <h2 class="headline-lg mb-6" set:html={`So findest Du zu <em>uns</em>.`} />
           <p class="text-lg opacity-80 leading-relaxed mb-4">Fischzug 7b · 10245 Berlin</p>
           <p class="text-base opacity-70 leading-relaxed mb-8">Halbinsel Stralau, direkt am Ufer der Rummelsburger Bucht. Mit S-Bahn (Treptower Park / Ostkreuz), Bus 104/347 oder dem Fahrrad gut erreichbar.</p>
           <a href="/kontakt" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">Anfahrt & Kontakt</a>
