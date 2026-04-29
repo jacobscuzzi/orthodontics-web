@@ -2,6 +2,8 @@ backend:
   name: github
   repo: jacobscuzzi/orthodontics-web
   branch: main
+  auth_type: implicit
+  app_id: false
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
