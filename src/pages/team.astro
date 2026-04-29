@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry, getCollection, render } from 'astro:content';
 import Hero from '../components/Hero.astro';
 import SectionBand from '../components/SectionBand.astro';
+import { withBase } from '../utils/base';
 
 const intro = await getEntry('pages', 'team');
 if (!intro) throw new Error('pages/team.md missing');
@@ -41,7 +42,7 @@ const rendered = await Promise.all(
             {data.photo && (
               <div class:list={['md:col-span-5', imageLeft ? 'md:order-1' : 'md:order-2']}>
                 <img
-                  src={data.photo}
+                  src={withBase(data.photo)}
                   alt={`Foto von ${data.name}`}
                   class="w-full aspect-[4/5] object-cover rounded-xl"
                   loading="lazy"

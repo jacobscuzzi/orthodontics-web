@@ -6,6 +6,7 @@ import Hero from '../components/Hero.astro';
 import SectionBand from '../components/SectionBand.astro';
 import ReviewsSection from '../components/ReviewsSection.astro';
 import MapEmbed from '../components/MapEmbed.astro';
+import { withBase } from '../utils/base';
 
 const home = await getEntry('pages', 'home');
 if (!home) throw new Error('pages/home.md missing');
@@ -13,7 +14,7 @@ const { Content } = await render(home);
 ---
 <BaseLayout title={`${site.practice.name} – Kieferorthopädie Berlin Stralau`}>
   <section class="sticky top-0 w-full h-screen overflow-hidden z-0">
-    <img src={home.data.heroImage} alt={home.data.heroAlt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+    <img src={withBase(home.data.heroImage)} alt={home.data.heroAlt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
     <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/25 to-black/55"></div>
     <p class="absolute bottom-3 right-4 text-sm md:text-base text-white/80 z-10 select-none drop-shadow">Foto: Robert Grahn</p>
   </section>
@@ -30,7 +31,7 @@ const { Content } = await render(home);
           class="inline-block bg-primary text-background px-6 py-3.5 rounded-md font-medium hover:opacity-90 transition-opacity"
         >Termin buchen</a>
         <a
-          href="/praxis"
+          href={withBase('/praxis')}
           class="inline-block border border-white/80 text-white px-6 py-3.5 rounded-md font-medium hover:bg-white hover:text-text transition-colors"
         >Die Praxis kennenlernen</a>
       </div>
@@ -66,7 +67,7 @@ const { Content } = await render(home);
     </div>
     <div class="mt-12 md:mt-16">
       <a
-        href="/behandlung"
+        href={withBase('/behandlung')}
         class="inline-block bg-primary text-background px-6 py-3.5 rounded-md font-medium hover:opacity-90 transition-opacity"
       >Unsere Behandlungen entdecken</a>
     </div>
@@ -86,7 +87,7 @@ const { Content } = await render(home);
           <h2 class="headline-lg mb-6" set:html={`So findest Du zu <em>uns</em>.`} />
           <p class="text-lg opacity-80 leading-relaxed mb-4">Fischzug 7b · 10245 Berlin</p>
           <p class="text-base opacity-70 leading-relaxed mb-8">Halbinsel Stralau, direkt am Ufer der Rummelsburger Bucht. Mit S-Bahn (Treptower Park / Ostkreuz), Bus 104/347 oder dem Fahrrad gut erreichbar.</p>
-          <a href="/kontakt" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">Anfahrt & Kontakt</a>
+          <a href={withBase('/kontakt')} class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">Anfahrt & Kontakt</a>
         </div>
         <MapEmbed size="small" />
       </div>
@@ -98,7 +99,7 @@ const { Content } = await render(home);
       <p class="eyebrow mb-5">Häufige Fragen</p>
       <h2 class="headline-lg mb-6" set:html={`Noch <em>Fragen</em>?`} />
       <p class="text-lg md:text-xl opacity-80 leading-relaxed mb-8">Wie funktioniert eine Zahnspange, wann geht es Deinen Zähnen gut und was ist überhaupt Kieferorthopädie? Die häufigsten Fragen haben wir für Dich zusammengestellt.</p>
-      <a href="/faq" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">
+      <a href={withBase('/faq')} class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">
         Zur Frage & Antwort-Seite
       </a>
     </div>

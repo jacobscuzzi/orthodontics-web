@@ -1,5 +1,6 @@
 ---
 import site from '../data/site.json';
+import { withBase } from '../utils/base';
 interface Props {
   size?: 'small' | 'large';
   rounded?: boolean;
@@ -28,7 +29,7 @@ const id = `map-${Math.random().toString(36).slice(2, 9)}`;
       🗺️ Karte laden
     </button>
     <p class="text-xs opacity-60 max-w-sm leading-relaxed">
-      Beim Laden der Karte werden Daten an Google übertragen. Mehr dazu in unserer <a href="/datenschutz" class="underline">Datenschutzerklärung</a>.
+      Beim Laden der Karte werden Daten an Google übertragen. Mehr dazu in unserer <a href={withBase('/datenschutz')} class="underline">Datenschutzerklärung</a>.
     </p>
     <a href={mapsLink} target="_blank" rel="noopener noreferrer" class="text-sm text-primary underline hover:no-underline">
       Alternativ in Google Maps öffnen →

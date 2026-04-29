@@ -1,19 +1,20 @@
 ---
 import site from '../data/site.json';
+import { withBase } from '../utils/base';
 const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/praxis', label: 'Praxis' },
-  { href: '/team', label: 'Team' },
-  { href: '/behandlung', label: 'Behandlung' },
-  { href: '/faq', label: 'FAQ' },
-  { href: '/kontakt', label: 'Kontakt' },
+  { href: withBase('/'), label: 'Home' },
+  { href: withBase('/praxis'), label: 'Praxis' },
+  { href: withBase('/team'), label: 'Team' },
+  { href: withBase('/behandlung'), label: 'Behandlung' },
+  { href: withBase('/faq'), label: 'FAQ' },
+  { href: withBase('/kontakt'), label: 'Kontakt' },
 ];
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 <header class="sticky top-0 z-30 border-b border-primary/10 bg-background/95 backdrop-blur">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-4">
-    <a href="/" class="flex items-center shrink-0" aria-label="Zur Startseite">
-      <img src={site.logo} alt={`Logo ${site.practice.name}`} class="h-24 w-auto md:h-40" />
+    <a href={withBase('/')} class="flex items-center shrink-0" aria-label="Zur Startseite">
+      <img src={withBase(site.logo)} alt={`Logo ${site.practice.name}`} class="h-24 w-auto md:h-40" />
       <span class="sr-only">{site.practice.name}</span>
     </a>
 

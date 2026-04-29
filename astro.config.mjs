@@ -6,6 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://jacobscuzzi.github.io/orthodontics-web/',
+  base: '/orthodontics-web/',
   output: 'static',
   server: {
     allowedHosts: ['.trycloudflare.com'],

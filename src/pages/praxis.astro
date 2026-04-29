@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry, render } from 'astro:content';
 import Hero from '../components/Hero.astro';
 import SectionBand from '../components/SectionBand.astro';
+import { withBase } from '../utils/base';
 
 const page = await getEntry('pages', 'praxis');
 if (!page) throw new Error('pages/praxis.md missing');
@@ -24,7 +25,7 @@ const gallery = page.data.gallery ?? [];
     </div>
     <div class="mt-10 md:mt-14">
       <a
-        href="/team"
+        href={withBase('/team')}
         class="inline-block bg-primary text-background px-6 py-3.5 rounded-md font-medium hover:opacity-90 transition-opacity"
       >Unser Team kennenlernen</a>
     </div>
@@ -48,7 +49,7 @@ const gallery = page.data.gallery ?? [];
             ];
             return (
               <div class:list={['relative overflow-hidden rounded-xl', patterns[i % patterns.length]]}>
-                <img src={img.src} alt={img.alt ?? ''} class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+                <img src={withBase(img.src)} alt={img.alt ?? ''} class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
               </div>
             );
           })}
