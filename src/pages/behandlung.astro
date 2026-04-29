@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry } from 'astro:content';
 import Hero from '../components/Hero.astro';
 import SectionBand from '../components/SectionBand.astro';
+import { withBase } from '../utils/base';
 
 const page = await getEntry('pages', 'behandlung');
 if (!page) throw new Error('pages/behandlung.md missing');
@@ -29,7 +30,7 @@ const sections = page.data.sections ?? [];
               <div class:list={['md:col-span-6', imageRight ? 'md:order-2' : 'md:order-1']}>
                 <div class="md:sticky md:top-24">
                   <img
-                    src={section.image}
+                    src={withBase(section.image)}
                     alt={section.imageAlt ?? ''}
                     class="w-full aspect-[4/5] object-cover rounded-xl"
                     loading="lazy"

@@ -46,12 +46,12 @@ const preset = theme.presets[theme.activePreset as PresetKey];
     </main>
     <Footer />
     <MobileStickyCta />
-    <script is:inline>
+    <script is:inline define:vars={{ adminUrl: withBase('/admin/') }}>
       if (window.netlifyIdentity) {
         window.netlifyIdentity.on('init', (user) => {
           if (!user) {
             window.netlifyIdentity.on('login', () => {
-              document.location.href = '/admin/';
+              document.location.href = adminUrl;
             });
           }
         });
