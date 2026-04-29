@@ -24,7 +24,6 @@ const preset = theme.presets[theme.activePreset as PresetKey];
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <title>{title}</title>
-    <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <style define:vars={{
       primary: preset.primary,
       accent: preset.accent,
@@ -46,16 +45,5 @@ const preset = theme.presets[theme.activePreset as PresetKey];
     </main>
     <Footer />
     <MobileStickyCta />
-    <script is:inline define:vars={{ adminUrl: withBase('/admin/') }}>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on('init', (user) => {
-          if (!user) {
-            window.netlifyIdentity.on('login', () => {
-              document.location.href = adminUrl;
-            });
-          }
-        });
-      }
-    </script>
   </body>
 </html>

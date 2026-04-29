@@ -2,8 +2,10 @@ backend:
   name: github
   repo: jacobscuzzi/orthodontics-web
   branch: main
-  auth_type: implicit
-  app_id: false
+
+# Lokal mit `npx @sveltia/cms-proxy-server` testen. Ohne Token-Login,
+# direkter Zugriff aufs Dateisystem. Hat keinen Effekt im Production-Build.
+local_backend: true
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
