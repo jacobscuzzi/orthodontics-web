@@ -1,12 +1,25 @@
 ---
 title: "Willkommen"
+heroTitle: "Kieferorthopädie auf *Alt-Stralau*."
 heroImage: "/uploads/bild-start.jpg"
 heroAlt: "Blick auf die Halbinsel Stralau, Standort der Praxis"
+heroCredit: "Robert Grahn"
+features:
+  eyebrow: "Was uns ausmacht"
+  title: "Zeit, *Ruhe* und ein schöner Ausblick."
+  items:
+    - title: "Für Kinder & Erwachsene"
+      text: "Von der Frühbehandlung über feste und lose Spangen bis zur unauffälligen Erwachsenenbehandlung."
+    - title: "Mitten in Stralau"
+      text: "Direkt am Ufer der Rummelsburger Bucht, schöner Ausblick vom Behandlungsstuhl inklusive."
+    - title: "Zeit für Dich"
+      text: "Kleine Praxis, bewusst wenige Termine. Du wirst immer persönlich von Dr. Insa Baumfalk & Insa Yip behandelt."
+interludeTitle: "Mitten in *Berlin*, direkt am *Wasser*."
+findUs:
+  title: "So findest Du zu *uns*."
+  text: "Halbinsel Stralau, direkt am Ufer der Rummelsburger Bucht. Mit S-Bahn (Treptower Park / Ostkreuz), Bus 104/347 oder dem Fahrrad gut erreichbar."
+faqTeaser:
+  eyebrow: "Häufige Fragen"
+  title: "Noch *Fragen*?"
+  text: "Wie funktioniert eine Zahnspange, wann geht es Deinen Zähnen gut und was ist überhaupt Kieferorthopädie? Die häufigsten Fragen haben wir für Dich zusammengestellt."
 ---
-
-Wir freuen uns, Dich auf unserer Seite begrüßen zu dürfen! Hier gibt es Informationen rund um die Behandlung in unserer kieferorthopädischen Praxis auf der schönen Halbinsel Stralau nahe am Zentrum von Berlin.
-
-Die meisten unserer Patienten sind Kinder, daher sprechen wir Dich auf allen Folgeseiten mit »Du« an und hoffen, dass Eltern und andere behandlungsinteressierte Erwachsene uns das nicht übel nehmen.
-
-Herzliche Grüße,
-Dr. Insa Baumfalk und ihr Praxisteam

@@ -1,5 +1,7 @@
 ---
 title: "Behandlung"
+heroEyebrow: "Behandlung"
+heroTitle: "Was wir *anbieten*."
 heroImage: "/uploads/behandlung-header.jpg"
 heroAlt: "Behandlungsraum"
 sections:

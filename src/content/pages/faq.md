@@ -1,5 +1,7 @@
 ---
 title: "Frage & Antwort"
+heroEyebrow: "Häufige Fragen"
+heroTitle: "Fragen & *Antworten*."
 heroImage: "/uploads/bild-faq-full.jpg"
 heroAlt: "Häufige Fragen zur Kieferorthopädie"
 ---

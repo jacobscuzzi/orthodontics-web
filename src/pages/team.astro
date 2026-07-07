@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry, getCollection, render } from 'astro:content';
+import { em } from '../lib/em';
 import Hero from '../components/Hero.astro';
 import SectionBand from '../components/SectionBand.astro';
 
@@ -19,8 +20,8 @@ const rendered = await Promise.all(
 <BaseLayout title="Team – Dr. Insa Baumfalk">
   <Hero
     variant="overlay"
-    eyebrow="Unser Team"
-    title={`Kleines <em>Team</em>, ganze Aufmerksamkeit.`}
+    eyebrow={intro.data.heroEyebrow ?? intro.data.title}
+    title={em(intro.data.heroTitle ?? intro.data.title)}
     image={intro.data.heroImage}
     imageAlt={intro.data.heroAlt}
   />

@@ -1,26 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getEntry, render } from 'astro:content';
+import { getEntry } from 'astro:content';
 import site from '../data/site.json';
-import Hero from '../components/Hero.astro';
+import { em } from '../lib/em';
 import SectionBand from '../components/SectionBand.astro';
 import ReviewsSection from '../components/ReviewsSection.astro';
 import MapEmbed from '../components/MapEmbed.astro';
 
 const home = await getEntry('pages', 'home');
 if (!home) throw new Error('pages/home.md missing');
-const { Content } = await render(home);
+const { heroTitle, heroImage, heroAlt, heroCredit, features, interludeTitle, findUs, faqTeaser } = home.data;
+const address = `${site.practice.street} · ${site.practice.zip} ${site.practice.city}`;
 ---
 <BaseLayout title={`${site.practice.name} – Kieferorthopädie Berlin Stralau`}>
   <section class="sticky top-0 w-full h-screen overflow-hidden z-0">
-    <img src={home.data.heroImage} alt={home.data.heroAlt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+    <img src={heroImage} alt={heroAlt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
     <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/25 to-black/55"></div>
-    <p class="absolute bottom-3 right-4 text-sm md:text-base text-white/80 z-10 select-none drop-shadow">Foto: Robert Grahn</p>
+    {heroCredit && (
+      <p class="absolute bottom-3 right-4 text-sm md:text-base text-white/80 z-10 select-none drop-shadow">Foto: {heroCredit}</p>
+    )}
   </section>
 
   <div class="absolute top-0 inset-x-0 h-screen flex items-end pointer-events-none z-20">
     <div class="mx-auto w-full max-w-6xl px-4 md:px-6 pb-10 md:pb-16 pointer-events-auto">
-      <h1 class="headline-xl headline-on-dark text-white max-w-4xl" set:html={`Kieferorthopädie auf <em>Alt-Stralau</em>.`} />
+      <h1 class="headline-xl headline-on-dark text-white max-w-4xl" set:html={em(heroTitle ?? site.practice.name)} />
       <div class="flex flex-wrap gap-3 mt-6 md:mt-8">
         <a
           href={site.practice.doctolibUrl}
@@ -42,40 +45,36 @@ const { Content } = await render(home);
     <ReviewsSection />
   </SectionBand>
 
-  <section class="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-28">
-    <div class="max-w-3xl mb-14 md:mb-20">
-      <p class="eyebrow mb-5">Was uns ausmacht</p>
-      <h2 class="headline-lg" set:html={`Zeit, <em>Ruhe</em> und ein schöner Ausblick.`} />
-    </div>
-    <div class="grid gap-10 md:grid-cols-3">
-      <div>
-        <p class="font-display italic text-accent text-xl mb-3">01</p>
-        <h3 class="headline-md mb-3">Für Kinder & Erwachsene</h3>
-        <p class="text-base md:text-lg opacity-80 leading-relaxed">Von der Frühbehandlung über feste und lose Spangen bis zur unauffälligen Erwachsenenbehandlung.</p>
+  {features && (
+    <section class="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-28">
+      <div class="max-w-3xl mb-14 md:mb-20">
+        <p class="eyebrow mb-5">{features.eyebrow}</p>
+        <h2 class="headline-lg" set:html={em(features.title)} />
       </div>
-      <div>
-        <p class="font-display italic text-accent text-xl mb-3">02</p>
-        <h3 class="headline-md mb-3">Mitten in Stralau</h3>
-        <p class="text-base md:text-lg opacity-80 leading-relaxed">Direkt am Ufer der Rummelsburger Bucht, schöner Ausblick vom Behandlungsstuhl inklusive.</p>
+      <div class="grid gap-10 md:grid-cols-3">
+        {features.items.map((item, i) => (
+          <div>
+            <p class="font-display italic text-accent text-xl mb-3">{String(i + 1).padStart(2, '0')}</p>
+            <h3 class="headline-md mb-3">{item.title}</h3>
+            <p class="text-base md:text-lg opacity-80 leading-relaxed">{item.text}</p>
+          </div>
+        ))}
       </div>
-      <div>
-        <p class="font-display italic text-accent text-xl mb-3">03</p>
-        <h3 class="headline-md mb-3">Zeit für Dich</h3>
-        <p class="text-base md:text-lg opacity-80 leading-relaxed">Kleine Praxis, bewusst wenige Termine. Du wirst immer persönlich von Dr. Insa Baumfalk & Insa Yip behandelt.</p>
+      <div class="mt-12 md:mt-16">
+        <a
+          href="/behandlung"
+          class="inline-block bg-primary text-background px-6 py-3.5 rounded-md font-medium hover:opacity-90 transition-opacity"
+        >Unsere Behandlungen entdecken</a>
       </div>
-    </div>
-    <div class="mt-12 md:mt-16">
-      <a
-        href="/behandlung"
-        class="inline-block bg-primary text-background px-6 py-3.5 rounded-md font-medium hover:opacity-90 transition-opacity"
-      >Unsere Behandlungen entdecken</a>
-    </div>
-  </section>
+    </section>
+  )}
   </div>
 
   <div class="relative h-[60vh] md:h-[70vh] flex items-center justify-center">
     <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/40 pointer-events-none"></div>
-    <p class="relative z-10 text-white headline-lg text-center px-6 max-w-3xl drop-shadow" set:html={`Mitten in <em>Berlin</em>, direkt am <em>Wasser</em>.`} />
+    {interludeTitle && (
+      <p class="relative z-10 text-white headline-lg text-center px-6 max-w-3xl drop-shadow" set:html={em(interludeTitle)} />
+    )}
   </div>
 
   <div class="relative z-10 bg-background">
@@ -83,9 +82,9 @@ const { Content } = await render(home);
     <div class="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-28">
       <div class="grid gap-10 md:gap-14 md:grid-cols-2 items-center">
         <div>
-          <h2 class="headline-lg mb-6" set:html={`So findest Du zu <em>uns</em>.`} />
-          <p class="text-lg opacity-80 leading-relaxed mb-4">Fischzug 7b · 10245 Berlin</p>
-          <p class="text-base opacity-70 leading-relaxed mb-8">Halbinsel Stralau, direkt am Ufer der Rummelsburger Bucht. Mit S-Bahn (Treptower Park / Ostkreuz), Bus 104/347 oder dem Fahrrad gut erreichbar.</p>
+          <h2 class="headline-lg mb-6" set:html={em(findUs?.title ?? 'So findest Du zu *uns*.')} />
+          <p class="text-lg opacity-80 leading-relaxed mb-4">{address}</p>
+          {findUs && <p class="text-base opacity-70 leading-relaxed mb-8">{findUs.text}</p>}
           <a href="/kontakt" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">Anfahrt & Kontakt</a>
         </div>
         <MapEmbed size="small" />
@@ -93,15 +92,17 @@ const { Content } = await render(home);
     </div>
   </SectionBand>
 
-  <section class="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-28">
-    <div class="max-w-3xl">
-      <p class="eyebrow mb-5">Häufige Fragen</p>
-      <h2 class="headline-lg mb-6" set:html={`Noch <em>Fragen</em>?`} />
-      <p class="text-lg md:text-xl opacity-80 leading-relaxed mb-8">Wie funktioniert eine Zahnspange, wann geht es Deinen Zähnen gut und was ist überhaupt Kieferorthopädie? Die häufigsten Fragen haben wir für Dich zusammengestellt.</p>
-      <a href="/faq" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">
-        Zur Frage & Antwort-Seite
-      </a>
-    </div>
-  </section>
+  {faqTeaser && (
+    <section class="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-28">
+      <div class="max-w-3xl">
+        <p class="eyebrow mb-5">{faqTeaser.eyebrow}</p>
+        <h2 class="headline-lg mb-6" set:html={em(faqTeaser.title)} />
+        <p class="text-lg md:text-xl opacity-80 leading-relaxed mb-8">{faqTeaser.text}</p>
+        <a href="/faq" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">
+          Zur Frage & Antwort-Seite
+        </a>
+      </div>
+    </section>
+  )}
   </div>
 </BaseLayout>

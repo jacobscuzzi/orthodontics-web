@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry, render } from 'astro:content';
+import { em } from '../lib/em';
 import Hero from '../components/Hero.astro';
 import SectionBand from '../components/SectionBand.astro';
 
@@ -12,8 +13,8 @@ const gallery = page.data.gallery ?? [];
 <BaseLayout title={`${page.data.title} – Dr. Insa Baumfalk`}>
   <Hero
     variant="overlay"
-    eyebrow="Die Praxis"
-    title={`Praxis mit <em>Ausblick</em>.`}
+    eyebrow={page.data.heroEyebrow ?? page.data.title}
+    title={em(page.data.heroTitle ?? page.data.title)}
     image={page.data.heroImage}
     imageAlt={page.data.heroAlt}
   />
@@ -34,8 +35,8 @@ const gallery = page.data.gallery ?? [];
     <SectionBand tone="band">
       <div class="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-28">
         <div class="max-w-3xl mb-14 md:mb-20">
-          <p class="eyebrow mb-5">Einblicke</p>
-          <h2 class="headline-lg" set:html={`Aus unseren <em>Räumen</em>.`} />
+          {page.data.galleryEyebrow && <p class="eyebrow mb-5">{page.data.galleryEyebrow}</p>}
+          <h2 class="headline-lg" set:html={em(page.data.galleryTitle ?? 'Aus unseren *Räumen*.')} />
         </div>
         <div class="grid gap-4 md:gap-6 grid-cols-6 auto-rows-[160px] md:auto-rows-[220px]">
           {gallery.map((img, i) => {

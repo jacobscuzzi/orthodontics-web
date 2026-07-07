@@ -1,7 +1,11 @@
 ---
 title: "Kontakt"
+heroEyebrow: "Kontakt"
+heroTitle: "So *findest* Du uns."
 heroImage: "/uploads/bild-kontakt-header.jpg"
 heroAlt: "Die Praxis auf der Halbinsel Stralau"
+bottomImage: "/uploads/bild-kontakt.jpg"
+bottomImageAlt: "Die Praxis auf der Halbinsel Stralau"
 ---
 
 ## So findest Du zu uns

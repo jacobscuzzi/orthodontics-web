@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry, render } from 'astro:content';
 import site from '../data/site.json';
+import { em } from '../lib/em';
 import Hero from '../components/Hero.astro';
 import SectionBand from '../components/SectionBand.astro';
 import MapEmbed from '../components/MapEmbed.astro';
@@ -14,8 +15,8 @@ const phoneHref = `tel:${site.practice.phone.replace(/\s/g, '').replace(/-/g, ''
 <BaseLayout title="Kontakt – Dr. Insa Baumfalk">
   <Hero
     variant="overlay"
-    eyebrow="Kontakt"
-    title={`So <em>findest</em> Du uns.`}
+    eyebrow={page.data.heroEyebrow ?? page.data.title}
+    title={em(page.data.heroTitle ?? page.data.title)}
     image={page.data.heroImage}
     imageAlt={page.data.heroAlt}
   />
@@ -71,12 +72,14 @@ const phoneHref = `tel:${site.practice.phone.replace(/\s/g, '').replace(/-/g, ''
 
   <SectionBand tone="band">
     <section class="mx-auto max-w-5xl px-4 md:px-6 py-20 md:py-28">
-      <img
-        src="/uploads/bild-kontakt.jpg"
-        alt="Die Praxis auf der Halbinsel Stralau"
-        class="w-full h-auto mb-12 md:mb-16"
-        loading="lazy"
-      />
+      {page.data.bottomImage && (
+        <img
+          src={page.data.bottomImage}
+          alt={page.data.bottomImageAlt ?? ''}
+          class="w-full h-auto mb-12 md:mb-16"
+          loading="lazy"
+        />
+      )}
       <article class="prose prose-lg md:prose-xl max-w-none prose-headings:font-display prose-headings:text-primary">
         <Content />
       </article>

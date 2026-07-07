@@ -5,9 +5,14 @@ const pages = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/pages' }),
   schema: z.object({
     title: z.string(),
+    heroEyebrow: z.string().optional(),
+    heroTitle: z.string().optional(),
     heroImage: z.string().optional(),
     heroAlt: z.string().optional(),
+    heroCredit: z.string().optional(),
     gallery: z.array(z.object({ src: z.string(), alt: z.string().optional() })).optional(),
+    galleryEyebrow: z.string().optional(),
+    galleryTitle: z.string().optional(),
     sections: z.array(z.object({
       title: z.string(),
       image: z.string().optional(),
@@ -15,6 +20,25 @@ const pages = defineCollection({
       body: z.string(),
       bullets: z.array(z.string()).optional(),
     })).optional(),
+    // Startseite
+    features: z.object({
+      eyebrow: z.string(),
+      title: z.string(),
+      items: z.array(z.object({ title: z.string(), text: z.string() })),
+    }).optional(),
+    interludeTitle: z.string().optional(),
+    findUs: z.object({
+      title: z.string(),
+      text: z.string(),
+    }).optional(),
+    faqTeaser: z.object({
+      eyebrow: z.string(),
+      title: z.string(),
+      text: z.string(),
+    }).optional(),
+    // Kontakt
+    bottomImage: z.string().optional(),
+    bottomImageAlt: z.string().optional(),
   }),
 });
 

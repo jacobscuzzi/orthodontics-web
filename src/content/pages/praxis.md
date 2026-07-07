@@ -1,7 +1,11 @@
 ---
 title: "Die Praxis"
+heroEyebrow: "Die Praxis"
+heroTitle: "Praxis mit *Ausblick*."
 heroImage: "/uploads/bild-haus.jpg"
 heroAlt: "Das Praxishaus auf der Halbinsel Stralau"
+galleryEyebrow: "Einblicke"
+galleryTitle: "Aus unseren *Räumen*."
 gallery:
   - { src: "/uploads/praxis-01.jpg", alt: "Praxis" }
   - { src: "/uploads/praxis-03.jpg", alt: "Praxis" }

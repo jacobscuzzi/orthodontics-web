@@ -8,50 +8,158 @@ public_folder: "/uploads"
 
 locale: 'de'
 
+# Dateinamen ohne Umlaute/Sonderzeichen erzeugen (z.B. "Frühbehandlung" -> "fruehbehandlung")
+slug:
+  encoding: ascii
+  clean_accents: true
+
 collections:
   - name: "pages"
     label: "Seiten"
-    folder: "src/content/pages"
-    extension: "md"
-    format: "frontmatter"
-    create: false
-    slug: "{{slug}}"
-    fields:
-      - { name: title, label: "Titel", widget: string }
-      - { name: heroImage, label: "Titelbild (optional)", widget: image, required: false }
-      - { name: heroAlt, label: "Bildbeschreibung (optional)", widget: string, required: false }
-      - name: gallery
-        label: "Bildergalerie (optional)"
-        widget: list
-        required: false
-        summary: "{{fields.alt}}"
+    editor:
+      preview: false
+    files:
+      - name: "home"
+        label: "Startseite"
+        file: "src/content/pages/home.md"
         fields:
-          - { name: src, label: "Bild", widget: image }
-          - { name: alt, label: "Bildbeschreibung", widget: string, required: false }
-      - name: sections
-        label: "Abschnitte mit Bild (optional, z.B. Behandlung)"
-        widget: list
-        required: false
-        summary: "{{fields.title}}"
+          - { name: title, label: "Interner Titel", widget: string, hint: "Wird nicht auf der Website angezeigt." }
+          - { name: heroTitle, label: "Große Überschrift im Titelbild", widget: string, hint: "Wörter zwischen *Sternchen* werden farblich hervorgehoben, z.B. Kieferorthopädie auf *Alt-Stralau*." }
+          - { name: heroImage, label: "Titelbild", widget: image }
+          - { name: heroAlt, label: "Titelbild-Beschreibung (für Vorlesefunktion & Google)", widget: string, required: false }
+          - { name: heroCredit, label: "Foto-Credit (unten rechts im Bild, optional)", widget: string, required: false }
+          - name: features
+            label: "Abschnitt „Was uns ausmacht“"
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Kleine Überzeile", widget: string }
+              - { name: title, label: "Überschrift", widget: string, hint: "*Sternchen* für Hervorhebung." }
+              - name: items
+                label: "Die drei Punkte"
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { name: title, label: "Überschrift", widget: string }
+                  - { name: text, label: "Text", widget: text }
+          - { name: interludeTitle, label: "Zwischen-Slogan (über dem durchscheinenden Foto)", widget: string, hint: "*Sternchen* für Hervorhebung." }
+          - name: findUs
+            label: "Abschnitt „So findest Du zu uns“"
+            widget: object
+            fields:
+              - { name: title, label: "Überschrift", widget: string, hint: "*Sternchen* für Hervorhebung. Die Adresse darunter kommt automatisch aus den Stammdaten." }
+              - { name: text, label: "Text unter der Adresse", widget: text }
+          - name: faqTeaser
+            label: "Abschnitt „Noch Fragen?“"
+            widget: object
+            fields:
+              - { name: eyebrow, label: "Kleine Überzeile", widget: string }
+              - { name: title, label: "Überschrift", widget: string, hint: "*Sternchen* für Hervorhebung." }
+              - { name: text, label: "Text", widget: text }
+
+      - name: "praxis"
+        label: "Praxis"
+        file: "src/content/pages/praxis.md"
         fields:
-          - { name: title, label: "Überschrift", widget: string }
-          - { name: image, label: "Bild", widget: image, required: false }
-          - { name: imageAlt, label: "Bildbeschreibung", widget: string, required: false }
-          - { name: body, label: "Text", widget: text }
-          - name: bullets
-            label: "Stichpunkt-Liste (optional)"
+          - { name: title, label: "Seitentitel (Browser-Tab)", widget: string }
+          - { name: heroEyebrow, label: "Kleine Überzeile im Titelbild", widget: string, required: false }
+          - { name: heroTitle, label: "Große Überschrift im Titelbild", widget: string, hint: "*Sternchen* für Hervorhebung." }
+          - { name: heroImage, label: "Titelbild", widget: image }
+          - { name: heroAlt, label: "Titelbild-Beschreibung", widget: string, required: false }
+          - { name: body, label: "Einleitungstext", widget: markdown }
+          - { name: galleryEyebrow, label: "Galerie: kleine Überzeile", widget: string, required: false }
+          - { name: galleryTitle, label: "Galerie: Überschrift", widget: string, required: false, hint: "*Sternchen* für Hervorhebung." }
+          - name: gallery
+            label: "Bildergalerie"
             widget: list
             required: false
-            field: { name: item, label: "Stichpunkt", widget: string }
-      - { name: body, label: "Inhalt", widget: markdown }
+            summary: "{{fields.alt}}"
+            fields:
+              - { name: src, label: "Bild", widget: image }
+              - { name: alt, label: "Bildbeschreibung", widget: string, required: false }
+
+      - name: "team"
+        label: "Team (Seite)"
+        file: "src/content/pages/team.md"
+        fields:
+          - { name: title, label: "Seitentitel (Browser-Tab)", widget: string }
+          - { name: heroEyebrow, label: "Kleine Überzeile im Titelbild", widget: string, required: false }
+          - { name: heroTitle, label: "Große Überschrift im Titelbild", widget: string, hint: "*Sternchen* für Hervorhebung." }
+          - { name: heroImage, label: "Titelbild", widget: image }
+          - { name: heroAlt, label: "Titelbild-Beschreibung", widget: string, required: false }
+          - { name: body, label: "Einleitungstext", widget: markdown, hint: "Die einzelnen Team-Mitglieder pflegst Du unter „Team-Mitglieder“." }
+
+      - name: "behandlung"
+        label: "Behandlung"
+        file: "src/content/pages/behandlung.md"
+        fields:
+          - { name: title, label: "Seitentitel (Browser-Tab)", widget: string }
+          - { name: heroEyebrow, label: "Kleine Überzeile im Titelbild", widget: string, required: false }
+          - { name: heroTitle, label: "Große Überschrift im Titelbild", widget: string, hint: "*Sternchen* für Hervorhebung." }
+          - { name: heroImage, label: "Titelbild", widget: image }
+          - { name: heroAlt, label: "Titelbild-Beschreibung", widget: string, required: false }
+          - name: sections
+            label: "Behandlungs-Abschnitte"
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: image, label: "Bild", widget: image, required: false }
+              - { name: imageAlt, label: "Bildbeschreibung", widget: string, required: false }
+              - { name: body, label: "Text", widget: text }
+              - name: bullets
+                label: "Stichpunkt-Liste (optional)"
+                widget: list
+                required: false
+                field: { name: item, label: "Stichpunkt", widget: string }
+
+      - name: "faq"
+        label: "Frage & Antwort (Seite)"
+        file: "src/content/pages/faq.md"
+        fields:
+          - { name: title, label: "Seitentitel (Browser-Tab)", widget: string }
+          - { name: heroEyebrow, label: "Kleine Überzeile im Titelbild", widget: string, required: false }
+          - { name: heroTitle, label: "Große Überschrift im Titelbild", widget: string, hint: "*Sternchen* für Hervorhebung." }
+          - { name: heroImage, label: "Titelbild", widget: image }
+          - { name: heroAlt, label: "Titelbild-Beschreibung", widget: string, required: false }
+          - { name: body, label: "Einleitungstext", widget: markdown, hint: "Die einzelnen Fragen pflegst Du unter „Fragen & Antworten“." }
+
+      - name: "kontakt"
+        label: "Kontakt"
+        file: "src/content/pages/kontakt.md"
+        fields:
+          - { name: title, label: "Seitentitel (Browser-Tab)", widget: string }
+          - { name: heroEyebrow, label: "Kleine Überzeile im Titelbild", widget: string, required: false }
+          - { name: heroTitle, label: "Große Überschrift im Titelbild", widget: string, hint: "*Sternchen* für Hervorhebung." }
+          - { name: heroImage, label: "Titelbild", widget: image }
+          - { name: heroAlt, label: "Titelbild-Beschreibung", widget: string, required: false }
+          - { name: bottomImage, label: "Bild über dem Anfahrtstext", widget: image, required: false }
+          - { name: bottomImageAlt, label: "Bildbeschreibung", widget: string, required: false }
+          - { name: body, label: "Anfahrtstext", widget: markdown, hint: "Adresse, Telefon und Öffnungszeiten kommen automatisch aus „Website-Daten → Stammdaten & Kontakt“." }
+
+      - name: "impressum"
+        label: "Impressum"
+        file: "src/content/pages/impressum.md"
+        fields:
+          - { name: title, label: "Überschrift", widget: string }
+          - { name: body, label: "Inhalt", widget: markdown }
+
+      - name: "datenschutz"
+        label: "Datenschutz"
+        file: "src/content/pages/datenschutz.md"
+        fields:
+          - { name: title, label: "Überschrift", widget: string }
+          - { name: body, label: "Inhalt", widget: markdown }
 
   - name: "team"
-    label: "Team"
+    label: "Team-Mitglieder"
     folder: "src/content/team"
     create: true
     extension: "md"
     format: "frontmatter"
     slug: "{{order}}-{{slug}}"
+    identifier_field: name
+    summary: "{{fields.order}} · {{fields.name}} – {{fields.role}}"
+    sortable_fields: ['order', 'name']
     fields:
       - { name: name, label: "Name", widget: string }
       - { name: role, label: "Rolle / Funktion", widget: string }
@@ -61,12 +169,15 @@ collections:
       - { name: body, label: "Beschreibung", widget: markdown }
 
   - name: "faq"
-    label: "Frage & Antwort"
+    label: "Fragen & Antworten"
     folder: "src/content/faq"
     create: true
     extension: "md"
     format: "frontmatter"
     slug: "{{order}}-{{slug}}"
+    identifier_field: question
+    summary: "{{fields.order}} · {{fields.question}}"
+    sortable_fields: ['order']
     fields:
       - { name: question, label: "Frage", widget: string }
       - { name: order, label: "Reihenfolge", widget: number, default: 100, value_type: int }
@@ -79,6 +190,9 @@ collections:
     extension: "md"
     format: "frontmatter"
     slug: "{{order}}-{{slug}}"
+    identifier_field: author
+    summary: "{{fields.order}} · {{fields.author}} ({{fields.rating}} Sterne)"
+    sortable_fields: ['order', 'author']
     fields:
       - { name: author, label: "Autor (Vorname + Initial)", widget: string }
       - name: rating
@@ -88,7 +202,7 @@ collections:
         options: [1, 2, 3, 4, 5]
       - { name: date, label: "Datum", widget: datetime, date_format: "YYYY-MM-DD", time_format: false, required: false }
       - { name: order, label: "Reihenfolge (kleinere Zahl = weiter vorne)", widget: number, default: 100, value_type: int }
-      - { name: featured, label: "Auf der Startseite zeigen?", widget: boolean, default: true }
+      - { name: featured, label: "Auf der Startseite zeigen?", widget: boolean, default: true, hint: "Es erscheinen die ersten drei aktivierten Bewertungen (nach Reihenfolge)." }
       - { name: body, label: "Bewertungstext", widget: text }
 
   - name: "site"
@@ -120,6 +234,7 @@ collections:
               - { name: time, label: "Uhrzeit", widget: string }
           - { name: hoursNote, label: "Zusatz zu Öffnungszeiten (z.B. Mittagspause)", widget: string, required: false }
           - { name: logo, label: "Logo", widget: image }
+          - { name: metaDescription, label: "Beschreibung für Google (max. ca. 160 Zeichen)", widget: string, hint: "Erscheint als Beschreibungstext in Suchergebnissen." }
           - name: googleReviews
             label: "Google-Bewertungen (Gesamtzahlen)"
             widget: object

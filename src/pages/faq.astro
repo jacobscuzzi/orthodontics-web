@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry, getCollection, render } from 'astro:content';
+import { em } from '../lib/em';
 import Hero from '../components/Hero.astro';
 
 const intro = await getEntry('pages', 'faq');
@@ -18,8 +19,8 @@ const rendered = await Promise.all(
 <BaseLayout title="Frage & Antwort – Dr. Insa Baumfalk">
   <Hero
     variant="overlay"
-    eyebrow="Häufige Fragen"
-    title={`Fragen & <em>Antworten</em>.`}
+    eyebrow={intro.data.heroEyebrow ?? intro.data.title}
+    title={em(intro.data.heroTitle ?? intro.data.title)}
     image={intro.data.heroImage}
     imageAlt={intro.data.heroAlt}
   />

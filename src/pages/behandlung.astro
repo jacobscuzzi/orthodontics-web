@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry } from 'astro:content';
+import { em } from '../lib/em';
 import Hero from '../components/Hero.astro';
 import SectionBand from '../components/SectionBand.astro';
 
@@ -11,8 +12,8 @@ const sections = page.data.sections ?? [];
 <BaseLayout title={`${page.data.title} – Dr. Insa Baumfalk`}>
   <Hero
     variant="overlay"
-    eyebrow="Behandlung"
-    title={`Was wir <em>anbieten</em>.`}
+    eyebrow={page.data.heroEyebrow ?? page.data.title}
+    title={em(page.data.heroTitle ?? page.data.title)}
     image={page.data.heroImage}
     imageAlt={page.data.heroAlt}
   />
