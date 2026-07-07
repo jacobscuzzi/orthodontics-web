@@ -102,7 +102,7 @@ collections:
           - { name: heroTitle, label: "Große Überschrift im Titelbild", widget: string, hint: "*Sternchen* für Hervorhebung." }
           - { name: heroImage, label: "Titelbild", widget: image }
           - { name: heroAlt, label: "Titelbild-Beschreibung", widget: string, required: false }
-          - { name: body, label: "Einleitungstext", widget: markdown, hint: "Die einzelnen Team-Mitglieder pflegst Du unter „Team-Mitglieder“." }
+          - { name: body, label: "Einleitungstext (optional)", widget: markdown, required: false, hint: "Leer lassen = kein Intro-Abschnitt. Die einzelnen Team-Mitglieder pflegst Du unter „Team-Mitglieder“." }
 
       - name: "behandlung"
         label: "Behandlung"

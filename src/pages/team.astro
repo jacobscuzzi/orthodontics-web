@@ -8,6 +8,7 @@ import SectionBand from '../components/SectionBand.astro';
 const intro = await getEntry('pages', 'team');
 if (!intro) throw new Error('pages/team.md missing');
 const { Content: IntroContent } = await render(intro);
+const hasIntro = (intro.body ?? '').trim().length > 0;
 
 const members = (await getCollection('team')).sort((a, b) => a.data.order - b.data.order);
 const rendered = await Promise.all(
@@ -26,11 +27,13 @@ const rendered = await Promise.all(
     imageAlt={intro.data.heroAlt}
   />
 
-  <section class="mx-auto max-w-3xl px-4 md:px-6 py-20 md:py-24 text-center">
-    <div class="headline-md [&_p]:mb-4 [&_p:last-child]:mb-0">
-      <IntroContent />
-    </div>
-  </section>
+  {hasIntro && (
+    <section class="mx-auto max-w-3xl px-4 md:px-6 py-20 md:py-24 text-center">
+      <div class="headline-md [&_p]:mb-4 [&_p:last-child]:mb-0">
+        <IntroContent />
+      </div>
+    </section>
+  )}
 
   {rendered.map(({ data, Content }, i) => {
     const imageLeft = i % 2 === 0;
