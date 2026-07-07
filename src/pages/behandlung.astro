@@ -40,7 +40,7 @@ const sections = page.data.sections ?? [];
             )}
             <div class:list={['md:col-span-6 min-h-[60vh] md:min-h-[80vh]', imageRight ? 'md:order-1' : 'md:order-2']}>
               <p class="eyebrow mb-5">{num} · Behandlung</p>
-              <h2 class="headline-lg mb-6" set:html={section.title.replace(/(\w+)$/, '<em>$1</em>')} />
+              <h2 class="headline-lg mb-6" set:html={em(section.title)} />
               <div class="space-y-5 text-base md:text-lg leading-relaxed opacity-90">
                 {section.body.trim().split(/\n\n+/).map((para) => (
                   <p>{para.trim()}</p>

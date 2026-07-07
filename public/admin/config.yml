@@ -118,7 +118,7 @@ collections:
             widget: list
             summary: "{{fields.title}}"
             fields:
-              - { name: title, label: "Überschrift", widget: string }
+              - { name: title, label: "Überschrift", widget: string, hint: "Wörter zwischen *Sternchen* werden farblich hervorgehoben, z.B. Früh*behandlung*." }
               - { name: image, label: "Bild", widget: image, required: false }
               - { name: imageAlt, label: "Bildbeschreibung", widget: string, required: false }
               - { name: body, label: "Text", widget: text }
