@@ -27,7 +27,7 @@ collections:
           - { name: heroTitle, label: "Große Überschrift im Titelbild", widget: string, hint: "Wörter zwischen *Sternchen* werden farblich hervorgehoben, z.B. Kieferorthopädie auf *Alt-Stralau*." }
           - { name: heroImage, label: "Titelbild", widget: image }
           - { name: heroAlt, label: "Titelbild-Beschreibung (für Vorlesefunktion & Google)", widget: string, required: false }
-          - { name: heroCredit, label: "Foto-Credit (unten rechts im Bild, optional)", widget: string, required: false }
+          - { name: heroCredit, label: "Foto-Credit (unten rechts im Bild, optional)", widget: string, required: false, hint: "Kompletter Text, z.B. „Foto: Robert Grahn“. Leer = keine Anzeige." }
           - { name: heroCtaPrimaryLabel, label: "Beschriftung Haupt-Button (Terminbuchung)", widget: string, required: false }
           - { name: heroCtaSecondaryLabel, label: "Beschriftung zweiter Button (führt zur Praxis-Seite)", widget: string, required: false }
           - name: reviews
@@ -102,6 +102,7 @@ collections:
           - { name: heroTitle, label: "Große Überschrift im Titelbild", widget: string, hint: "*Sternchen* für Hervorhebung." }
           - { name: heroImage, label: "Titelbild", widget: image }
           - { name: heroAlt, label: "Titelbild-Beschreibung", widget: string, required: false }
+          - { name: cvToggleLabel, label: "Beschriftung Lebenslauf-Aufklapper", widget: string, required: false }
           - { name: body, label: "Einleitungstext (optional)", widget: markdown, required: false, hint: "Leer lassen = kein Intro-Abschnitt. Die einzelnen Team-Mitglieder pflegst Du unter „Team-Mitglieder“." }
 
       - name: "behandlung"
@@ -113,6 +114,7 @@ collections:
           - { name: heroTitle, label: "Große Überschrift im Titelbild", widget: string, hint: "*Sternchen* für Hervorhebung." }
           - { name: heroImage, label: "Titelbild", widget: image }
           - { name: heroAlt, label: "Titelbild-Beschreibung", widget: string, required: false }
+          - { name: sectionEyebrow, label: "Wort in der kleinen Überzeile der Abschnitte (z.B. „01 · Behandlung“)", widget: string, required: false }
           - name: sections
             label: "Behandlungs-Abschnitte"
             widget: list
@@ -148,6 +150,9 @@ collections:
           - { name: heroTitle, label: "Große Überschrift im Titelbild", widget: string, hint: "*Sternchen* für Hervorhebung." }
           - { name: heroImage, label: "Titelbild", widget: image }
           - { name: heroAlt, label: "Titelbild-Beschreibung", widget: string, required: false }
+          - { name: labelAddress, label: "Beschriftung „Adresse“", widget: string, required: false }
+          - { name: labelContact, label: "Beschriftung „Direkt Kontakt“", widget: string, required: false }
+          - { name: labelHours, label: "Beschriftung „Öffnungszeiten“", widget: string, required: false }
           - { name: bookingCtaLabel, label: "Beschriftung Termin-Button", widget: string, required: false }
           - { name: bottomImage, label: "Bild über dem Anfahrtstext", widget: image, required: false }
           - { name: bottomImageAlt, label: "Bildbeschreibung", widget: string, required: false }
@@ -272,6 +277,47 @@ collections:
               - { name: totalCount, label: "Anzahl Bewertungen", widget: number, value_type: int }
               - { name: googleMapsUrl, label: "Google-Maps-Profil-Link", widget: string }
           - { name: mapsEmbedUrl, label: "Google-Maps Embed-URL (iframe src)", widget: string }
+
+      - name: "texts"
+        label: "Navigation & feste Texte"
+        file: "src/data/ui.json"
+        fields:
+          - name: nav
+            label: "Hauptnavigation"
+            widget: list
+            hint: "Reihenfolge = Reihenfolge im Menü. Den Link nur ändern, wenn die Seite existiert."
+            fields:
+              - { name: label, label: "Beschriftung", widget: string }
+              - { name: href, label: "Link (z.B. /praxis)", widget: string }
+          - { name: bookingCta, label: "Termin-Button (Kopfzeile & mobiler Button)", widget: string }
+          - { name: seoTitleSuffix, label: "Zusatz im Browser-Tab der Startseite", widget: string }
+          - name: footer
+            label: "Fußzeile"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: impressum, label: "Link Impressum", widget: string }
+              - { name: datenschutz, label: "Link Datenschutz", widget: string }
+              - { name: booking, label: "Link Online-Terminbuchung", widget: string }
+              - { name: telPrefix, label: "Vorsatz vor der Telefonnummer", widget: string }
+          - name: map
+            label: "Google-Maps-Platzhalter (Karten-Einwilligung)"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: "Überschrift", widget: string }
+              - { name: area, label: "Ortszusatz in der Adresszeile (z.B. Halbinsel Stralau)", widget: string }
+              - { name: loadButton, label: "Beschriftung „Karte laden“-Button", widget: string }
+              - { name: consentNote, label: "Datenschutz-Hinweis (vor dem Link)", widget: text }
+              - { name: consentLinkLabel, label: "Linktext zur Datenschutzerklärung", widget: string }
+              - { name: openInMaps, label: "Linktext „in Google Maps öffnen“", widget: string }
+          - name: reviews
+            label: "Bewertungs-Zeile unter den Bewertungen"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: basedOn, label: "Text unter dem Durchschnitt", widget: string, hint: "{anzahl} wird durch die Anzahl der Bewertungen ersetzt." }
+              - { name: allLink, label: "Linktext zu allen Google-Bewertungen", widget: string }
 
       - name: "theme"
         label: "Design / Farbe"

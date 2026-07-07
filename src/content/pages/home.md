@@ -3,7 +3,7 @@ title: "Willkommen"
 heroTitle: "Kieferorthopädie auf *Alt-Stralau*."
 heroImage: "/uploads/bild-start.jpg"
 heroAlt: "Blick auf die Halbinsel Stralau, Standort der Praxis"
-heroCredit: "Robert Grahn"
+heroCredit: "Foto: Robert Grahn"
 heroCtaPrimaryLabel: "Termin buchen"
 heroCtaSecondaryLabel: "Die Praxis kennenlernen"
 reviews:

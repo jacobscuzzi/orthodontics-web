@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry, getCollection, render } from 'astro:content';
+import site from '../data/site.json';
 import { em } from '../lib/em';
 import Hero from '../components/Hero.astro';
 import SectionBand from '../components/SectionBand.astro';
@@ -18,7 +19,7 @@ const rendered = await Promise.all(
   })
 );
 ---
-<BaseLayout title="Team – Dr. Insa Baumfalk">
+<BaseLayout title={`${intro.data.title} – ${site.practice.name}`}>
   <Hero
     variant="overlay"
     eyebrow={intro.data.heroEyebrow ?? intro.data.title}
@@ -59,7 +60,7 @@ const rendered = await Promise.all(
               {data.cv && data.cv.trim() && (
                 <details class="mt-6 group border-t border-primary/20 pt-4">
                   <summary class="cursor-pointer list-none flex items-center gap-2 font-medium text-primary hover:opacity-80 transition-opacity">
-                    <span>Lebenslauf anzeigen</span>
+                    <span>{intro.data.cvToggleLabel ?? 'Lebenslauf anzeigen'}</span>
                     <span class="transition-transform group-open:rotate-180" aria-hidden="true">▾</span>
                   </summary>
                   <div class="mt-4 space-y-3 text-base leading-relaxed opacity-90">

@@ -1,13 +1,9 @@
 ---
 import site from '../data/site.json';
-const navItems = [
-  { href: '/', label: 'Home' },
-  { href: '/praxis', label: 'Praxis' },
-  { href: '/team', label: 'Team' },
-  { href: '/behandlung', label: 'Behandlung' },
-  { href: '/faq', label: 'FAQ' },
-  { href: '/kontakt', label: 'Kontakt' },
-];
+import ui from '../data/ui.json';
+const navItems = ui.nav;
+const [ctaFirstWord, ...ctaRestWords] = ui.bookingCta.split(' ');
+const ctaRest = ctaRestWords.join(' ');
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 <header class="sticky top-0 z-30 border-b border-primary/10 bg-background/95 backdrop-blur">
@@ -44,7 +40,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
         data-primary-cta
         class="bg-primary text-background font-medium rounded-md hover:opacity-90 transition-opacity px-4 py-2 text-base md:px-5 md:py-2.5 md:text-lg"
       >
-        Termin <span class="hidden sm:inline">buchen</span>
+        {ctaFirstWord}{ctaRest && <span class="hidden sm:inline"> {ctaRest}</span>}
       </a>
       <button
         id="nav-toggle"
@@ -73,7 +69,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
     <li class="pt-4">
       <a href={site.practice.doctolibUrl} target="_blank" rel="noopener noreferrer"
          class="inline-block bg-primary text-background px-5 py-3 rounded-md">
-        Termin buchen
+        {ui.bookingCta}
       </a>
     </li>
   </ul>

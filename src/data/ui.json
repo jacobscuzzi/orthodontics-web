@@ -1,0 +1,30 @@
+{
+  "nav": [
+    { "label": "Home", "href": "/" },
+    { "label": "Praxis", "href": "/praxis" },
+    { "label": "Team", "href": "/team" },
+    { "label": "Behandlung", "href": "/behandlung" },
+    { "label": "FAQ", "href": "/faq" },
+    { "label": "Kontakt", "href": "/kontakt" }
+  ],
+  "bookingCta": "Termin buchen",
+  "seoTitleSuffix": "Kieferorthopädie Berlin Stralau",
+  "footer": {
+    "impressum": "Impressum",
+    "datenschutz": "Datenschutz",
+    "booking": "Online-Terminbuchung",
+    "telPrefix": "Tel:"
+  },
+  "map": {
+    "title": "Hier liegt unsere Praxis",
+    "area": "Halbinsel Stralau",
+    "loadButton": "Karte laden",
+    "consentNote": "Beim Laden der Karte werden Daten an Google übertragen. Mehr dazu in unserer",
+    "consentLinkLabel": "Datenschutzerklärung",
+    "openInMaps": "Alternativ in Google Maps öffnen"
+  },
+  "reviews": {
+    "basedOn": "basierend auf {anzahl} Google-Bewertungen",
+    "allLink": "Alle Bewertungen auf Google lesen"
+  }
+}

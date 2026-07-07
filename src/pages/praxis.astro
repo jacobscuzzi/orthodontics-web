@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry, render } from 'astro:content';
+import site from '../data/site.json';
 import { em } from '../lib/em';
 import Hero from '../components/Hero.astro';
 import SectionBand from '../components/SectionBand.astro';
@@ -10,7 +11,7 @@ if (!page) throw new Error('pages/praxis.md missing');
 const { Content } = await render(page);
 const gallery = page.data.gallery ?? [];
 ---
-<BaseLayout title={`${page.data.title} – Dr. Insa Baumfalk`}>
+<BaseLayout title={`${page.data.title} – ${site.practice.name}`}>
   <Hero
     variant="overlay"
     eyebrow={page.data.heroEyebrow ?? page.data.title}

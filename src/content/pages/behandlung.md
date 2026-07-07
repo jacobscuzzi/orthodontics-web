@@ -4,6 +4,7 @@ heroEyebrow: "Behandlung"
 heroTitle: "Was wir *anbieten*."
 heroImage: "/uploads/behandlung-header.jpg"
 heroAlt: "Behandlungsraum"
+sectionEyebrow: "Behandlung"
 sections:
   - title: "Früh*behandlung*"
     image: "/uploads/behandlung-frühbehandlung.jpg"

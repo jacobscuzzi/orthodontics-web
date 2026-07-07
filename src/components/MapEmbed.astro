@@ -1,5 +1,6 @@
 ---
 import site from '../data/site.json';
+import ui from '../data/ui.json';
 interface Props {
   size?: 'small' | 'large';
   rounded?: boolean;
@@ -18,20 +19,20 @@ const id = `map-${Math.random().toString(36).slice(2, 9)}`;
   <div class="map-placeholder absolute inset-0 flex flex-col items-center justify-center gap-5 p-6 text-center bg-primary/8">
     <div class="text-5xl" aria-hidden="true">📍</div>
     <div>
-      <p class="font-display text-xl md:text-2xl mb-1">Hier liegt unsere Praxis</p>
-      <p class="text-sm opacity-75">{site.practice.street} · Halbinsel Stralau · {site.practice.zip} {site.practice.city}</p>
+      <p class="font-display text-xl md:text-2xl mb-1">{ui.map.title}</p>
+      <p class="text-sm opacity-75">{site.practice.street} · {ui.map.area} · {site.practice.zip} {site.practice.city}</p>
     </div>
     <button
       type="button"
       class="map-load inline-block bg-primary text-background px-5 py-2.5 rounded-md font-medium hover:opacity-90 transition-opacity"
     >
-      🗺️ Karte laden
+      🗺️ {ui.map.loadButton}
     </button>
     <p class="text-xs opacity-60 max-w-sm leading-relaxed">
-      Beim Laden der Karte werden Daten an Google übertragen. Mehr dazu in unserer <a href="/datenschutz" class="underline">Datenschutzerklärung</a>.
+      {ui.map.consentNote} <a href="/datenschutz" class="underline">{ui.map.consentLinkLabel}</a>.
     </p>
     <a href={mapsLink} target="_blank" rel="noopener noreferrer" class="text-sm text-primary underline hover:no-underline">
-      Alternativ in Google Maps öffnen →
+      {ui.map.openInMaps} →
     </a>
   </div>
 </div>

@@ -47,7 +47,14 @@ const pages = defineCollection({
     }).optional(),
     // Praxis
     teamCtaLabel: z.string().optional(),
+    // Team
+    cvToggleLabel: z.string().optional(),
+    // Behandlung
+    sectionEyebrow: z.string().optional(),
     // Kontakt
+    labelAddress: z.string().optional(),
+    labelContact: z.string().optional(),
+    labelHours: z.string().optional(),
     bookingCtaLabel: z.string().optional(),
     bottomImage: z.string().optional(),
     bottomImageAlt: z.string().optional(),

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import ReviewCard from './ReviewCard.astro';
 import site from '../data/site.json';
+import ui from '../data/ui.json';
 import { em } from '../lib/em';
 
 interface Props {
@@ -49,7 +50,7 @@ const googleReviews = (site as any).googleReviews ?? { averageRating: 5.0, total
       </div>
       <div>
         <p class="font-display text-2xl leading-none">{googleReviews.averageRating.toFixed(1)} / 5</p>
-        <p class="text-sm opacity-70 mt-1">basierend auf {googleReviews.totalCount} Google-Bewertungen</p>
+        <p class="text-sm opacity-70 mt-1">{ui.reviews.basedOn.replace('{anzahl}', String(googleReviews.totalCount))}</p>
       </div>
     </div>
     <a
@@ -58,7 +59,7 @@ const googleReviews = (site as any).googleReviews ?? { averageRating: 5.0, total
       rel="noopener noreferrer"
       class="md:ml-auto inline-flex items-center gap-2 text-primary font-medium hover:underline"
     >
-      Alle Bewertungen auf Google lesen
+      {ui.reviews.allLink}
       <span aria-hidden="true">→</span>
     </a>
   </div>

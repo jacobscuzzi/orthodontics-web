@@ -12,7 +12,7 @@ if (!page) throw new Error('pages/kontakt.md missing');
 const { Content } = await render(page);
 const phoneHref = `tel:${site.practice.phone.replace(/\s/g, '').replace(/-/g, '')}`;
 ---
-<BaseLayout title="Kontakt – Dr. Insa Baumfalk">
+<BaseLayout title={`${page.data.title} – ${site.practice.name}`}>
   <Hero
     variant="overlay"
     eyebrow={page.data.heroEyebrow ?? page.data.title}
@@ -25,13 +25,13 @@ const phoneHref = `tel:${site.practice.phone.replace(/\s/g, '').replace(/-/g, ''
     <div class="grid gap-10 md:gap-14 md:grid-cols-12">
       <div class="md:col-span-5 space-y-10">
         <div>
-          <p class="eyebrow mb-4">Adresse</p>
+          <p class="eyebrow mb-4">{page.data.labelAddress ?? 'Adresse'}</p>
           <p class="text-xl font-display mb-1">{site.practice.name}</p>
           <p class="opacity-80">{site.practice.street}</p>
           <p class="opacity-80">{site.practice.zip} {site.practice.city}</p>
         </div>
         <div>
-          <p class="eyebrow mb-4">Direkt Kontakt</p>
+          <p class="eyebrow mb-4">{page.data.labelContact ?? 'Direkt Kontakt'}</p>
           <p class="mb-1">
             <a href={phoneHref} class="text-lg hover:text-primary">{site.practice.phone}</a>
           </p>
@@ -42,7 +42,7 @@ const phoneHref = `tel:${site.practice.phone.replace(/\s/g, '').replace(/-/g, ''
           </p>
         </div>
         <div>
-          <p class="eyebrow mb-4">Öffnungszeiten</p>
+          <p class="eyebrow mb-4">{page.data.labelHours ?? 'Öffnungszeiten'}</p>
           <ul class="space-y-1.5">
             {site.hours.map(h => (
               <li class="flex justify-between gap-3 text-base">

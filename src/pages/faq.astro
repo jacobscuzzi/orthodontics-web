@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry, getCollection, render } from 'astro:content';
+import site from '../data/site.json';
 import { em } from '../lib/em';
 import Hero from '../components/Hero.astro';
 
@@ -16,7 +17,7 @@ const rendered = await Promise.all(
   })
 );
 ---
-<BaseLayout title="Frage & Antwort – Dr. Insa Baumfalk">
+<BaseLayout title={`${intro.data.title} – ${site.practice.name}`}>
   <Hero
     variant="overlay"
     eyebrow={intro.data.heroEyebrow ?? intro.data.title}
