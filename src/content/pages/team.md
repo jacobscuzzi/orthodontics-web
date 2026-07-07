@@ -1,7 +1,7 @@
 ---
 title: Unser Team
 heroEyebrow: ''
-heroTitle: Wir haben eine bewusst kleine Praxis. Das hat für Dich den Vorteil, dass Du immer von derselben Ärztin behandelt wirst.
+heroTitle: Kleines Team, ganze Aufmerksamkeit.
 heroImage: /uploads/team-05.jpg
 heroAlt: Das Praxisteam
 ---
