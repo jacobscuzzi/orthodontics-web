@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../utils/base';
+
 interface Props {
   variant?: 'magazine' | 'overlay';
   eyebrow?: string;
@@ -52,7 +54,7 @@ const overlayClasses = sticky
     )}
     {image && (
       <img
-        src={image}
+        src={withBase(image)}
         alt={imageAlt}
         class="w-full aspect-[21/9] md:aspect-[21/8] object-cover rounded-xl"
         loading="eager"
@@ -62,7 +64,7 @@ const overlayClasses = sticky
 ) : (
   <section class={overlayClasses}>
     {image && (
-      <img src={image} alt={imageAlt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+      <img src={withBase(image)} alt={imageAlt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
     )}
     <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/25 to-black/55"></div>
     {imageCredit && (

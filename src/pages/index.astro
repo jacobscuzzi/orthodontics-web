@@ -7,6 +7,7 @@ import { em } from '../lib/em';
 import SectionBand from '../components/SectionBand.astro';
 import ReviewsSection from '../components/ReviewsSection.astro';
 import MapEmbed from '../components/MapEmbed.astro';
+import { withBase } from '../utils/base';
 
 const home = await getEntry('pages', 'home');
 if (!home) throw new Error('pages/home.md missing');
@@ -19,7 +20,7 @@ const address = `${site.practice.street} · ${site.practice.zip} ${site.practice
 ---
 <BaseLayout title={`${site.practice.name} – ${ui.seoTitleSuffix}`}>
   <section class="sticky top-0 w-full h-screen overflow-hidden z-0">
-    <img src={heroImage} alt={heroAlt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
+    <img src={withBase(heroImage ?? '')} alt={heroAlt} class="absolute inset-0 w-full h-full object-cover" loading="eager" />
     <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/25 to-black/55"></div>
     {heroCredit && (
       <p class="absolute bottom-3 right-4 text-sm md:text-base text-white/80 z-10 select-none drop-shadow">{heroCredit}</p>
@@ -38,7 +39,7 @@ const address = `${site.practice.street} · ${site.practice.zip} ${site.practice
           class="inline-block bg-primary text-background px-6 py-3.5 rounded-md font-medium hover:opacity-90 transition-opacity"
         >{heroCtaPrimaryLabel ?? 'Termin buchen'}</a>
         <a
-          href="/praxis"
+          href={withBase('/praxis')}
           class="inline-block border border-white/80 text-white px-6 py-3.5 rounded-md font-medium hover:bg-white hover:text-text transition-colors"
         >{heroCtaSecondaryLabel ?? 'Die Praxis kennenlernen'}</a>
       </div>
@@ -67,7 +68,7 @@ const address = `${site.practice.street} · ${site.practice.zip} ${site.practice
       </div>
       <div class="mt-12 md:mt-16">
         <a
-          href="/behandlung"
+          href={withBase('/behandlung')}
           class="inline-block bg-primary text-background px-6 py-3.5 rounded-md font-medium hover:opacity-90 transition-opacity"
         >{features.ctaLabel ?? 'Unsere Behandlungen entdecken'}</a>
       </div>
@@ -90,7 +91,7 @@ const address = `${site.practice.street} · ${site.practice.zip} ${site.practice
           <h2 class="headline-lg mb-6" set:html={em(findUs?.title ?? 'So findest Du zu *uns*.')} />
           <p class="text-lg opacity-80 leading-relaxed mb-4">{address}</p>
           {findUs && <p class="text-base opacity-70 leading-relaxed mb-8">{findUs.text}</p>}
-          <a href="/kontakt" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">{findUs?.ctaLabel ?? 'Anfahrt & Kontakt'}</a>
+          <a href={withBase('/kontakt')} class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">{findUs?.ctaLabel ?? 'Anfahrt & Kontakt'}</a>
         </div>
         <MapEmbed size="small" />
       </div>
@@ -103,7 +104,7 @@ const address = `${site.practice.street} · ${site.practice.zip} ${site.practice
         <p class="eyebrow mb-5">{faqTeaser.eyebrow}</p>
         <h2 class="headline-lg mb-6" set:html={em(faqTeaser.title)} />
         <p class="text-lg md:text-xl opacity-80 leading-relaxed mb-8">{faqTeaser.text}</p>
-        <a href="/faq" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">
+        <a href={withBase('/faq')} class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">
           {faqTeaser.ctaLabel ?? 'Zur Frage & Antwort-Seite'}
         </a>
       </div>

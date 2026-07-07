@@ -5,8 +5,10 @@ Willkommen! Diese Kurzanleitung erklärt, wie Sie die Inhalte Ihrer Website selb
 ## Login in den Editor
 
 1. Öffnen Sie `https://IHRE-DOMAIN/admin/` (die Adresse bekommen Sie nach dem Launch mitgeteilt).
-2. Melden Sie sich mit Ihrer E-Mail-Adresse und dem Passwort an, das Sie bei der Einladung gesetzt haben.
+2. Wählen Sie **Use Personal Access Token** und fügen Sie Ihren Token ein. Den Token bekommen Sie von Ihrer Agentur oder erstellen ihn nach der Anleitung im Abschnitt **CMS-Zugang einrichten** weiter unten.
 3. Sie sehen jetzt die Bereiche **Seiten**, **Team**, **Frage & Antwort** und **Website-Daten**.
+
+> Der Token wird nur in Ihrem Browser gespeichert (LocalStorage). Auf einem neuen Gerät oder nach dem Löschen der Browserdaten müssen Sie ihn einmalig erneut eintragen.
 
 ## Text auf einer Seite ändern
 
@@ -63,15 +65,57 @@ Jedes Mal, wenn Sie **Publish** klicken, wird die Website automatisch neu gebaut
 
 ---
 
+## CMS-Zugang einrichten (Personal Access Token)
+
+Sveltia CMS spricht direkt mit GitHub. Dafür brauchen Sie einen **Fine-grained Personal Access Token**, den Sie einmalig in GitHub erstellen und im CMS hinterlegen.
+
+### Schritt 1: Token in GitHub erstellen
+
+1. Bei GitHub einloggen.
+2. Pfad öffnen: **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**
+   - Direktlink: <https://github.com/settings/personal-access-tokens/new>
+3. Felder ausfüllen:
+   - **Token name:** `sveltia-cms-orthodontics-web` (oder ein anderer wiedererkennbarer Name)
+   - **Expiration:** **1 Jahr** empfohlen. Maximum sind 366 Tage. Notieren Sie das Ablaufdatum — danach müssen Sie einen neuen Token erstellen.
+   - **Resource owner:** Ihr Account (`jacobscuzzi`)
+   - **Repository access:** **Only select repositories** → `orthodontics-web` auswählen
+4. **Permissions → Repository permissions** setzen:
+   - **Contents:** *Read and write* (Pflicht — damit das CMS Inhalte speichern kann)
+   - **Metadata:** *Read-only* (wird automatisch gesetzt)
+   - **Pull requests:** *Read and write* (nur nötig, falls Sie den Editorial Workflow nutzen)
+5. Auf **Generate token** klicken.
+6. **Token kopieren und sicher aufbewahren** (Passwort-Manager). GitHub zeigt ihn nur **einmal** an.
+
+### Schritt 2: Im CMS einloggen
+
+1. `https://jacobscuzzi.github.io/orthodontics-web/admin/` öffnen.
+2. Auf der Login-Seite **Use Personal Access Token** wählen.
+3. Token einfügen → **Sign in**.
+4. Fertig. Das CMS speichert den Token im Browser-LocalStorage.
+
+### Sicherheit
+
+- Behandeln Sie den Token wie ein Passwort. **Nicht teilen, nicht in Chats schicken, nicht ins Repo committen.**
+- Wenn Sie den Verdacht haben, dass jemand Ihren Token kennt: in GitHub unter **Settings → Developer settings → Fine-grained tokens** sofort widerrufen und neu erstellen.
+- Beim Wechsel auf ein neues Gerät: einfach denselben Token erneut eintragen — oder einen neuen erstellen und den alten widerrufen.
+
+### Token läuft ab — was tun?
+
+Sie sehen einen Auth-Fehler beim Speichern? Vermutlich ist Ihr Token abgelaufen.
+1. In GitHub einen neuen Token nach der Anleitung oben erstellen.
+2. `https://jacobscuzzi.github.io/orthodontics-web/admin/` öffnen, ausloggen, mit neuem Token wieder einloggen.
+
+---
+
 ## Für Entwickler
 
 ### Tech-Stack
 
 - [Astro](https://astro.build) v6 (Static Site Generator)
 - [Tailwind CSS](https://tailwindcss.com) v4
-- [Decap CMS](https://decapcms.org) v3 (Content Management)
-- [Netlify](https://netlify.com) Identity + Git Gateway
+- [Sveltia CMS](https://github.com/sveltia/sveltia-cms) (Content Management, GitHub-Backend mit Fine-grained PAT)
 - [Fontsource](https://fontsource.org) (Fraunces + Inter, selbstgehostet, DSGVO-konform)
+- Hosting: **GitHub Pages** (Deploy via GitHub Actions, siehe [.github/workflows/astro.yml](.github/workflows/astro.yml))
 
 ### Lokale Entwicklung
 
@@ -81,6 +125,20 @@ npm run dev          # Dev-Server auf http://localhost:4321
 npm run build        # Production-Build nach dist/
 npm run preview      # Preview des Builds
 ```
+
+#### CMS lokal nutzen (ohne PAT)
+
+In `public/admin/config.yml` ist `local_backend: true` gesetzt. Damit kann das CMS lokal direkt aufs Dateisystem schreiben — ohne Token, ohne GitHub-Roundtrip.
+
+```bash
+# In einem zweiten Terminal:
+npx @sveltia/cms-proxy-server
+
+# In einem dritten Terminal:
+npm run dev
+```
+
+Dann `http://localhost:4321/orthodontics-web/admin/` öffnen. Änderungen landen direkt in `src/content/` und `public/uploads/` — committen wie gewohnt.
 
 ### Struktur
 
@@ -92,8 +150,9 @@ npm run preview      # Preview des Builds
 - `src/data/theme.json` — aktives Farbpreset + Preset-Definitionen
 - `src/components/*.astro` — Header, Footer, Mobile Sticky CTA
 - `src/layouts/BaseLayout.astro` — Globales Layout mit Theme-Injection
-- `public/admin/` — Decap CMS Interface + Config
+- `public/admin/` — Sveltia CMS Interface + Config
 - `public/uploads/` — via CMS hochgeladene Bilder
+- `site.config.mjs` — zentrale Site-URL (für Domain-Wechsel nur diese Datei anfassen)
 
 ### Farbsystem
 
@@ -103,10 +162,14 @@ Neue Presets: in `theme.json` ergänzen **und** einen weiteren Block im `presets
 
 ### Deploy
 
+Hosting: **GitHub Pages**, Auto-Deploy via Workflow [.github/workflows/astro.yml](.github/workflows/astro.yml). Jeder Push auf `main` baut und veröffentlicht.
+
+Erstmaliges Setup:
 1. Repo auf GitHub pushen.
-2. Netlify: „Add new site" → Repo verknüpfen. Build-Befehl und Publish-Ordner kommen aus `netlify.toml`.
-3. Netlify Identity aktivieren, Registration auf „Invite only" stellen, Git Gateway einschalten.
-4. Praxis-E-Mail einladen, Passwort setzen → `/admin/` funktioniert.
+2. **Settings → Pages → Source: GitHub Actions** wählen (nicht „Deploy from branch").
+3. Personal Access Token nach Anleitung im Abschnitt **CMS-Zugang einrichten** erstellen und im CMS hinterlegen.
+
+Domain-Wechsel: nur `site.config.mjs` anpassen (eine Zeile, `SITE_URL`). Die GitHub-Pages-URL ergibt sich daraus, der Code zieht alles über `withBase()` aus `src/utils/base.ts` korrekt.
 
 ### Bekannte Limitierungen
 

@@ -6,6 +6,7 @@ import { em } from '../lib/em';
 import Hero from '../components/Hero.astro';
 import SectionBand from '../components/SectionBand.astro';
 import MapEmbed from '../components/MapEmbed.astro';
+import { withBase } from '../utils/base';
 
 const page = await getEntry('pages', 'kontakt');
 if (!page) throw new Error('pages/kontakt.md missing');
@@ -51,7 +52,7 @@ const phoneHref = `tel:${site.practice.phone.replace(/\s/g, '').replace(/-/g, ''
               </li>
             ))}
           </ul>
-          {site.hoursNote && <p class="mt-4 text-sm opacity-65">{site.hoursNote}</p>}
+          {site.hoursNote && <p class="mt-4 text-base opacity-65">{site.hoursNote}</p>}
         </div>
         <a
           href={site.practice.doctolibUrl}
@@ -74,7 +75,7 @@ const phoneHref = `tel:${site.practice.phone.replace(/\s/g, '').replace(/-/g, ''
     <section class="mx-auto max-w-5xl px-4 md:px-6 py-20 md:py-28">
       {page.data.bottomImage && (
         <img
-          src={page.data.bottomImage}
+          src={withBase(page.data.bottomImage)}
           alt={page.data.bottomImageAlt ?? ''}
           class="w-full h-auto mb-12 md:mb-16"
           loading="lazy"

@@ -1,6 +1,7 @@
 ---
 import site from '../data/site.json';
 import ui from '../data/ui.json';
+import { withBase } from '../utils/base';
 interface Props {
   size?: 'small' | 'large';
   rounded?: boolean;
@@ -29,7 +30,7 @@ const id = `map-${Math.random().toString(36).slice(2, 9)}`;
       🗺️ {ui.map.loadButton}
     </button>
     <p class="text-xs opacity-60 max-w-sm leading-relaxed">
-      {ui.map.consentNote} <a href="/datenschutz" class="underline">{ui.map.consentLinkLabel}</a>.
+      {ui.map.consentNote} <a href={withBase('/datenschutz')} class="underline">{ui.map.consentLinkLabel}</a>.
     </p>
     <a href={mapsLink} target="_blank" rel="noopener noreferrer" class="text-sm text-primary underline hover:no-underline">
       {ui.map.openInMaps} →
