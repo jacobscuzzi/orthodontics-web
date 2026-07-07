@@ -9,7 +9,11 @@ import MapEmbed from '../components/MapEmbed.astro';
 
 const home = await getEntry('pages', 'home');
 if (!home) throw new Error('pages/home.md missing');
-const { heroTitle, heroImage, heroAlt, heroCredit, features, interludeTitle, findUs, faqTeaser } = home.data;
+const {
+  heroTitle, heroImage, heroAlt, heroCredit,
+  heroCtaPrimaryLabel, heroCtaSecondaryLabel,
+  reviews, features, interludeTitle, findUs, faqTeaser,
+} = home.data;
 const address = `${site.practice.street} · ${site.practice.zip} ${site.practice.city}`;
 ---
 <BaseLayout title={`${site.practice.name} – Kieferorthopädie Berlin Stralau`}>
@@ -31,18 +35,18 @@ const address = `${site.practice.street} · ${site.practice.zip} ${site.practice
           rel="noopener noreferrer"
           data-primary-cta
           class="inline-block bg-primary text-background px-6 py-3.5 rounded-md font-medium hover:opacity-90 transition-opacity"
-        >Termin buchen</a>
+        >{heroCtaPrimaryLabel ?? 'Termin buchen'}</a>
         <a
           href="/praxis"
           class="inline-block border border-white/80 text-white px-6 py-3.5 rounded-md font-medium hover:bg-white hover:text-text transition-colors"
-        >Die Praxis kennenlernen</a>
+        >{heroCtaSecondaryLabel ?? 'Die Praxis kennenlernen'}</a>
       </div>
     </div>
   </div>
 
   <div class="relative z-10 bg-background">
   <SectionBand tone="band">
-    <ReviewsSection />
+    <ReviewsSection eyebrow={reviews?.eyebrow} title={reviews?.title} />
   </SectionBand>
 
   {features && (
@@ -64,7 +68,7 @@ const address = `${site.practice.street} · ${site.practice.zip} ${site.practice
         <a
           href="/behandlung"
           class="inline-block bg-primary text-background px-6 py-3.5 rounded-md font-medium hover:opacity-90 transition-opacity"
-        >Unsere Behandlungen entdecken</a>
+        >{features.ctaLabel ?? 'Unsere Behandlungen entdecken'}</a>
       </div>
     </section>
   )}
@@ -85,7 +89,7 @@ const address = `${site.practice.street} · ${site.practice.zip} ${site.practice
           <h2 class="headline-lg mb-6" set:html={em(findUs?.title ?? 'So findest Du zu *uns*.')} />
           <p class="text-lg opacity-80 leading-relaxed mb-4">{address}</p>
           {findUs && <p class="text-base opacity-70 leading-relaxed mb-8">{findUs.text}</p>}
-          <a href="/kontakt" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">Anfahrt & Kontakt</a>
+          <a href="/kontakt" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">{findUs?.ctaLabel ?? 'Anfahrt & Kontakt'}</a>
         </div>
         <MapEmbed size="small" />
       </div>
@@ -99,7 +103,7 @@ const address = `${site.practice.street} · ${site.practice.zip} ${site.practice
         <h2 class="headline-lg mb-6" set:html={em(faqTeaser.title)} />
         <p class="text-lg md:text-xl opacity-80 leading-relaxed mb-8">{faqTeaser.text}</p>
         <a href="/faq" class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">
-          Zur Frage & Antwort-Seite
+          {faqTeaser.ctaLabel ?? 'Zur Frage & Antwort-Seite'}
         </a>
       </div>
     </section>

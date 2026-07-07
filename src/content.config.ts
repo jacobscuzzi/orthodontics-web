@@ -21,22 +21,34 @@ const pages = defineCollection({
       bullets: z.array(z.string()).optional(),
     })).optional(),
     // Startseite
+    heroCtaPrimaryLabel: z.string().optional(),
+    heroCtaSecondaryLabel: z.string().optional(),
+    reviews: z.object({
+      eyebrow: z.string(),
+      title: z.string(),
+    }).optional(),
     features: z.object({
       eyebrow: z.string(),
       title: z.string(),
       items: z.array(z.object({ title: z.string(), text: z.string() })),
+      ctaLabel: z.string().optional(),
     }).optional(),
     interludeTitle: z.string().optional(),
     findUs: z.object({
       title: z.string(),
       text: z.string(),
+      ctaLabel: z.string().optional(),
     }).optional(),
     faqTeaser: z.object({
       eyebrow: z.string(),
       title: z.string(),
       text: z.string(),
+      ctaLabel: z.string().optional(),
     }).optional(),
+    // Praxis
+    teamCtaLabel: z.string().optional(),
     // Kontakt
+    bookingCtaLabel: z.string().optional(),
     bottomImage: z.string().optional(),
     bottomImageAlt: z.string().optional(),
   }),

@@ -60,7 +60,7 @@ const phoneHref = `tel:${site.practice.phone.replace(/\s/g, '').replace(/-/g, ''
           data-primary-cta
           class="inline-block bg-primary text-background px-6 py-3 rounded-md font-medium hover:opacity-90 transition-opacity"
         >
-          Online-Termin buchen
+          {page.data.bookingCtaLabel ?? 'Online-Termin buchen'}
         </a>
       </div>
 

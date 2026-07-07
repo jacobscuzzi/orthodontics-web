@@ -4,6 +4,7 @@ heroEyebrow: "Kontakt"
 heroTitle: "So *findest* Du uns."
 heroImage: "/uploads/bild-kontakt-header.jpg"
 heroAlt: "Die Praxis auf der Halbinsel Stralau"
+bookingCtaLabel: "Online-Termin buchen"
 bottomImage: "/uploads/bild-kontakt.jpg"
 bottomImageAlt: "Die Praxis auf der Halbinsel Stralau"
 ---

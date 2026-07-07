@@ -4,6 +4,7 @@ heroEyebrow: "Die Praxis"
 heroTitle: "Praxis mit *Ausblick*."
 heroImage: "/uploads/bild-haus.jpg"
 heroAlt: "Das Praxishaus auf der Halbinsel Stralau"
+teamCtaLabel: "Unser Team kennenlernen"
 galleryEyebrow: "Einblicke"
 galleryTitle: "Aus unseren *Räumen*."
 gallery:

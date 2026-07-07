@@ -14,6 +14,8 @@ slug:
 collections:
   - name: "pages"
     label: "Seiten"
+    icon: "web"
+    description: "Inhalte und Bilder der einzelnen Website-Seiten"
     editor:
       preview: false
     files:
@@ -26,9 +28,19 @@ collections:
           - { name: heroImage, label: "Titelbild", widget: image }
           - { name: heroAlt, label: "Titelbild-Beschreibung (für Vorlesefunktion & Google)", widget: string, required: false }
           - { name: heroCredit, label: "Foto-Credit (unten rechts im Bild, optional)", widget: string, required: false }
+          - { name: heroCtaPrimaryLabel, label: "Beschriftung Haupt-Button (Terminbuchung)", widget: string, required: false }
+          - { name: heroCtaSecondaryLabel, label: "Beschriftung zweiter Button (führt zur Praxis-Seite)", widget: string, required: false }
+          - name: reviews
+            label: "Abschnitt „Bewertungen“"
+            widget: object
+            collapsed: true
+            fields:
+              - { name: eyebrow, label: "Kleine Überzeile", widget: string }
+              - { name: title, label: "Überschrift", widget: string, hint: "*Sternchen* für Hervorhebung. Die Bewertungen selbst pflegst Du unter „Bewertungen“." }
           - name: features
             label: "Abschnitt „Was uns ausmacht“"
             widget: object
+            collapsed: true
             fields:
               - { name: eyebrow, label: "Kleine Überzeile", widget: string }
               - { name: title, label: "Überschrift", widget: string, hint: "*Sternchen* für Hervorhebung." }
@@ -39,20 +51,25 @@ collections:
                 fields:
                   - { name: title, label: "Überschrift", widget: string }
                   - { name: text, label: "Text", widget: text }
+              - { name: ctaLabel, label: "Beschriftung Button (führt zur Behandlungs-Seite)", widget: string, required: false }
           - { name: interludeTitle, label: "Zwischen-Slogan (über dem durchscheinenden Foto)", widget: string, hint: "*Sternchen* für Hervorhebung." }
           - name: findUs
             label: "Abschnitt „So findest Du zu uns“"
             widget: object
+            collapsed: true
             fields:
               - { name: title, label: "Überschrift", widget: string, hint: "*Sternchen* für Hervorhebung. Die Adresse darunter kommt automatisch aus den Stammdaten." }
               - { name: text, label: "Text unter der Adresse", widget: text }
+              - { name: ctaLabel, label: "Beschriftung Button (führt zur Kontakt-Seite)", widget: string, required: false }
           - name: faqTeaser
             label: "Abschnitt „Noch Fragen?“"
             widget: object
+            collapsed: true
             fields:
               - { name: eyebrow, label: "Kleine Überzeile", widget: string }
               - { name: title, label: "Überschrift", widget: string, hint: "*Sternchen* für Hervorhebung." }
               - { name: text, label: "Text", widget: text }
+              - { name: ctaLabel, label: "Beschriftung Button (führt zur FAQ-Seite)", widget: string, required: false }
 
       - name: "praxis"
         label: "Praxis"
@@ -64,6 +81,7 @@ collections:
           - { name: heroImage, label: "Titelbild", widget: image }
           - { name: heroAlt, label: "Titelbild-Beschreibung", widget: string, required: false }
           - { name: body, label: "Einleitungstext", widget: markdown }
+          - { name: teamCtaLabel, label: "Beschriftung Button (führt zur Team-Seite)", widget: string, required: false }
           - { name: galleryEyebrow, label: "Galerie: kleine Überzeile", widget: string, required: false }
           - { name: galleryTitle, label: "Galerie: Überschrift", widget: string, required: false, hint: "*Sternchen* für Hervorhebung." }
           - name: gallery
@@ -130,6 +148,7 @@ collections:
           - { name: heroTitle, label: "Große Überschrift im Titelbild", widget: string, hint: "*Sternchen* für Hervorhebung." }
           - { name: heroImage, label: "Titelbild", widget: image }
           - { name: heroAlt, label: "Titelbild-Beschreibung", widget: string, required: false }
+          - { name: bookingCtaLabel, label: "Beschriftung Termin-Button", widget: string, required: false }
           - { name: bottomImage, label: "Bild über dem Anfahrtstext", widget: image, required: false }
           - { name: bottomImageAlt, label: "Bildbeschreibung", widget: string, required: false }
           - { name: body, label: "Anfahrtstext", widget: markdown, hint: "Adresse, Telefon und Öffnungszeiten kommen automatisch aus „Website-Daten → Stammdaten & Kontakt“." }
@@ -148,8 +167,12 @@ collections:
           - { name: title, label: "Überschrift", widget: string }
           - { name: body, label: "Inhalt", widget: markdown }
 
+  - divider: true
+
   - name: "team"
     label: "Team-Mitglieder"
+    icon: "groups"
+    description: "Die Personen auf der Team-Seite"
     folder: "src/content/team"
     create: true
     extension: "md"
@@ -168,6 +191,8 @@ collections:
 
   - name: "faq"
     label: "Fragen & Antworten"
+    icon: "quiz"
+    description: "Die aufklappbaren Fragen auf der FAQ-Seite"
     folder: "src/content/faq"
     create: true
     extension: "md"
@@ -183,6 +208,8 @@ collections:
 
   - name: "reviews"
     label: "Bewertungen"
+    icon: "reviews"
+    description: "Patientenstimmen für die Startseite"
     folder: "src/content/reviews"
     create: true
     extension: "md"
@@ -203,8 +230,12 @@ collections:
       - { name: featured, label: "Auf der Startseite zeigen?", widget: boolean, default: true, hint: "Es erscheinen die ersten drei aktivierten Bewertungen (nach Reihenfolge)." }
       - { name: body, label: "Bewertungstext", widget: text }
 
+  - divider: true
+
   - name: "site"
     label: "Website-Daten"
+    icon: "settings"
+    description: "Adresse, Öffnungszeiten, Logo, Farben"
     editor:
       preview: false
     files:
