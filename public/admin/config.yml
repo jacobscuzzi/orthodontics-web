@@ -9,6 +9,20 @@ backend:
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
+# Bildoptimierung beim Hochladen (läuft im Browser, vor dem Speichern):
+# Fotos werden auf max. 2560 px Breite/Höhe verkleinert und als WebP gespeichert.
+# Das Original bleibt beim Praxisteam, im Repo landet die schlanke Web-Version.
+media_libraries:
+  all:
+    transformations:
+      raster_image:
+        format: webp
+        quality: 85
+        width: 2560
+        height: 2560
+      svg:
+        optimize: true
+
 # Dateinamen ohne Umlaute/Sonderzeichen erzeugen (z.B. "Frühbehandlung" -> "fruehbehandlung")
 slug:
   encoding: ascii
