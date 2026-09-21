@@ -26,6 +26,8 @@ Willkommen! Diese Kurzanleitung erklärt, wie Sie die Inhalte Ihrer Website selb
 3. Entweder ein bereits hochgeladenes Bild auswählen oder auf **Upload new** klicken.
 4. Speichern & Publish.
 
+> Sie können Fotos in voller Kamera-Auflösung hochladen. Der Editor verkleinert sie vor dem Speichern automatisch auf Web-Größe (max. 2560 Pixel, WebP-Format). Auf dem Bildschirm sieht das identisch aus, die Seite lädt aber deutlich schneller. Bewahren Sie das Original in Ihrer eigenen Fotosammlung auf. Das Verkleinern dauert bei großen Fotos ein paar Sekunden, bitte so lange warten, bis das Vorschaubild erscheint.
+
 ## Neues Teammitglied hinzufügen
 
 1. Links auf **Team** → oben rechts auf **New Team**.
@@ -57,7 +59,7 @@ Die einzelnen Farbwerte der Presets sollten nur mit Rücksprache mit Ihrer Agent
 
 ## Was passiert nach „Publish"?
 
-Jedes Mal, wenn Sie **Publish** klicken, wird die Website automatisch neu gebaut und veröffentlicht. Das dauert in der Regel **2 bis 3 Minuten**. Wer die Seite kurz vorher offen hatte, sieht die alte Version unter Umständen noch bis zu 10 Minuten oder muss einmal neu laden. Solange der Build läuft, sehen Besucher weiterhin die alte Version — es gibt also keine „leere" Seite.
+Jedes Mal, wenn Sie **Publish** klicken, wird die Website automatisch neu gebaut und veröffentlicht. Das dauert in der Regel **3 bis 7 Minuten**. Wer die Seite kurz vorher offen hatte, sieht die alte Version unter Umständen noch bis zu 10 Minuten oder muss einmal neu laden. Solange der Build läuft, sehen Besucher weiterhin die alte Version — es gibt also keine „leere" Seite.
 
 ## Wenn etwas nicht funktioniert
 
