@@ -1,7 +1,7 @@
 ---
 name: Frau Yip
 role: Zahnärztin für Kieferorthopädie
-photo: /uploads/2026-08-31-1099.jpg
+photo: /uploads/2026-08-31-1156.jpg
 order: 100
 cv: ''
 ---
