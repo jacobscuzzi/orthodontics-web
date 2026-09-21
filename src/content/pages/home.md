@@ -11,7 +11,7 @@ reviews:
   title: Was *Patienten* sagen.
 features:
   eyebrow: Was uns ausmacht
-  title: Sorgfalt, *Kompetenz* und Gewissenhaftigkeit.
+  title: Sorgfalt, *Kompetenz* und ein schöner Ausblick.
   items:
     - title: Für Kinder & Erwachsene
       text: Von der Frühbehandlung über feste und lose Spangen bis zur unauffälligen Erwachsenenbehandlung.
