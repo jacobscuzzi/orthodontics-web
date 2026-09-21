@@ -4,11 +4,12 @@ Willkommen! Diese Kurzanleitung erklärt, wie Sie die Inhalte Ihrer Website selb
 
 ## Login in den Editor
 
-1. Öffnen Sie `https://IHRE-DOMAIN/admin/` (die Adresse bekommen Sie nach dem Launch mitgeteilt).
-2. Wählen Sie **Use Personal Access Token** und fügen Sie Ihren Token ein. Den Token bekommen Sie von Ihrer Agentur oder erstellen ihn nach der Anleitung im Abschnitt **CMS-Zugang einrichten** weiter unten.
-3. Sie sehen jetzt die Bereiche **Seiten**, **Team**, **Frage & Antwort** und **Website-Daten**.
+1. Öffnen Sie <https://jacobscuzzi.github.io/orthodontics-web/admin/>.
+2. Auf **Mit GitHub anmelden** (Sign in with GitHub) klicken.
+3. Beim ersten Mal fragt GitHub nach Ihrem GitHub-Benutzernamen, Passwort und dem Code aus Ihrer Authenticator-App. Danach einmal auf **Authorize** klicken.
+4. Sie sehen jetzt die Bereiche **Seiten**, **Team**, **Frage & Antwort** und **Website-Daten**.
 
-> Der Token wird nur in Ihrem Browser gespeichert (LocalStorage). Auf einem neuen Gerät oder nach dem Löschen der Browserdaten müssen Sie ihn einmalig erneut eintragen.
+> Der Login bleibt im Browser gespeichert. Auf einem neuen Gerät oder nach dem Löschen der Browserdaten melden Sie sich einfach erneut mit GitHub an. Wie Sie Zugang bekommen, steht im Abschnitt **Zugang für eine neue Person einrichten** weiter unten.
 
 ## Text auf einer Seite ändern
 
@@ -56,7 +57,7 @@ Die einzelnen Farbwerte der Presets sollten nur mit Rücksprache mit Ihrer Agent
 
 ## Was passiert nach „Publish"?
 
-Jedes Mal, wenn Sie **Publish** klicken, wird die Website automatisch neu gebaut und veröffentlicht. Das dauert in der Regel **unter einer Minute**. Solange der Build läuft, sehen Besucher weiterhin die alte Version — es gibt also keine „leere" Seite.
+Jedes Mal, wenn Sie **Publish** klicken, wird die Website automatisch neu gebaut und veröffentlicht. Das dauert in der Regel **2 bis 3 Minuten**. Wer die Seite kurz vorher offen hatte, sieht die alte Version unter Umständen noch bis zu 10 Minuten oder muss einmal neu laden. Solange der Build läuft, sehen Besucher weiterhin die alte Version — es gibt also keine „leere" Seite.
 
 ## Wenn etwas nicht funktioniert
 
@@ -65,45 +66,30 @@ Jedes Mal, wenn Sie **Publish** klicken, wird die Website automatisch neu gebaut
 
 ---
 
-## CMS-Zugang einrichten (Personal Access Token)
+## Zugang für eine neue Person einrichten
 
-Sveltia CMS spricht direkt mit GitHub. Dafür brauchen Sie einen **Fine-grained Personal Access Token**, den Sie einmalig in GitHub erstellen und im CMS hinterlegen.
+Das CMS speichert alle Inhalte in einem GitHub-Repository. Wer Inhalte bearbeiten soll, braucht deshalb ein eigenes, kostenloses GitHub-Konto. Das Konto sieht man später nie, es dient nur zum Anmelden.
 
-### Schritt 1: Token in GitHub erstellen
+### Schritt 1: GitHub-Konto anlegen (die neue Person)
 
-1. Bei GitHub einloggen.
-2. Pfad öffnen: **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**
-   - Direktlink: <https://github.com/settings/personal-access-tokens/new>
-3. Felder ausfüllen:
-   - **Token name:** `sveltia-cms-orthodontics-web` (oder ein anderer wiedererkennbarer Name)
-   - **Expiration:** **1 Jahr** empfohlen. Maximum sind 366 Tage. Notieren Sie das Ablaufdatum — danach müssen Sie einen neuen Token erstellen.
-   - **Resource owner:** Ihr Account (`jacobscuzzi`)
-   - **Repository access:** **Only select repositories** → `orthodontics-web` auswählen
-4. **Permissions → Repository permissions** setzen:
-   - **Contents:** *Read and write* (Pflicht — damit das CMS Inhalte speichern kann)
-   - **Metadata:** *Read-only* (wird automatisch gesetzt)
-   - **Pull requests:** *Read and write* (nur nötig, falls Sie den Editorial Workflow nutzen)
-5. Auf **Generate token** klicken.
-6. **Token kopieren und sicher aufbewahren** (Passwort-Manager). GitHub zeigt ihn nur **einmal** an.
+1. <https://github.com/signup> öffnen, E-Mail-Adresse, Passwort und Benutzernamen wählen.
+2. Bestätigungsmail anklicken.
+3. **Zwei-Faktor-Schutz einschalten:** <https://github.com/settings/security> → **Two-factor authentication** → **Enable**. Am einfachsten mit einer Authenticator-App (z.B. Google Authenticator, Microsoft Authenticator). Die angezeigten Wiederherstellungs-Codes ausdrucken oder im Passwort-Manager speichern.
+4. Den Benutzernamen an den Inhaber des Repositories weitergeben.
 
-### Schritt 2: Im CMS einloggen
+### Schritt 2: Person zum Repository einladen (Inhaber, aktuell `jacobscuzzi`)
 
-1. `https://jacobscuzzi.github.io/orthodontics-web/admin/` öffnen.
-2. Auf der Login-Seite **Use Personal Access Token** wählen.
-3. Token einfügen → **Sign in**.
-4. Fertig. Das CMS speichert den Token im Browser-LocalStorage.
+1. <https://github.com/jacobscuzzi/orthodontics-web/settings/access> öffnen.
+2. **Add people** → Benutzernamen eingeben → Rolle **Write** wählen → **Add**.
+3. Die Person bekommt eine E-Mail und muss die Einladung dort annehmen.
 
-### Sicherheit
+### Schritt 3: Im CMS anmelden
 
-- Behandeln Sie den Token wie ein Passwort. **Nicht teilen, nicht in Chats schicken, nicht ins Repo committen.**
-- Wenn Sie den Verdacht haben, dass jemand Ihren Token kennt: in GitHub unter **Settings → Developer settings → Fine-grained tokens** sofort widerrufen und neu erstellen.
-- Beim Wechsel auf ein neues Gerät: einfach denselben Token erneut eintragen — oder einen neuen erstellen und den alten widerrufen.
+Ab jetzt funktioniert **Mit GitHub anmelden** unter <https://jacobscuzzi.github.io/orthodontics-web/admin/> wie oben beschrieben.
 
-### Token läuft ab — was tun?
+### Zugang wieder entziehen
 
-Sie sehen einen Auth-Fehler beim Speichern? Vermutlich ist Ihr Token abgelaufen.
-1. In GitHub einen neuen Token nach der Anleitung oben erstellen.
-2. `https://jacobscuzzi.github.io/orthodontics-web/admin/` öffnen, ausloggen, mit neuem Token wieder einloggen.
+<https://github.com/jacobscuzzi/orthodontics-web/settings/access> öffnen und die Person entfernen. Sie kann sich danach sofort nicht mehr anmelden.
 
 ---
 
@@ -113,9 +99,18 @@ Sie sehen einen Auth-Fehler beim Speichern? Vermutlich ist Ihr Token abgelaufen.
 
 - [Astro](https://astro.build) v6 (Static Site Generator)
 - [Tailwind CSS](https://tailwindcss.com) v4
-- [Sveltia CMS](https://github.com/sveltia/sveltia-cms) (Content Management, GitHub-Backend mit Fine-grained PAT)
+- [Sveltia CMS](https://github.com/sveltia/sveltia-cms) (Content Management, GitHub-Backend, Login per GitHub-OAuth)
 - [Fontsource](https://fontsource.org) (Fraunces + Inter, selbstgehostet, DSGVO-konform)
 - Hosting: **GitHub Pages** (Deploy via GitHub Actions, siehe [.github/workflows/astro.yml](.github/workflows/astro.yml))
+
+### CMS-Login (GitHub OAuth)
+
+Der Button **Mit GitHub anmelden** läuft über einen kleinen Cloudflare Worker (kostenloser Free-Tarif), der zwischen CMS und GitHub vermittelt:
+
+- Code: <https://github.com/jacobscuzzi/sveltia-cms-auth> (Kopie von [sveltia/sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth)), Deploy läuft automatisch über Cloudflare bei Änderungen im Repo.
+- Adresse: `https://sveltia-cms-auth.j-baumfalk.workers.dev`, eingetragen als `base_url` in [public/admin/config.yml](public/admin/config.yml).
+- Variablen im Worker (Cloudflare → Workers & Pages → sveltia-cms-auth → Settings → Variables): `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` (Secret), `ALLOWED_DOMAINS` = `jacobscuzzi.github.io`.
+- Die zugehörige OAuth-App liegt im GitHub-Konto des Inhabers unter <https://github.com/settings/developers>, Callback-URL ist die Worker-Adresse plus `/callback`.
 
 ### Lokale Entwicklung
 

@@ -2,6 +2,9 @@ backend:
   name: github
   repo: jacobscuzzi/orthodontics-web
   branch: main
+  # Login-Vermittler (Cloudflare Worker, Code: github.com/jacobscuzzi/sveltia-cms-auth).
+  # Ermöglicht "Mit GitHub anmelden" statt manuellem Token.
+  base_url: https://sveltia-cms-auth.j-baumfalk.workers.dev
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
