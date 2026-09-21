@@ -2,10 +2,21 @@
 import site from '../data/site.json';
 import ui from '../data/ui.json';
 import { withBase } from '../utils/base';
-const navItems = ui.nav.map((item) => ({ label: item.label, href: withBase(item.href) }));
+// Pfade ohne abschließenden Slash vergleichen, damit '/base/' und '/base' gleich sind.
+const normalize = (p: string) => p.replace(/\/$/, '') || '/';
+const pathname = normalize(Astro.url.pathname);
+const homePath = normalize(withBase('/'));
+const navItems = ui.nav.map((item) => {
+  const href = withBase(item.href);
+  const target = normalize(href);
+  // Home nur bei exakter Übereinstimmung; Unterseiten auch für tiefere Pfade (z.B. /faq/xyz).
+  const active = target === homePath
+    ? pathname === homePath
+    : pathname === target || pathname.startsWith(target + '/');
+  return { label: item.label, href, active };
+});
 const [ctaFirstWord, ...ctaRestWords] = ui.bookingCta.split(' ');
 const ctaRest = ctaRestWords.join(' ');
-const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 <header class="sticky top-0 z-30 border-b border-primary/10 bg-background/95 backdrop-blur">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6 md:py-4">
@@ -16,20 +27,17 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 
     <nav class="hidden md:block" aria-label="Hauptnavigation">
       <ul class="flex gap-8 text-lg">
-        {navItems.map(item => {
-          const active = (item.href === '/' && pathname === '/') || (item.href !== '/' && pathname.startsWith(item.href));
-          return (
-            <li>
-              <a
-                href={item.href}
-                class:list={['transition-colors hover:text-primary', active && 'text-primary font-medium']}
-                aria-current={active ? 'page' : undefined}
-              >
-                {item.label}
-              </a>
-            </li>
-          );
-        })}
+        {navItems.map(item => (
+          <li>
+            <a
+              href={item.href}
+              class:list={['transition-colors hover:text-primary', item.active && 'text-primary font-medium']}
+              aria-current={item.active ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
 
