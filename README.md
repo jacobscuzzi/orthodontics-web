@@ -1,23 +1,23 @@
 # Website Kieferorthopädische Praxis Dr. Insa Baumfalk
 
-Willkommen! Diese Kurzanleitung erklärt, wie Sie die Inhalte Ihrer Website selbst pflegen können — ohne Programmierkenntnisse.
+Willkommen! Diese Kurzanleitung erklärt, wie du die Inhalte der Website selbst pflegen kannst, ganz ohne Programmierkenntnisse.
 
 ## Login in den Editor
 
-1. Öffnen Sie <https://jacobscuzzi.github.io/orthodontics-web/admin/>.
+1. Öffne <https://jacobscuzzi.github.io/orthodontics-web/admin/>.
 2. Auf **Mit GitHub anmelden** (Sign in with GitHub) klicken.
-3. Beim ersten Mal fragt GitHub nach Ihrem GitHub-Benutzernamen, Passwort und dem Code aus Ihrer Authenticator-App. Danach einmal auf **Authorize** klicken.
-4. Sie sehen jetzt die Bereiche **Seiten**, **Team**, **Frage & Antwort** und **Website-Daten**.
+3. Beim ersten Mal fragt GitHub nach deinem GitHub-Benutzernamen, Passwort und dem Code aus deiner Authenticator-App. Danach einmal auf **Authorize** klicken.
+4. Du siehst jetzt die Bereiche **Seiten**, **Team**, **Frage & Antwort** und **Website-Daten**.
 
-> Der Login bleibt im Browser gespeichert. Auf einem neuen Gerät oder nach dem Löschen der Browserdaten melden Sie sich einfach erneut mit GitHub an. Wie Sie Zugang bekommen, steht im Abschnitt **Zugang für eine neue Person einrichten** weiter unten.
+> Der Login bleibt im Browser gespeichert. Auf einem neuen Gerät oder nach dem Löschen der Browserdaten meldest du dich einfach erneut mit GitHub an. Wie du Zugang bekommst, steht im Abschnitt **Zugang für eine neue Person einrichten** weiter unten.
 
 ## Text auf einer Seite ändern
 
-1. Klicken Sie links auf **Seiten**.
-2. Wählen Sie die Seite aus (z.B. „Praxis").
-3. Bearbeiten Sie den Text direkt im Editor — wie in Word.
+1. Links auf **Seiten** klicken.
+2. Die Seite auswählen (z.B. „Praxis").
+3. Den Text direkt im Editor bearbeiten, wie in Word.
 4. Rechts oben auf **Publish** → **Publish now** klicken.
-5. Nach ca. 1 Minute ist Ihre Änderung live.
+5. Nach ein paar Minuten ist deine Änderung live.
 
 ## Ein Foto austauschen
 
@@ -26,7 +26,7 @@ Willkommen! Diese Kurzanleitung erklärt, wie Sie die Inhalte Ihrer Website selb
 3. Entweder ein bereits hochgeladenes Bild auswählen oder auf **Upload new** klicken.
 4. Speichern & Publish.
 
-> Sie können Fotos in voller Kamera-Auflösung hochladen. Der Editor verkleinert sie vor dem Speichern automatisch auf Web-Größe (max. 2560 Pixel, WebP-Format). Auf dem Bildschirm sieht das identisch aus, die Seite lädt aber deutlich schneller. Bewahren Sie das Original in Ihrer eigenen Fotosammlung auf. Das Verkleinern dauert bei großen Fotos ein paar Sekunden, bitte so lange warten, bis das Vorschaubild erscheint.
+> Du kannst Fotos in voller Kamera-Auflösung hochladen. Der Editor verkleinert sie vor dem Speichern automatisch auf Web-Größe (max. 2560 Pixel, WebP-Format). Auf dem Bildschirm sieht das identisch aus, die Seite lädt aber deutlich schneller. Bewahre das Original in deiner eigenen Fotosammlung auf. Das Verkleinern dauert bei großen Fotos ein paar Sekunden, bitte so lange warten, bis das Vorschaubild erscheint.
 
 ## Neues Teammitglied hinzufügen
 
@@ -53,18 +53,18 @@ Willkommen! Diese Kurzanleitung erklärt, wie Sie die Inhalte Ihrer Website selb
 
 1. Links auf **Website-Daten** → **Design / Farbe**.
 2. Im Feld **Aktives Farbpreset** eines der drei Presets wählen (Salbei, Grün klassisch, Blau).
-3. Publish — nach ca. 1 Minute erscheint die Website in der neuen Farbe.
+3. Publish. Nach ein paar Minuten erscheint die Website in der neuen Farbe.
 
-Die einzelnen Farbwerte der Presets sollten nur mit Rücksprache mit Ihrer Agentur geändert werden.
+Die einzelnen Farbwerte der Presets bitte nur nach Rücksprache mit Jakob ändern.
 
 ## Was passiert nach „Publish"?
 
-Jedes Mal, wenn Sie **Publish** klicken, wird die Website automatisch neu gebaut und veröffentlicht. Das dauert in der Regel **3 bis 7 Minuten**. Wer die Seite kurz vorher offen hatte, sieht die alte Version unter Umständen noch bis zu 10 Minuten oder muss einmal neu laden. Solange der Build läuft, sehen Besucher weiterhin die alte Version — es gibt also keine „leere" Seite.
+Jedes Mal, wenn du **Publish** klickst, wird die Website automatisch neu gebaut und veröffentlicht. Das dauert in der Regel **3 bis 7 Minuten**. Wer die Seite kurz vorher offen hatte, sieht die alte Version unter Umständen noch bis zu 10 Minuten oder muss einmal neu laden. Solange der Build läuft, sehen Besucher weiterhin die alte Version — es gibt also keine „leere" Seite.
 
 ## Wenn etwas nicht funktioniert
 
 - Seite neu laden (F5 / Strg+R bzw. Cmd+R).
-- Kontaktieren Sie Ihre Agentur, wenn eine Fehlermeldung angezeigt wird.
+- Wenn eine Fehlermeldung angezeigt wird: Screenshot machen und Jakob schicken.
 
 ---
 
