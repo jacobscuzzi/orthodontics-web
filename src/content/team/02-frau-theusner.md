@@ -1,7 +1,7 @@
 ---
 name: Frau Nickels
 role: Empfang & Organisation
-photo: /uploads/team-02.jpg
+photo: /uploads/2026-08-31-509.webp
 order: 2
 cv: ''
 ---
