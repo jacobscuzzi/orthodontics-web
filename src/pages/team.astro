@@ -23,11 +23,15 @@ const rendered = await Promise.all(
 <BaseLayout title={`${intro.data.title} – ${site.practice.name}`}>
   <Hero
     variant="overlay"
+    sticky
     eyebrow={intro.data.heroEyebrow ?? intro.data.title}
     title={em(intro.data.heroTitle ?? intro.data.title)}
     image={intro.data.heroImage}
     imageAlt={intro.data.heroAlt}
+    imageCredit={intro.data.heroCredit}
   />
+
+  <div class="relative z-10 bg-background">
 
   {hasIntro && (
     <section class="mx-auto max-w-3xl px-4 md:px-6 py-20 md:py-24 text-center">
@@ -77,4 +81,5 @@ const rendered = await Promise.all(
       </SectionBand>
     );
   })}
+  </div>
 </BaseLayout>

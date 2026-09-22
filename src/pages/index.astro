@@ -60,7 +60,7 @@ const address = `${site.practice.street} · ${site.practice.zip} ${site.practice
       <div class="grid gap-10 md:grid-cols-3">
         {features.items.map((item, i) => (
           <div>
-            <p class="font-display italic text-accent text-xl mb-3">{String(i + 1).padStart(2, '0')}</p>
+            <p class="font-display italic text-ink text-xl mb-3">{String(i + 1).padStart(2, '0')}</p>
             <h3 class="headline-md mb-3">{item.title}</h3>
             <p class="text-base md:text-lg opacity-80 leading-relaxed">{item.text}</p>
           </div>
