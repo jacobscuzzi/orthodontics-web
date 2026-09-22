@@ -67,6 +67,17 @@ body {
   font-weight: 500;
 }
 
+/* Überschriften, Slogans und Überzeilen werden nicht automatisch getrennt:
+   kurze Zeilen wie „Mitten in Berlin, direkt am Wasser.“ brechen nur an Leerzeichen.
+   Die Silbentrennung bleibt für Fließtext (body) aktiv. */
+.headline-xl,
+.headline-lg,
+.headline-md,
+.eyebrow,
+h1, h2, h3, h4 {
+  hyphens: manual;
+}
+
 .headline-xl em,
 .headline-lg em,
 .headline-md em {
