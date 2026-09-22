@@ -6,4 +6,4 @@ order: 3
 cv: ''
 ---
 
-Plant den Tagesablauf und begrüßt die Patienten am Empfang.
+Unsere Managerin mit dem herzlichsten Lachen, empfängt unsere Patienten und kümmert sich um all ihre Belange
