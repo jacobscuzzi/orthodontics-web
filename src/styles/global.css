@@ -39,6 +39,7 @@ body {
      erst deutsche Silbentrennung (html lang="de"), notfalls harter Umbruch im Wort
      statt Überlaufen aus dem Block. */
   hyphens: auto;
+  overflow-wrap: break-word; /* Fallback für ältere Browser ohne 'anywhere' */
   overflow-wrap: anywhere;
 }
 
