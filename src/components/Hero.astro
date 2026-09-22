@@ -12,6 +12,8 @@ interface Props {
   primaryCta?: { href: string; label: string; external?: boolean };
   secondaryCta?: { href: string; label: string };
   sticky?: boolean;
+  /** Nur mit sticky: zusätzliche Scrollstrecke, in der das Bild komplett sichtbar bleibt, bevor der Inhalt es überdeckt (z.B. '50vh'). */
+  stickyHold?: string;
   imageCredit?: string;
 }
 const {
@@ -24,6 +26,7 @@ const {
   primaryCta,
   secondaryCta,
   sticky = false,
+  stickyHold,
   imageCredit,
 } = Astro.props;
 const overlayClasses = sticky
@@ -78,6 +81,7 @@ const textProps = { eyebrow, title, subtitle, primaryCta, secondaryCta };
   {/* Sticky: Titel liegt außerhalb der fixierten Bildfläche und scrollt mit dem Inhalt weg (wie Startseite).
       Die Seite muss den folgenden Inhalt in <div class="relative z-10 bg-background"> wickeln. */}
   {sticky && <div class="absolute top-0 inset-x-0 h-screen flex items-end pointer-events-none z-20"><HeroText {...textProps} /></div>}
+  {sticky && stickyHold && <div class="relative pointer-events-none" style={`height:${stickyHold}`} aria-hidden="true"></div>}
   </Fragment>
 )}
 
