@@ -81,16 +81,18 @@ const gallery = page.data.gallery ?? [];
     animation-play-state: paused;
   }
   .gallery-item {
-    height: 200px;
+    height: 260px;
     width: auto;
     flex: 0 0 auto;
-    border-radius: 0.75rem;
     object-fit: cover;
     user-select: none;
   }
   @media (min-width: 768px) {
     .gallery-track { --gap: 1.5rem; }
-    .gallery-item { height: 280px; }
+    .gallery-item { height: 420px; }
+  }
+  @media (min-width: 1280px) {
+    .gallery-item { height: 520px; }
   }
   @keyframes gallery-scroll {
     from { transform: translateX(0); }
