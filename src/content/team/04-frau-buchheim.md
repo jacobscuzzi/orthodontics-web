@@ -6,4 +6,4 @@ order: 6
 cv: ''
 ---
 
-Weniger sichtbar für Patienten, stellt im Praxis-Labor die Spangen her, die in der Behandlung geplant werden.
+Weniger sichtbar für Patienten, stellt sie im Praxis-Labor die perfekt sitzenden Spangen her, und verwirklicht jeden Wunsch nach Farbe und Komfort
