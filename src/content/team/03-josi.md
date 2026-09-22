@@ -2,8 +2,8 @@
 name: Alexandra
 role: Zahnmedizinische Fachangestellte
 photo: /uploads/2026-08-31-386.webp
-order: 4
+order: 5
 cv: ''
 ---
 
-In der Praxis zur zahnmedizinischen Fachangestellten ausgebildet, assistiert bei den Behandlungen.
+Unsere vor Energie strotzende zahnmedizinische Fachassistentin, die jedes Kind mit ihrem Charme um den Finger wickelt.
