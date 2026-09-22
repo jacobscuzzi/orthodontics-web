@@ -8,11 +8,11 @@ teamCtaLabel: Unser Team kennenlernen
 galleryEyebrow: Einblicke
 galleryTitle: Aus unseren *Räumen*.
 gallery:
+  - src: /uploads/2026-08-31-1284.webp
+    alt: Praxis
   - src: /uploads/praxis-01.jpg
     alt: Praxis
   - src: /uploads/praxis-03.jpg
-    alt: Praxis
-  - src: /uploads/2026-08-31-1284.webp
     alt: Praxis
   - src: /uploads/praxis-06.jpg
     alt: Praxis
