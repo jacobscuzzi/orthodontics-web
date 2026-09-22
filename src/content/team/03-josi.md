@@ -1,7 +1,7 @@
 ---
 name: Alexandra
 role: Zahnmedizinische Fachangestellte
-photo: /uploads/team-01.jpg
+photo: /uploads/2026-08-31-386.webp
 order: 3
 cv: ''
 ---
