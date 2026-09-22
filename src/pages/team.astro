@@ -24,6 +24,7 @@ const rendered = await Promise.all(
   <Hero
     variant="overlay"
     sticky
+    stickyHold="50vh"
     eyebrow={intro.data.heroEyebrow ?? intro.data.title}
     title={em(intro.data.heroTitle ?? intro.data.title)}
     image={intro.data.heroImage}
