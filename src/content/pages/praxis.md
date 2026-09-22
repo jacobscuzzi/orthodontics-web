@@ -1,18 +1,23 @@
 ---
-title: "Die Praxis"
-heroEyebrow: "Die Praxis"
-heroTitle: "Praxis mit *Ausblick*."
-heroImage: "/uploads/bild-haus.jpg"
-heroAlt: "Das Praxishaus auf der Halbinsel Stralau"
-teamCtaLabel: "Unser Team kennenlernen"
-galleryEyebrow: "Einblicke"
-galleryTitle: "Aus unseren *Räumen*."
+title: Die Praxis
+heroEyebrow: Die Praxis
+heroTitle: Praxis mit *Ausblick*.
+heroImage: /uploads/bild-haus.jpg
+heroAlt: Das Praxishaus auf der Halbinsel Stralau
+teamCtaLabel: Unser Team kennenlernen
+galleryEyebrow: Einblicke
+galleryTitle: Aus unseren *Räumen*.
 gallery:
-  - { src: "/uploads/praxis-01.jpg", alt: "Praxis" }
-  - { src: "/uploads/praxis-03.jpg", alt: "Praxis" }
-  - { src: "/uploads/praxis-05.jpg", alt: "Praxis" }
-  - { src: "/uploads/praxis-06.jpg", alt: "Praxis" }
-  - { src: "/uploads/praxis-08.jpg", alt: "Praxis" }
+  - src: /uploads/praxis-01.jpg
+    alt: Praxis
+  - src: /uploads/praxis-03.jpg
+    alt: Praxis
+  - src: /uploads/2026-08-31-1284.webp
+    alt: Praxis
+  - src: /uploads/praxis-06.jpg
+    alt: Praxis
+  - src: /uploads/praxis-08.jpg
+    alt: Praxis
 ---
 
 Von unserer Praxis lässt sich behaupten, dass es die mit dem wohl schönsten Ausblick vom Behandlungsstuhl ist, und wir bemühen uns, Dein schönstes Lächeln hervorzuzaubern.
