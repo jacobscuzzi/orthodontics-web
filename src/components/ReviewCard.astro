@@ -10,13 +10,13 @@ const formattedDate = date
   ? new Date(date).toLocaleDateString('de-DE', { year: 'numeric', month: 'long' })
   : undefined;
 ---
-<article class="bg-background rounded-xl p-7 md:p-8 flex flex-col h-full border border-primary/10">
+<article class="bg-background rounded-xl p-7 md:p-8 flex flex-col border border-primary/10">
   <div class="flex gap-1 mb-5 text-xl" aria-label={`${rating} von 5 Sternen`}>
     {Array.from({ length: 5 }).map((_, i) => (
       <span class={i < rating ? 'text-primary' : 'text-primary/20'}>★</span>
     ))}
   </div>
-  <blockquote class="font-display italic text-lg md:text-xl leading-snug mb-6 flex-1">
+  <blockquote class="font-display italic text-lg md:text-xl leading-snug mb-6">
     „{excerpt}"
   </blockquote>
   <footer class="text-sm opacity-70">
