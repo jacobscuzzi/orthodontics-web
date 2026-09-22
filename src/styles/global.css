@@ -35,6 +35,12 @@
 body {
   background-color: var(--c-background);
   color: var(--c-text);
+  /* Lange Wörter (z.B. „Kieferorthopädie“) auf schmalen Bildschirmen:
+     erst deutsche Silbentrennung (html lang="de"), notfalls harter Umbruch im Wort
+     statt Überlaufen aus dem Block. */
+  hyphens: auto;
+  overflow-wrap: break-word; /* Fallback für ältere Browser ohne 'anywhere' */
+  overflow-wrap: anywhere;
 }
 
 .headline-xl {
