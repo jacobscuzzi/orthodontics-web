@@ -35,28 +35,71 @@ const gallery = page.data.gallery ?? [];
 
   {gallery.length > 0 && (
     <SectionBand tone="band">
-      <div class="mx-auto max-w-6xl px-4 md:px-6 py-20 md:py-28">
-        <div class="max-w-3xl mb-14 md:mb-20">
+      <div class="mx-auto max-w-6xl px-4 md:px-6 pt-20 md:pt-28">
+        <div class="max-w-3xl mb-12 md:mb-16">
           {page.data.galleryEyebrow && <p class="eyebrow mb-5">{page.data.galleryEyebrow}</p>}
           <h2 class="headline-lg" set:html={em(page.data.galleryTitle ?? 'Aus unseren *Räumen*.')} />
         </div>
-        <div class="grid gap-4 md:gap-6 grid-cols-6 auto-rows-[160px] md:auto-rows-[220px]">
-          {gallery.map((img, i) => {
-            const patterns = [
-              'col-span-6 md:col-span-4 row-span-2',
-              'col-span-3 md:col-span-2 row-span-1',
-              'col-span-3 md:col-span-2 row-span-1',
-              'col-span-6 md:col-span-3 row-span-2',
-              'col-span-6 md:col-span-3 row-span-2',
-            ];
-            return (
-              <div class:list={['relative overflow-hidden rounded-xl', patterns[i % patterns.length]]}>
-                <img src={withBase(img.src)} alt={img.alt ?? ''} class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-              </div>
-            );
-          })}
+      </div>
+      {/* Endlos laufender Filmstreifen: Fotos doppelt im Track, Animation verschiebt um genau eine Hälfte -> nahtlose Schleife.
+          Dauer skaliert mit der Anzahl der Fotos (12 s pro Foto). */}
+      <div class="pb-20 md:pb-28">
+        <div class="gallery-marquee" style={`--marquee-duration: ${gallery.length * 12}s`}>
+          <div class="gallery-track">
+            {[...gallery, ...gallery].map((img, i) => (
+              <img
+                src={withBase(img.src)}
+                alt={i < gallery.length ? (img.alt ?? '') : ''}
+                aria-hidden={i >= gallery.length ? 'true' : undefined}
+                class="gallery-item"
+                loading="lazy"
+                draggable="false"
+              />
+            ))}
+          </div>
         </div>
       </div>
     </SectionBand>
   )}
 </BaseLayout>
+
+<style>
+  .gallery-marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+  .gallery-track {
+    --gap: 1rem;
+    display: flex;
+    gap: var(--gap);
+    width: max-content;
+    animation: gallery-scroll var(--marquee-duration, 60s) linear infinite;
+    will-change: transform;
+  }
+  .gallery-marquee:hover .gallery-track {
+    animation-play-state: paused;
+  }
+  .gallery-item {
+    height: 200px;
+    width: auto;
+    flex: 0 0 auto;
+    border-radius: 0.75rem;
+    object-fit: cover;
+    user-select: none;
+  }
+  @media (min-width: 768px) {
+    .gallery-track { --gap: 1.5rem; }
+    .gallery-item { height: 280px; }
+  }
+  @keyframes gallery-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - var(--gap) / 2)); }
+  }
+  /* Systemeinstellung "Animationen reduzieren": ruhige, seitlich wischbare Reihe ohne Duplikate */
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-track { animation: none; width: auto; padding: 0 1rem; }
+    .gallery-marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+    .gallery-item[aria-hidden="true"] { display: none; }
+  }
+</style>
