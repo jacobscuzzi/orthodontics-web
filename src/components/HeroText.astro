@@ -1,0 +1,33 @@
+---
+// Textblock des Overlay-Heros (Überzeile, Titel, Untertitel, Buttons).
+// Eigene Komponente, damit Hero.astro ihn sowohl im Bild als auch – bei sticky – darüber platzieren kann.
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  primaryCta?: { href: string; label: string; external?: boolean };
+  secondaryCta?: { href: string; label: string };
+}
+const { eyebrow, title, subtitle, primaryCta, secondaryCta } = Astro.props;
+---
+<div class="mx-auto w-full max-w-6xl px-4 md:px-6 pb-10 md:pb-16 pointer-events-auto">
+        {eyebrow && <p class="eyebrow mb-4" style="color: #E8DCC4;">{eyebrow}</p>}
+        <h1 class="headline-xl headline-on-dark text-white max-w-4xl" set:html={title} />
+        {subtitle && <p class="text-lg md:text-xl text-white/90 max-w-2xl mt-4 md:mt-6">{subtitle}</p>}
+        {(primaryCta || secondaryCta) && (
+          <div class="flex flex-wrap gap-3 mt-6 md:mt-8">
+            {primaryCta && (
+              <a
+                href={primaryCta.href}
+                target={primaryCta.external ? '_blank' : undefined}
+                rel={primaryCta.external ? 'noopener noreferrer' : undefined}
+                data-primary-cta
+                class="inline-block bg-primary text-background px-6 py-3.5 rounded-md font-medium hover:opacity-90 transition-opacity"
+              >{primaryCta.label}</a>
+            )}
+            {secondaryCta && (
+              <a href={secondaryCta.href} class="inline-block border border-white/80 text-white px-6 py-3.5 rounded-md font-medium hover:bg-white hover:text-text transition-colors">{secondaryCta.label}</a>
+            )}
+          </div>
+        )}
+      </div>

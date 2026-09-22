@@ -18,6 +18,7 @@
   --color-background: var(--c-background);
   --color-band: var(--c-band);
   --color-text: var(--c-text);
+  --color-ink: var(--c-ink);
 }
 
 :root {
@@ -26,6 +27,9 @@
   --c-background: #F8F4ED;
   --c-band: #F1EADD;
   --c-text: #2D3430;
+  /* Lesbarer Akzent für kleine Schrift auf hellem Grund (Überzeilen, Nummern):
+     halb Primärfarbe, halb Textfarbe -> Kontrast >= 4.5 in allen Presets. */
+  --c-ink: color-mix(in srgb, var(--c-primary) 50%, var(--c-text));
 }
 
 body {
@@ -71,5 +75,5 @@ body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--c-accent);
+  color: var(--c-ink);
 }
