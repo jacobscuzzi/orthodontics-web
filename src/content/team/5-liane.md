@@ -6,4 +6,4 @@ order: 4
 cv: ''
 ---
 
-Langjährige Erfahrung und immer die Ruhe selbst
+Langjährige Erfahrung mit einer Freundlichkeit und Ruhe in Person
