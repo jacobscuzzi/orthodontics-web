@@ -1,6 +1,6 @@
 ---
 name: Frau Nickels
-role: Empfang & Organisation
+role: Empfang & Zahnmedizinische Verwaltung
 photo: /uploads/2026-08-31-509.webp
 order: 3
 cv: ''
