@@ -1,7 +1,7 @@
 ---
 name: Frau Schlütter
 role: Zahntechnikerin
-photo: /uploads/2026-08-31-1245.webp
+photo: /uploads/2026-08-31-1245-1.webp
 order: 6
 cv: ''
 ---
