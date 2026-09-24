@@ -13,14 +13,17 @@ const { Content } = await render(page);
 const gallery = page.data.gallery ?? [];
 ---
 <BaseLayout title={`${page.data.title} – ${site.practice.name}`}>
+  {/* Vollbild-Hero wie auf der Startseite: Foto bleibt beim Scrollen stehen, der Inhalt schiebt sich darüber. */}
   <Hero
     variant="overlay"
+    sticky
     eyebrow={page.data.heroEyebrow ?? page.data.title}
     title={em(page.data.heroTitle ?? page.data.title)}
     image={page.data.heroImage}
     imageAlt={page.data.heroAlt}
   />
 
+  <div class="relative z-10 bg-background">
   <section class="mx-auto max-w-5xl px-4 md:px-6 py-20 md:py-28">
     <div class="prose prose-lg md:prose-xl max-w-none prose-headings:font-display prose-headings:text-primary prose-p:leading-relaxed">
       <Content />
@@ -61,6 +64,7 @@ const gallery = page.data.gallery ?? [];
       </div>
     </SectionBand>
   )}
+  </div>
 </BaseLayout>
 
 <style>

@@ -67,15 +67,22 @@ body {
   font-weight: 500;
 }
 
-/* Überschriften, Slogans und Überzeilen werden nicht automatisch getrennt:
-   kurze Zeilen wie „Mitten in Berlin, direkt am Wasser.“ brechen nur an Leerzeichen.
-   Die Silbentrennung bleibt für Fließtext (body) aktiv. */
+/* Überschriften, Slogans und Überzeilen: Wörter möglichst nie trennen.
+   - overflow-wrap: normal hebt das geerbte „anywhere“ des body auf, damit ein Wort
+     nicht mehr an beliebiger Stelle (ohne Bindestrich) umgebrochen wird.
+   - Passt ein sehr langes Wort (z.B. „Kieferorthopädie“) trotzdem nicht in die Zeile,
+     greift die deutsche Silbentrennung (html lang="de") – nur für Wörter ab 10 Zeichen,
+     mit mindestens 4 Zeichen vor und nach dem Bindestrich. */
 .headline-xl,
 .headline-lg,
 .headline-md,
 .eyebrow,
 h1, h2, h3, h4 {
-  hyphens: manual;
+  overflow-wrap: normal;
+  hyphens: auto;
+  -webkit-hyphenate-limit-before: 4;
+  -webkit-hyphenate-limit-after: 4;
+  hyphenate-limit-chars: 10 4 4;
 }
 
 .headline-xl em,
