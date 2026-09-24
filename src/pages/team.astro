@@ -33,7 +33,7 @@ const rendered = await Promise.all(
             <img
               src={withBase(intro.data.heroImage)}
               alt={intro.data.heroAlt ?? ''}
-              class="block w-full h-auto md:w-auto md:max-h-[calc(100vh-8rem)] rounded-xl"
+              class="block w-full h-auto md:w-auto md:max-h-[calc(100vh-8rem)]"
               loading="eager"
             />
             {intro.data.heroCredit && (
@@ -67,7 +67,7 @@ const rendered = await Promise.all(
                 <img
                   src={withBase(data.photo)}
                   alt={`Foto von ${data.name}`}
-                  class="w-full aspect-[4/5] object-cover rounded-xl"
+                  class="w-full aspect-[4/5] object-cover"
                   loading="lazy"
                 />
               </div>
