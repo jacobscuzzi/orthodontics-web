@@ -1,0 +1,191 @@
+---
+// Wisch-Galerie: ein Foto pro "Seite", per Fingerwisch, Pfeil-Buttons oder Tastatur
+// von einem zum nächsten (CSS scroll-snap, kein JS nötig zum Blättern).
+// Jedes Foto wird komplett im Rahmen angezeigt (object-fit: contain), sodass
+// Hoch-, Quer- und Quadratformate gleichermaßen gut wirken.
+import { withBase } from '../utils/base';
+
+interface Props {
+  images: { src: string; alt?: string }[];
+}
+const { images } = Astro.props;
+---
+<div class="photo-gallery" data-gallery>
+  <div class="photo-gallery-track" data-track tabindex="0" aria-roledescription="Karussell" aria-label="Bildergalerie">
+    {images.map((img, i) => (
+      <figure class="photo-gallery-slide" aria-label={`Bild ${i + 1} von ${images.length}`}>
+        <img
+          src={withBase(img.src)}
+          alt={img.alt ?? ''}
+          loading={i === 0 ? 'eager' : 'lazy'}
+          decoding="async"
+          draggable="false"
+        />
+      </figure>
+    ))}
+  </div>
+
+  {images.length > 1 && (
+    <div class="photo-gallery-controls">
+      <button type="button" class="photo-gallery-btn" data-prev aria-label="Vorheriges Bild">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="photo-gallery-dots" data-dots role="tablist" aria-label="Bild auswählen">
+        {images.map((_, i) => (
+          <button type="button" class="photo-gallery-dot" data-dot={i} role="tab" aria-label={`Bild ${i + 1}`} aria-selected={i === 0 ? 'true' : 'false'}></button>
+        ))}
+      </div>
+      <button type="button" class="photo-gallery-btn" data-next aria-label="Nächstes Bild">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <p class="photo-gallery-counter" aria-live="polite"><span data-current>1</span> / {images.length}</p>
+    </div>
+  )}
+</div>
+
+<style>
+  .photo-gallery {
+    position: relative;
+  }
+  .photo-gallery-track {
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-radius: 0.75rem;
+    outline: none;
+  }
+  .photo-gallery-track::-webkit-scrollbar { display: none; }
+  .photo-gallery-track:focus-visible {
+    box-shadow: 0 0 0 3px var(--c-primary);
+  }
+  .photo-gallery-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    margin: 0;
+    height: min(68vh, 560px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .photo-gallery-slide img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0.75rem;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+  @media (min-width: 768px) {
+    .photo-gallery-slide { height: min(78vh, 760px); }
+  }
+
+  .photo-gallery-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
+  .photo-gallery-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 9999px;
+    border: 1px solid var(--c-primary);
+    color: var(--c-primary);
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.15s, color 0.15s;
+  }
+  .photo-gallery-btn:hover,
+  .photo-gallery-btn:focus-visible {
+    background: var(--c-primary);
+    color: var(--c-background);
+    outline: none;
+  }
+  .photo-gallery-dots {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .photo-gallery-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    padding: 0;
+    border-radius: 9999px;
+    border: none;
+    background: var(--c-primary);
+    opacity: 0.3;
+    cursor: pointer;
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .photo-gallery-dot[aria-selected="true"] {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+  .photo-gallery-counter {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--c-ink);
+    font-variant-numeric: tabular-nums;
+    margin: 0;
+    margin-left: 0.5rem;
+  }
+  /* Ohne JS gibt es nichts zu klicken: Wischen und Scrollen funktionieren trotzdem. */
+  html:not(.js) .photo-gallery-btn,
+  html:not(.js) .photo-gallery-dots { display: none; }
+</style>
+
+<script>
+  document.documentElement.classList.add('js');
+
+  document.querySelectorAll<HTMLElement>('[data-gallery]').forEach((gallery) => {
+    const track = gallery.querySelector<HTMLElement>('[data-track]');
+    if (!track) return;
+    const slides = Array.from(track.children) as HTMLElement[];
+    const dots = Array.from(gallery.querySelectorAll<HTMLButtonElement>('[data-dot]'));
+    const current = gallery.querySelector<HTMLElement>('[data-current]');
+    const count = slides.length;
+    let index = 0;
+
+    const goTo = (i: number) => {
+      const target = ((i % count) + count) % count;
+      slides[target]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    };
+
+    const setActive = (i: number) => {
+      if (i === index) return;
+      index = i;
+      dots.forEach((d, j) => d.setAttribute('aria-selected', j === i ? 'true' : 'false'));
+      if (current) current.textContent = String(i + 1);
+    };
+
+    // Aktives Bild aus der Scrollposition ableiten (funktioniert für Wischen, Pfeile und Tastatur gleichermaßen).
+    let raf = 0;
+    track.addEventListener('scroll', () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const w = track.clientWidth || 1;
+        setActive(Math.max(0, Math.min(count - 1, Math.round(track.scrollLeft / w))));
+      });
+    }, { passive: true });
+
+    gallery.querySelector('[data-prev]')?.addEventListener('click', () => goTo(index - 1));
+    gallery.querySelector('[data-next]')?.addEventListener('click', () => goTo(index + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(index + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(index - 1); }
+    });
+  });
+</script>

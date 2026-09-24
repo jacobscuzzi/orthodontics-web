@@ -25,13 +25,13 @@ const ctaRest = ctaRestWords.join(' ');
       <span class="sr-only">{site.practice.name}</span>
     </a>
 
-    <nav class="hidden md:block" aria-label="Hauptnavigation">
+    <nav class="hidden lg:block" aria-label="Hauptnavigation">
       <ul class="flex gap-8 text-lg">
         {navItems.map(item => (
           <li>
             <a
               href={item.href}
-              class:list={['transition-colors hover:text-primary', item.active && 'text-primary font-medium']}
+              class:list={['whitespace-nowrap transition-colors hover:text-primary', item.active && 'text-primary font-medium']}
               aria-current={item.active ? 'page' : undefined}
             >
               {item.label}
@@ -47,13 +47,13 @@ const ctaRest = ctaRestWords.join(' ');
         target="_blank"
         rel="noopener noreferrer"
         data-primary-cta
-        class="bg-primary text-background font-medium rounded-md hover:opacity-90 transition-opacity px-4 py-2 text-base md:px-5 md:py-2.5 md:text-lg"
+        class="whitespace-nowrap bg-primary text-background font-medium rounded-md hover:opacity-90 transition-opacity px-4 py-2 text-base md:px-5 md:py-2.5 md:text-lg"
       >
         {ctaFirstWord}{ctaRest && <span class="hidden sm:inline"> {ctaRest}</span>}
       </a>
       <button
         id="nav-toggle"
-        class="md:hidden p-2 text-2xl leading-none"
+        class="lg:hidden p-2 text-2xl leading-none"
         aria-label="Menü öffnen"
         aria-expanded="false"
         aria-controls="mobile-nav"
@@ -64,7 +64,7 @@ const ctaRest = ctaRestWords.join(' ');
 
 <div
   id="mobile-nav"
-  class="hidden fixed inset-0 z-[100] p-6 md:hidden"
+  class="hidden fixed inset-0 z-[100] p-6 lg:hidden"
   style="background-color: var(--c-background);"
   role="dialog"
   aria-modal="true"
