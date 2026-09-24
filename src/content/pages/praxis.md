@@ -8,15 +8,17 @@ teamCtaLabel: Unser Team kennenlernen
 galleryEyebrow: Einblicke
 galleryTitle: Aus unseren *Räumen*.
 gallery:
-  - src: /uploads/2026-08-31-1284.webp
+  - src: /uploads/praxis_kathrin.webp
     alt: Praxis
-  - src: /uploads/praxis-01.jpg
+  - src: /uploads/IMG_2442.webp
     alt: Praxis
   - src: /uploads/praxis-03.jpg
     alt: Praxis
   - src: /uploads/praxis-06.jpg
     alt: Praxis
   - src: /uploads/praxis-08.jpg
+    alt: Praxis
+  - src: /uploads/IMG_2456.webp
     alt: Praxis
 ---
 
