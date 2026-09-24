@@ -2,7 +2,7 @@
 title: Die Praxis
 heroEyebrow: Die Praxis
 heroTitle: Praxis mit *Ausblick*.
-heroImage: /uploads/116698.webp
+heroImage: /uploads/bild-haus.jpg
 heroAlt: Das Praxishaus auf der Halbinsel Stralau
 teamCtaLabel: Unser Team kennenlernen
 galleryEyebrow: Einblicke
