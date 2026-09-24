@@ -1,15 +1,15 @@
 ---
-title: "Kontakt"
-heroEyebrow: "Kontakt"
-heroTitle: "So *findest* Du uns."
-heroImage: "/uploads/bild-kontakt-header.jpg"
-heroAlt: "Die Praxis auf der Halbinsel Stralau"
-labelAddress: "Adresse"
-labelContact: "Direkt Kontakt"
-labelHours: "Öffnungszeiten"
-bookingCtaLabel: "Online-Termin buchen"
-bottomImage: "/uploads/bild-kontakt.jpg"
-bottomImageAlt: "Die Praxis auf der Halbinsel Stralau"
+title: Kontakt
+heroEyebrow: Kontakt
+heroTitle: So *findest* Du uns.
+heroImage: /uploads/116698.webp
+heroAlt: Die Praxis auf der Halbinsel Stralau
+labelAddress: Adresse
+labelContact: Direkt Kontakt
+labelHours: Öffnungszeiten
+bookingCtaLabel: Online-Termin buchen
+bottomImage: /uploads/bild-kontakt.jpg
+bottomImageAlt: Die Praxis auf der Halbinsel Stralau
 ---
 
 ## So findest Du zu uns
