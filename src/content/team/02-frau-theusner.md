@@ -1,6 +1,6 @@
 ---
 name: Frau Nickels
-role: Empfang & Zahnmedizinische Verwaltung
+role: Zahnmedizinische Verwaltungsassistentin
 photo: /uploads/ohne_spiegelung.webp
 order: 3
 cv: ''
