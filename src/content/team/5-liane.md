@@ -6,4 +6,4 @@ order: 4
 cv: ''
 ---
 
-Die langjährige Erfahrung mit einer Freundlichkeit und Ruhe in Person macht sie zu einer hervorragenden Mitarbeiterin
+Mit ihrer langjährige Erfahrung, ihrer Freundlichkeit und Ruhe in Person fühlt sich jeder bei Liane bestens aufgehoben
