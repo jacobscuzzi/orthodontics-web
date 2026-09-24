@@ -1,9 +1,9 @@
 ---
-name: "Dr. Insa Baumfalk"
-role: "Kieferorthopädin & Praxisinhaberin"
-photo: "/uploads/team-03.jpg"
+name: Dr. Insa Baumfalk
+role: Kieferorthopädin & Praxisinhaberin
+photo: /uploads/IMG_2506.webp
 order: 1
-cv: |
+cv: |-
   Geboren und aufgewachsen bin ich in Ostfriesland und habe zunächst in Göttingen Zahnmedizin studiert. Da ich gerne mit Kindern arbeite und auch, weil mir das Planen und die Korrektur schiefer Zähne als eine kreative Tätigkeit erschien, habe ich mich entschieden, Fachärztin für Kieferorthopädie zu werden.
 
   Ich habe in Kassel in der Praxis Dr. Bernd Zimmer einen wunderbar engagierten Ausbilder gehabt, der sich vor allem in der klinischen Forschung über die Mundhygiene während der Behandlung einen Namen gemacht hat. Anschließend war ich in der Universität Göttingen in der Abteilung für Kieferorthopädie als Assistentin tätig, wo ich meine Doktorarbeit geschrieben und 1999 meinen Facharzt erworben habe.
