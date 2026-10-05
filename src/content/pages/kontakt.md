@@ -2,7 +2,7 @@
 title: Kontakt
 heroEyebrow: Kontakt
 heroTitle: So *findest* Du uns.
-heroImage: /uploads/bild-kontakt-header.jpg
+heroImage: /uploads/IMG_6125.webp
 heroAlt: Die Praxis auf der Halbinsel Stralau
 labelAddress: Adresse
 labelContact: Direkt Kontakt
