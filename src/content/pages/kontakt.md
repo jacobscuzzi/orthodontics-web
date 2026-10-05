@@ -2,7 +2,7 @@
 title: Kontakt
 heroEyebrow: Kontakt
 heroTitle: So *findest* Du uns.
-heroImage: /uploads/WhatsApp Image 2026-10-05 at 09.56.20.webp
+heroImage: /uploads/7f900872-4bbe-4d5a-9520-5ba9a4de3da7.webp
 heroAlt: Die Praxis auf der Halbinsel Stralau
 labelAddress: Adresse
 labelContact: Direkt Kontakt
