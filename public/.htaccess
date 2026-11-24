@@ -1,5 +1,5 @@
 ErrorDocument 404 /404.html
-Options -Indexes
+Options -Indexes -MultiViews
 
 <FilesMatch "^\.">
   Require all denied
