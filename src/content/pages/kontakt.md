@@ -8,8 +8,8 @@ labelAddress: Adresse
 labelContact: Direkt Kontakt
 labelHours: Öffnungszeiten
 bookingCtaLabel: Online-Termin buchen
-bottomImage: /uploads/Berlin Transit Map_ Ostkreuz to Treptower Park.webp
-bottomImageAlt: Die Praxis auf der Halbinsel Stralau
+bottomImage: ''
+bottomImageAlt: ''
 ---
 
 ## So findest Du zu uns
