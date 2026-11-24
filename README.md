@@ -4,7 +4,7 @@ Willkommen! Diese Kurzanleitung erklärt, wie du die Inhalte der Website selbst 
 
 ## Login in den Editor
 
-1. Öffne <https://jacobscuzzi.github.io/orthodontics-web/admin/>.
+1. Öffne <https://kieferorthopaediepraxis-berlin.de/admin/>.
 2. Auf **Mit GitHub anmelden** (Sign in with GitHub) klicken.
 3. Beim ersten Mal fragt GitHub nach deinem GitHub-Benutzernamen, Passwort und dem Code aus deiner Authenticator-App. Danach einmal auf **Authorize** klicken.
 4. Du siehst jetzt die Bereiche **Seiten**, **Team**, **Frage & Antwort** und **Website-Daten**.
@@ -87,7 +87,7 @@ Das CMS speichert alle Inhalte in einem GitHub-Repository. Wer Inhalte bearbeite
 
 ### Schritt 3: Im CMS anmelden
 
-Ab jetzt funktioniert **Mit GitHub anmelden** unter <https://jacobscuzzi.github.io/orthodontics-web/admin/> wie oben beschrieben.
+Ab jetzt funktioniert **Mit GitHub anmelden** unter <https://kieferorthopaediepraxis-berlin.de/admin/> wie oben beschrieben.
 
 ### Zugang wieder entziehen
 
@@ -103,7 +103,7 @@ Ab jetzt funktioniert **Mit GitHub anmelden** unter <https://jacobscuzzi.github.
 - [Tailwind CSS](https://tailwindcss.com) v4
 - [Sveltia CMS](https://github.com/sveltia/sveltia-cms) (Content Management, GitHub-Backend, Login per GitHub-OAuth)
 - [Fontsource](https://fontsource.org) (Fraunces + Inter, selbstgehostet, DSGVO-konform)
-- Hosting: **GitHub Pages** (Deploy via GitHub Actions, siehe [.github/workflows/astro.yml](.github/workflows/astro.yml))
+- Hosting: **IONOS Webhosting** (Build und SFTP-Upload via GitHub Actions, siehe [.github/workflows/deploy.yml](.github/workflows/deploy.yml))
 
 ### CMS-Login (GitHub OAuth)
 
@@ -111,7 +111,7 @@ Der Button **Mit GitHub anmelden** läuft über einen kleinen Cloudflare Worker 
 
 - Code: <https://github.com/jacobscuzzi/sveltia-cms-auth> (Kopie von [sveltia/sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth)), Deploy läuft automatisch über Cloudflare bei Änderungen im Repo.
 - Adresse: `https://sveltia-cms-auth.j-baumfalk.workers.dev`, eingetragen als `base_url` in [public/admin/config.yml](public/admin/config.yml).
-- Variablen im Worker (Cloudflare → Workers & Pages → sveltia-cms-auth → Settings → Variables): `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` (Secret), `ALLOWED_DOMAINS` = `jacobscuzzi.github.io`.
+- Variablen im Worker (Cloudflare → Workers & Pages → sveltia-cms-auth → Settings → Variables): `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` (Secret), `ALLOWED_DOMAINS` = `kieferorthopaediepraxis-berlin.de`.
 - Die zugehörige OAuth-App liegt im GitHub-Konto des Inhabers unter <https://github.com/settings/developers>, Callback-URL ist die Worker-Adresse plus `/callback`.
 
 ### Lokale Entwicklung
@@ -135,7 +135,7 @@ npx @sveltia/cms-proxy-server
 npm run dev
 ```
 
-Dann `http://localhost:4321/orthodontics-web/admin/` öffnen. Änderungen landen direkt in `src/content/` und `public/uploads/` — committen wie gewohnt.
+Dann `http://localhost:4321/admin/` öffnen. Änderungen landen direkt in `src/content/` und `public/uploads/` — committen wie gewohnt.
 
 ### Struktur
 
@@ -159,14 +159,23 @@ Neue Presets: in `theme.json` ergänzen **und** einen weiteren Block im `presets
 
 ### Deploy
 
-Hosting: **GitHub Pages**, Auto-Deploy via Workflow [.github/workflows/astro.yml](.github/workflows/astro.yml). Jeder Push auf `main` baut und veröffentlicht.
+Hosting: **IONOS Webhosting** (Vertrag „Webhosting Pro“). Der Workflow [.github/workflows/deploy.yml](.github/workflows/deploy.yml) baut bei jedem Push auf `main` und lädt `dist/` per SFTP hoch ([scripts/deploy.sh](scripts/deploy.sh), nutzt `lftp`). Bei Pull Requests läuft nur der Build als Test.
+
+Das Skript lädt nur in ein Verzeichnis hoch, das leer ist oder die Markierungsdatei `.inselpraxis` enthält. Ein falsch eingestelltes Ziel löscht also nie die alte Seite oder andere Daten im Webspace.
 
 Erstmaliges Setup:
-1. Repo auf GitHub pushen.
-2. **Settings → Pages → Source: GitHub Actions** wählen (nicht „Deploy from branch").
-3. Personal Access Token nach Anleitung im Abschnitt **CMS-Zugang einrichten** erstellen und im CMS hinterlegen.
 
-Domain-Wechsel: nur `site.config.mjs` anpassen (eine Zeile, `SITE_URL`). Die GitHub-Pages-URL ergibt sich daraus, der Code zieht alles über `withBase()` aus `src/utils/base.ts` korrekt.
+1. IONOS → Hosting → **SFTP & SSH** → neuen Benutzer anlegen, Verzeichnis `/inselpraxis` zuweisen (Ordner vorher anlegen, z.B. per FileZilla oder Webspace Explorer).
+2. GitHub → Settings → Secrets and variables → Actions → **Secrets**: `SFTP_HOST` (z.B. `access851104090.webspace-data.io`), `SFTP_USER`, `SFTP_PASSWORD`.
+3. Optional unter **Variables**: `SFTP_TARGET_DIR`. Leer heißt: das Startverzeichnis des SFTP-Benutzers. Nur nötig, wenn der Benutzer nicht auf `/inselpraxis` beschränkt ist, dann `/inselpraxis` eintragen.
+4. Workflow einmal laufen lassen (Actions → Build & deploy → Run workflow) und das Ergebnis über eine IONOS-System-Domain prüfen, die auf `/inselpraxis` zeigt.
+5. IONOS → Domains & SSL → kieferorthopaediepraxis-berlin.de → Verwendungsart **Webspace**, Verzeichnis `/inselpraxis`. Die alte Seite bleibt in ihrem Verzeichnis liegen; zurückwechseln = Verzeichnis zurückstellen.
+6. Cloudflare Worker: `ALLOWED_DOMAINS` auf `kieferorthopaediepraxis-berlin.de` setzen (siehe CMS-Login).
+7. GitHub → Settings → Pages: GitHub Pages abschalten, damit keine veraltete Kopie unter github.io online bleibt.
+
+`public/.htaccess` regelt HTTPS, die Weiterleitung von `www.` auf die Domain ohne `www.`, 301-Weiterleitungen der alten `.php`-Adressen, die 404-Seite und Caching.
+
+Domain-Wechsel: `SITE_URL` in `site.config.mjs` und die Domain in `public/.htaccess` anpassen. Pfade laufen über `withBase()` aus `src/utils/base.ts`.
 
 ### Bekannte Limitierungen
 

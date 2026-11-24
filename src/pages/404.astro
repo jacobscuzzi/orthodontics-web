@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+import { withBase } from '../utils/base';
+---
+<BaseLayout title={`Seite nicht gefunden – ${site.practice.name}`}>
+  <section class="mx-auto max-w-3xl px-4 md:px-6 py-20 md:py-28 text-center">
+    <p class="eyebrow mb-6">Fehler 404</p>
+    <h1 class="font-display text-4xl md:text-5xl text-primary mb-6">Diese Seite gibt es nicht (mehr).</h1>
+    <p class="text-lg mb-10">
+      Vielleicht hat sich die Adresse mit der neuen Website geändert. Von der Startseite aus findest Du alles Wichtige.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={withBase('/')} class="inline-block bg-primary text-background px-6 py-3 rounded-md font-medium hover:opacity-90 transition-opacity">Zur Startseite</a>
+      <a href={withBase('/kontakt')} class="inline-block border border-primary text-primary px-6 py-3 rounded-md font-medium hover:bg-primary hover:text-background transition-colors">Kontakt</a>
+    </div>
+  </section>
+</BaseLayout>

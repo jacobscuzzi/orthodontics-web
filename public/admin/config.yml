@@ -6,6 +6,8 @@ backend:
   # Ermöglicht "Mit GitHub anmelden" statt manuellem Token.
   base_url: https://sveltia-cms-auth.j-baumfalk.workers.dev
 
+site_url: https://kieferorthopaediepraxis-berlin.de
+
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
