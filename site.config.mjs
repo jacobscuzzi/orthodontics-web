@@ -9,7 +9,7 @@
 //
 // Wichtig: Die URL muss mit '/' enden.
 
-export const SITE_URL = 'https://jacobscuzzi.github.io/orthodontics-web/';
+export const SITE_URL = 'https://kieferorthopaediepraxis-berlin.de/';
 
 const url = new URL(SITE_URL);
 export const SITE = url.origin;

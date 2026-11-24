@@ -1,0 +1,1 @@
+Marks this directory as a deploy target of kfo-praxis-web. scripts/deploy.sh only mirrors (and deletes) into directories that are empty or contain this file.
