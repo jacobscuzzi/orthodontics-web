@@ -28,6 +28,8 @@ Willkommen! Diese Kurzanleitung erklärt, wie du die Inhalte der Website selbst 
 
 > Du kannst Fotos in voller Kamera-Auflösung hochladen. Der Editor verkleinert sie vor dem Speichern automatisch auf Web-Größe (max. 2560 Pixel, WebP-Format). Auf dem Bildschirm sieht das identisch aus, die Seite lädt aber deutlich schneller. Bewahre das Original in deiner eigenen Fotosammlung auf. Das Verkleinern dauert bei großen Fotos ein paar Sekunden, bitte so lange warten, bis das Vorschaubild erscheint.
 
+> Ein Bild immer über das Foto-Feld der Seite austauschen, nicht über **Replace** in der Medienübersicht. Weil neue Uploads als WebP gespeichert werden, lehnt der Editor das Ersetzen älterer JPG-Dateien ab.
+
 ## Neues Teammitglied hinzufügen
 
 1. Links auf **Team** → oben rechts auf **New Team**.
@@ -159,14 +161,14 @@ Neue Presets: in `theme.json` ergänzen **und** einen weiteren Block im `presets
 
 ### Deploy
 
-Hosting: **IONOS Webhosting** (Vertrag „Webhosting Pro“). Der Workflow [.github/workflows/deploy.yml](.github/workflows/deploy.yml) baut bei jedem Push auf `main` und lädt `dist/` per SFTP hoch ([scripts/deploy.sh](scripts/deploy.sh), nutzt `lftp`). Bei Pull Requests läuft nur der Build als Test.
+Hosting: **IONOS Webhosting**. Der Workflow [.github/workflows/deploy.yml](.github/workflows/deploy.yml) baut bei jedem Push auf `main` und lädt `dist/` per SFTP hoch ([scripts/deploy.sh](scripts/deploy.sh), nutzt `lftp`). Bei Pull Requests läuft nur der Build als Test.
 
 Das Skript lädt nur in ein Verzeichnis hoch, das leer ist oder die Markierungsdatei `.inselpraxis` enthält. Ein falsch eingestelltes Ziel löscht also nie die alte Seite oder andere Daten im Webspace.
 
 Erstmaliges Setup:
 
 1. IONOS → Hosting → **SFTP & SSH** → neuen Benutzer anlegen, Verzeichnis `/inselpraxis` zuweisen (Ordner vorher anlegen, z.B. per FileZilla oder Webspace Explorer).
-2. GitHub → Settings → Secrets and variables → Actions → **Secrets**: `SFTP_HOST` (z.B. `access851104090.webspace-data.io`), `SFTP_USER`, `SFTP_PASSWORD`.
+2. GitHub → Settings → Secrets and variables → Actions → **Secrets**: `SFTP_HOST` (Servername aus IONOS → Hosting → SFTP & SSH), `SFTP_USER`, `SFTP_PASSWORD`.
 3. Optional unter **Variables**: `SFTP_TARGET_DIR`. Leer heißt: das Startverzeichnis des SFTP-Benutzers. Nur nötig, wenn der Benutzer nicht auf `/inselpraxis` beschränkt ist, dann `/inselpraxis` eintragen.
 4. Workflow einmal laufen lassen (Actions → Build & deploy → Run workflow) und das Ergebnis über eine IONOS-System-Domain prüfen, die auf `/inselpraxis` zeigt.
 5. IONOS → Domains & SSL → kieferorthopaediepraxis-berlin.de → Verwendungsart **Webspace**, Verzeichnis `/inselpraxis`. Die alte Seite bleibt in ihrem Verzeichnis liegen; zurückwechseln = Verzeichnis zurückstellen.
@@ -181,3 +183,7 @@ Domain-Wechsel: `SITE_URL` in `site.config.mjs` und die Domain in `public/.htacc
 
 - `activePreset` unterstützt im CMS nur die drei vordefinierten Presets (sage, classicGreen, blue). Ein neues Preset muss im Code und der CMS-Config angelegt werden.
 - Doctolib ist als Link eingebunden, nicht als iFrame (DSGVO-konform, bewusste Entscheidung).
+
+## Rechte
+
+Der Code dieser Website ist als Referenz öffentlich einsehbar (© Jakob Baumfalk). Texte, Fotos, Logo und Patientenbewertungen gehören der Praxis Dr. Insa Baumfalk und dürfen nicht weiterverwendet werden. Es gibt bewusst keine Open-Source-Lizenz.
